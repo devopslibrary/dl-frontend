@@ -6,9 +6,45 @@
 </description>
     <link>http://devopslibrary.com/</link>
     <atom:link href="http://devopslibrary.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 26 Feb 2016 00:12:21 -0500</pubDate>
-    <lastBuildDate>Fri, 26 Feb 2016 00:12:21 -0500</lastBuildDate>
+    <pubDate>Fri, 26 Feb 2016 08:56:44 -0500</pubDate>
+    <lastBuildDate>Fri, 26 Feb 2016 08:56:44 -0500</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>Adding a Salt Minion</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/xqCJkF0lzAU&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;Welcome back!  This is Samantha with the DevOps Library, and today we’re going to add a Linux minion to our Salt master!  If you’re wondering what a “minion” is, don’t worry, it’s just SaltStack terminology for a server that can be controlled by the master.&lt;/p&gt;
+
+&lt;p&gt;Alright, let’s go ahead and get started!  First, spin up an Ubuntu 14.04 instance on AWS!  You should be able to stick with the default settings for everything, but DO make sure that its placed in a security group &amp;amp; network that has access to our Salt master.  We’re actually going to use a little Cloud Init script to change the hostname to LinuxMinion, but we’ll stick with the defaults for everything else.&lt;/p&gt;
+
+&lt;p&gt;Once it finishes starting, go ahead and SSH into the instance.  Now all that we need to do is to install the salt minion service, but first let’s make sure this minion can resolve the master.  Run &lt;code class=&quot;highlighter-rouge&quot;&gt;ping salt&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ouch, that didn’t work.  If we were doing this in a real production environment, we’d make sure our DNS server had an entry for Salt, pointing to the IP of our master.  But for now, let’s just add the IP of the master to our hosts file.
+Open up &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Type the IP of the master, followed by the host name “salt”, then save and close the file.
+Alright, let’s go ahead and try to ping the master one more time.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Ping salt&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Perfect!  There we go!!  We’re now ready to install the salt minion service!!  Run
+&lt;code class=&quot;highlighter-rouge&quot;&gt;curl dash L https://bootstrap.saltstack.com | sudo sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Alright, that is it.  No for real, that’s seriously the only thing that we needed to do on our Linux minion, it really is that easy!!&lt;br /&gt;
+We do still need to accept the cert though on our salt master, so let’s do that now.  SSH into the master, run &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo -i&lt;/code&gt; to become root, then run &lt;code class=&quot;highlighter-rouge&quot;&gt;salt-key -A&lt;/code&gt; to accept the cert.
+Great job!!!  You did it!!  Just for the fun of it, let’s run
+&lt;code class=&quot;highlighter-rouge&quot;&gt;salt &#39;*&#39; cmd.run &#39;ifconfig&#39;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Look!  We just ran ifconfig on both of our minions, and didn’t even need to SSH in to do it!  Isn’t that awesome??  In our next lesson, we’ll show you how to set up a Windows minion.  Thanks for watching, and if you enjoy our videos please consider supporting us, even if it’s a tiny amount every bit helps!  We love making our videos and hope to keep them free forever!  See you again soon!&lt;/p&gt;
+</description>
+        <pubDate>Thu, 25 Feb 2016 12:00:00 -0500</pubDate>
+        <link>http://devopslibrary.com/lessons/adding-a-salt-minion-linux</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/adding-a-salt-minion-linux</guid>
+        
+        
+        <category>saltstack</category>
+        
+      </item>
     
       <item>
         <title>Setting up a Saltmaster</title>
@@ -599,131 +635,6 @@ http://devopslibrary.com/episode7-docker.zip&lt;/p&gt;
         
         
         <category>docker</category>
-        
-      </item>
-    
-      <item>
-        <title>ELK Stack for Logging Tutorial</title>
-        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/2-Bzm25dLRQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
-
-&lt;p&gt;Hello and welcome to the DevOps Library, this is Samantha with Episode 9, the ELK stack. Before we get started, let me quickly explain what the ELK stack is. ELK is an amazing Open Source logging system, and we have yet to find a single company that would not benefit tremendously by setting it up.&lt;/p&gt;
-
-&lt;p&gt;VagrantFile:
-http://devopslibrary.com/episode9-ELK.zip&lt;/p&gt;
-
-&lt;p&gt;Transcript:&lt;/p&gt;
-
-&lt;p&gt;Hello and welcome to the DevOps Library, this is Samantha with Episode 9, the ELK stack.  Before we get started, let me quickly explain what the ELK stack is.  ELK is an amazing Open Source logging system, and we have yet to find a single company that would not benefit tremendously by setting it up.  If you’ve heard of Splunk, or might even be using Splunk now, one thing that you need to keep in mind is that Splunk is insanely and incredibly expensive.  ELK will provide with just as much if not more than Splunk when set up properly, and has a huge price tag of exactly zero.  Almost every company we’ve been to usually starts out using Splunk, they end up loving it, a few months later they realize they can’t spend a couple hundred thousand just on logging, and that’s when they realize everything they’ve come to love can be done for free.&lt;/p&gt;
-
-&lt;p&gt;Well, now that we’ve angered the Splunk gods, and hopefully made you interested in ELK, let’s get started.&lt;/p&gt;
-
-&lt;p&gt;ELK stands for three separate pieces.  The E stands for ElasticSearch, which is where we’ll be storing all of our logs.  The L stands for LogStash, which we can use for both shipping the logs from servers, as well as processing and dumping them into ElasticSearch.  And lastly is the K which stands for Kibana.  Kibana is a gorgeous web interface, which has traditionally been hosted through Nginx or Apache, but as of Kibana 4 is now a standalone application.&lt;/p&gt;
-
-&lt;p&gt;Today we’re going to keep it simple, and install all of these on a single fresh 14.04 Ubuntu Server.  NOTE, ELK does require a bit more memory and CPU power than most of tutorials, please ensure that the VM you’re using has at least 2GB of memory, and preferably 2 CPUs (which our VagrantFile includes automatically for VirtualBox).  Please keep in mind that the architecture we’re setting up today is NOT how we would set it up for a large enterprise.  ELK does scale extremely well, but properly setting up horizontal scaling will be covered in a later video.&lt;/p&gt;
-
-&lt;p&gt;Alright, let’s begin!  First, let’s begin by adding the apt key and repository for ElasticSearch.  Run:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;wget -qO – https://packages.elasticsearch.org/GPG-KEY-elasticsearch&lt;/td&gt;
-      &lt;td&gt;sudo apt-key add –&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Followed by:&lt;/p&gt;
-
-&lt;p&gt;sudo add-apt-repository “deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main”&lt;/p&gt;
-
-&lt;p&gt;Now we just need to call apt-get update.&lt;/p&gt;
-
-&lt;p&gt;Alright let’s install some packages, do:&lt;/p&gt;
-
-&lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get install default-jdk elasticsearch -y&lt;/p&gt;
-
-&lt;p&gt;We’ll need to start ElasticSearch after it installs, to do that let’s just run:&lt;/p&gt;
-
-&lt;p&gt;Service elasticsearch start&lt;/p&gt;
-
-&lt;p&gt;Now we need to install Logstash.  The best way to install it is actually to grab the latest debian packages, so let’s do:&lt;/p&gt;
-
-&lt;p&gt;wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb&lt;/p&gt;
-
-&lt;p&gt;Go ahead and install that using:&lt;/p&gt;
-
-&lt;p&gt;dpkg -i logstash_1.4.2-1-2c0f5a1_all.deb&lt;/p&gt;
-
-&lt;p&gt;We also want the contributed community plugins for Logstash as well, so one more long wget.  This time:&lt;/p&gt;
-
-&lt;p&gt;wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash-contrib_1.4.2-1-efd53ef_all.deb&lt;/p&gt;
-
-&lt;p&gt;Alright, let’s install that as well.&lt;/p&gt;
-
-&lt;p&gt;dpkg -i logstash-contrib_1.4.2-1-efd53ef_all.deb&lt;/p&gt;
-
-&lt;p&gt;We don’t need to start Logstash quite yet as we still need to make a configuration file for it.  Let’s go ahead and do that now.  Head to etsy logstash conf.d&lt;/p&gt;
-
-&lt;p&gt;Once there, create a new file, we’ll name ours logstash.conf&lt;/p&gt;
-
-&lt;p&gt;Now just follow along.  Logstash configurations generally consists of some inputs, some filters, and some outputs.  We won’t worry about filtering today, so let’s start with setting up an input.  Type Input followed by a pair of braces.  Now inside of those, we’ll add two types of input.  For the first one, type stdin followed by another pair of braces.  Stdin will make it so that we can pipe standard input directly into Logstash, or in other words anything we type while running Logstash in the foreground will get piped straight to our output that we’ll set up shortly.&lt;/p&gt;
-
-&lt;p&gt;Alright let’s add one final input, type:&lt;/p&gt;
-
-&lt;p&gt;file brace&lt;/p&gt;
-
-&lt;p&gt;type goes to syslog&lt;/p&gt;
-
-&lt;p&gt;path goes to var slash log slash star&lt;/p&gt;
-
-&lt;p&gt;start_position goes to “beginning”&lt;/p&gt;
-
-&lt;p&gt;close brace&lt;/p&gt;
-
-&lt;p&gt;This input will automatically pipe anything that goes to our system logs, like our syslog for example, straight to our output.  Also notice that we specified that we’d like our start position to be at the beginning.  Normally, Logstash starts out by tailing any files that we specify, but because we want some extra data to play around with, we’re starting at the beginning, so that Logstash parses everything that’s already in our var logs folder.&lt;/p&gt;
-
-&lt;p&gt;Well that’s enough inputs, let’s set up two outputs for our data.&lt;/p&gt;
-
-&lt;p&gt;Type:&lt;/p&gt;
-
-&lt;p&gt;Output, then within the braces type STD out.&lt;/p&gt;
-
-&lt;p&gt;Codec goes to rubydebug&lt;/p&gt;
-
-&lt;p&gt;This one just outputs everything Logstash receives to standard out when Logstash is ran in the Foreground.  For our second output, type elasticsearch, host goes to localhost then close your braces.  This second output dumps everything into elasticsearch, so that our logs have a place to stay.  Double check your file and make sure it looks like ours, then save it.&lt;/p&gt;
-
-&lt;p&gt;Alright.  While we could start the logstash service now by doing service logstash start, let’s run it in the foreground to make sure everything is working properly.  Logstash lives in opt, so run&lt;/p&gt;
-
-&lt;p&gt;/opt/logstash/bin/logstash -f logstash.conf&lt;/p&gt;
-
-&lt;p&gt;You should start getting blasted by a ton of events from Logstash.  All of those are also pouring straight into ElasticSearch.  Once it calms down (probably in a minute or two depending on how old the instance you’re using is), go ahead and try typing a few messages and pressing enter.  They’ll get saved in ElasticSearch as well, since you added the standard-in line to the Logstash inputs.&lt;/p&gt;
-
-&lt;p&gt;Alright, once you’ve finished dumping some messages in, go ahead and hit CTRL-Z to suspend the process, then type bg ENTER to let Logstash keep running in the background.  You can always type fg to bring it back to the foreground, or kill it completely using CTRL-C.  When you aren’t testing, it makes a lot more sense to just run Logstash as a service, but we’re just exploring right now.&lt;/p&gt;
-
-&lt;p&gt;Now that Logstash and ElasticSearch are finished, we have one last piece that we need to install.  Let’s go ahead and download Kibana.  Do:&lt;/p&gt;
-
-&lt;p&gt;wget https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz&lt;/p&gt;
-
-&lt;p&gt;Alright, we’ll untar that to opt, run:&lt;/p&gt;
-
-&lt;p&gt;tar -xvf kibana-4.0.1-linux-x64.tar.gz -C /opt&lt;/p&gt;
-
-&lt;p&gt;Now go to that directory.  We’re going to just quickly rename the folder to kibana, then run:&lt;/p&gt;
-
-&lt;p&gt;/opt/kibana/bin/kibana&lt;/p&gt;
-
-&lt;p&gt;Believe it or not you’re finally finished and can begin playing with the stack!  You can access Kibana using a web browser on port 5601.  If you’re using our VagrantFile, just visit 192.168.5.10:5601.&lt;/p&gt;
-
-&lt;p&gt;When you first access Kibana, make sure you set the Time-Field name to @timestamp.  Once that’s saved, go ahead to the discover tab and select a recent date range.  We’ll add the host, message, and type of message for now.  Note that you can zoom in on a timeframe by selecting the range on the graph.&lt;/p&gt;
-
-&lt;p&gt;We highly recommend spending some time getting to know Kibana.  Here’s a couple of screenshots of different ways you can use it to visualize data.  Soon we will be releasing several more videos, covering each part of the ELK stack in depth, but hopefully that’s enough to get you going!  Thank you so much for watching!&lt;/p&gt;
-</description>
-        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
-        <link>http://devopslibrary.com/lessons/elk-stack-for-logging-tutorial</link>
-        <guid isPermaLink="true">http://devopslibrary.com/lessons/elk-stack-for-logging-tutorial</guid>
-        
-        
-        <category>elk</category>
         
       </item>
     
