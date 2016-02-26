@@ -1,30 +1,731 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
+    <title>DevOps Library</title>
+    <description>Welcome to the DevOps Library!  We have the best videos for the best admins!
+</description>
+    <link>http://devopslibrary.com/</link>
+    <atom:link href="http://devopslibrary.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 26 Feb 2016 00:12:21 -0500</pubDate>
+    <lastBuildDate>Fri, 26 Feb 2016 00:12:21 -0500</lastBuildDate>
+    <generator>Jekyll v3.1.1</generator>
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% for tag in post.tags %}
-        <category>{{ tag | xml_escape }}</category>
-        {% endfor %}
-        {% for cat in post.categories %}
-        <category>{{ cat | xml_escape }}</category>
-        {% endfor %}
+        <title>Setting up a Saltmaster</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/Fl6hXk-jpUM&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+</description>
+        <pubDate>Thu, 29 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/setting-up-a-saltmaster</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/setting-up-a-saltmaster</guid>
+        
+        
+        <category>saltstack</category>
+        
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>Writing Quality Reusable PowerShell</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/ZQD0rLZMNho&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;https://www.youtube.com/watch?v=7jU15_7pPkY&lt;/p&gt;
+
+&lt;p&gt;Transcript:&lt;/p&gt;
+
+&lt;p&gt;Welcome to the DevOps Library, this is Samantha with Episode 10.  Today we’re going to talk about writing high quality, reusable PowerShell code.  We will start out by looking at a typical PowerShell script that we found in the wild–and by rewriting it we’ll cover how and why to write commandlets instead of scripts.  We’ll also cover a few advanced topics such as Hashmaps, Splatting, and creating modules from scratch.&lt;/p&gt;
+
+&lt;p&gt;Let’s get started.  Here we have a short typical PowerShell script we found on Technet named CheckFreeDiskSpace.ps1.  Before we examine it, let’s just try to run it first.&lt;/p&gt;
+
+&lt;p&gt;(sigh) It’s asking for credentials, and can’t find a file named computers.txt on our D drive.&lt;/p&gt;
+
+&lt;p&gt;While it wouldn’t be that much work to revise this script for our own use, what if the script were more complex?  By the time we figure out what needs to be changed, we may as well have started from scratch.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately this type of code is what a lot of sysadmins end with before moving on to writing their next script.  However, if you follow along we’ll show you how to write code that’s more useful for others to use, as well as yourself when you’re trying to build off of old scripts.&lt;/p&gt;
+
+&lt;p&gt;Before we get started–Let’s do some organizing and create an area to store our future PowerShell modules.&lt;/p&gt;
+
+&lt;p&gt;First create and clone a repository.  Our code should be in version control, as it allows for easily reverting when something breaks and simplifies sharing with a team.  If you don’t have a repository, we highly recommend setting one up for free on Github.com.&lt;/p&gt;
+
+&lt;p&gt;Inside of our repository, create a new folder named modules.  This where we’ll store any PowerShell modules that we create.&lt;/p&gt;
+
+&lt;p&gt;Let’s create our first one–make a new directory, we’ll call ours DevOpsLibrary.&lt;/p&gt;
+
+&lt;p&gt;Inside, add a file named DevOpsLibrary.psm1. It’s important that the name of this file match the name of the folder, as PowerShell will automatically look for this file when we call Import-Module.  It only needs to contain the line seen here:&lt;/p&gt;
+
+&lt;p&gt;PAUSE&lt;/p&gt;
+
+&lt;p&gt;It’s a little trick we use that just “dot sources” every ps1 file within the same folder as the module.  In other words, when we type import-module DevopsLibrary later on, PowerShell will load every function that we save with the extension .ps1 in our module’s folder.&lt;/p&gt;
+
+&lt;p&gt;PowerShell will also look for an optional file with the extension psd1, known as the manifest.  We won’t worry about it in this episode as it’s primarily used for adding supplemental information.&lt;/p&gt;
+
+&lt;p&gt;We have one more thing that we need to do before rewriting the script.  If we try to run Import-Module, PowerShell isn’t going to know where our module is located.  By default, PowerShell looks for modules in two places, one under:&lt;/p&gt;
+
+&lt;p&gt;system 32, windows powershell, V1.0 modules&lt;/p&gt;
+
+&lt;p&gt;and the second under:&lt;/p&gt;
+
+&lt;p&gt;user documents windows powershell modules&lt;/p&gt;
+
+&lt;p&gt;While we could move our module, we would prefer to keep it where it is so that our code is version controlled.  We just need to add our modules folder path to the PSModulePath variable in System.  Once we have done that, make sure that you close and reopen PowerShell.  Now we’re finally ready to rewrite the script.&lt;/p&gt;
+
+&lt;p&gt;Let’s begin by renaming the file to something that fits in with the standard PowerShell convention of Verb-Noun.  To see a list of suggested verbs, just run “Get-Verb”.  Since our script is retrieving information on disk space, let’s use “Get” for the verb, and “DiskSpace” for the noun.  Save the file as Get-DiskSpace.ps1 under our DevOpsLibrary module folder.&lt;/p&gt;
+
+&lt;p&gt;Now let’s go ahead and wrap the entire script under a function named Get-DiskSpace.  It’s important that you give the function the same name as the file name, otherwise it’ll become difficult to locate your functions later on.&lt;/p&gt;
+
+&lt;p&gt;Alright, that looks slightly better, but we still have two major problems.  One is that the list of computer names is hardcoded, and second, the script requires user interaction because we’re using “Get-Credential”.  Let’s break those out of the script by turning them into parameters.  Delete the “clear” line as well.  You should never use anything like “clear”, or “Write-Host”, as they make it frustrating for someone trying to reuse your code.  Instead, use commands like Write-Verbose or Write-Debug for testing.&lt;/p&gt;
+
+&lt;p&gt;Let’s go ahead and delete the “file = Get-Content” line as well.  That line currently forces anyone that uses our script to supply a list of servers as text file.  That doesn’t make sense, they might want to pipe a list of hostnames, or pass them in as an array.  You should always write your code to be as concise, flexible, and simple as possible.  We’ll also replace the foreach with our own shorthand version.  If you haven’t seen the pipe percent combination before, it’s the same as a saying foreach, but instead of each item having a name, we reference them using dollar underscore.  In our example that means for every hostname in the variable ServerName, do Get-WMIObject, with the hostname being referenced by dollar underscore.&lt;/p&gt;
+
+&lt;p&gt;Speaking of Get-WMIObject, discard everything after the pipe as well.  All of that formatting is useless.  While it may look more pleasing when the command is ran by hand, it’s about the worst thing we could do for reusability.  Let’s say someone else utilizes are script and wants to divide the returned number, do you think it’s easier to divide 500 or 500MB?  Remember to always separate logic from presentation.&lt;/p&gt;
+
+&lt;p&gt;Before we go too much further, let’s make our function a real commandlet.  Add “Commandlet Binding” to the top of our function.  Then move our parameters out of the function signature to right after our commandlet binding call.&lt;/p&gt;
+
+&lt;p&gt;What does this black magic do you ask?  It tells PowerShell that this is a real commandlet, which gives us many benefits.  One of which is advanced parameters, allowing us to create different sets of parameters, make some mandatory or optional, use cool commands like Write-Verbose and Write-Debug, as well as a couple of other tricks including easy documentation.&lt;/p&gt;
+
+&lt;p&gt;Speaking of documentation, that’s something we recommend writing BEFORE you code a script, not after.  If we clearly outline what our function is going to do, what parameters it’s going to take, and possibly even include an example or two, it’ll be easy for us to stay focused on what our code should be doing.  Let’s go ahead and write our documentation now.&lt;/p&gt;
+
+&lt;p&gt;At the top of the function, we’re going to add a comment block formatted in a special way so that PowerShell recognizes it.  By using five special keywords, dot Synopsis, dot Description, dot Parameter, dot Example, and dot Notes, we can add meaningful documentation to our commandlet.  Yes this does take a little extra time, but the time it saves you and your team is more than worth it, not to mention the benefits of planning what you code.&lt;/p&gt;
+
+&lt;p&gt;Let’s start with the synopsis.&lt;/p&gt;
+
+&lt;p&gt;Get-DiskSpace doesn’t imply what it returns, so let’s say that the function will return the total amount of disk space, and optionally the amount free or percentage free.&lt;/p&gt;
+
+&lt;p&gt;Now onto the description.  The description can just be a slightly more in depth description of the synopsis.  Let’s also mention that the user can optionally pass in a set of credentials for running the command on a list of remote servers.  We’ll actually make it optional later on.&lt;/p&gt;
+
+&lt;p&gt;For the Parameters, just type the name of each parameter, and on the next line just quickly describe what the parameter is used for.&lt;/p&gt;
+
+&lt;p&gt;We’re going to go ahead and type two examples as well, one showing how to use our Get-DiskSpace command by piping a list of servers to it, as well as how to just return the percent of disk space free on the local server.  If you’re not ready to write the example documentation until you finish the script, that’s completely o-k, but please remember to come back to it!&lt;/p&gt;
+
+&lt;p&gt;Lastly, we can add some notes.  Notes can be anything that you’d like.  Some people like to add the author of the script here, or just helpful information for the user.&lt;/p&gt;
+
+&lt;p&gt;An important point to remember is that once you have documented the parameters of a function, and what it should return, you should stick with them once the code has been shared.  The reason is because you, or others on your team may now be depending on your function.  That doesn’t mean you can’t improve the code, or change HOW the commandlet does something, but everyone should be able to count on the parameters and what is returned to remain the same.&lt;/p&gt;
+
+&lt;p&gt;Well at least we’re finally done with our documentation!  Want to see something neat? Hit F5 to run our partially completed commandlet.  Nothing happened of course as everything is wrapped in a function, which is exactly what we wanted.  Now type:&lt;/p&gt;
+
+&lt;p&gt;Get-Help Get-DiskSpace&lt;/p&gt;
+
+&lt;p&gt;See, it was worth it, look at how nice that looks!  Now when someone tries to use our code, instead of having to open up the script and look at it, they can just type Get-Help to see exactly how to use our commandlet!  Nice job!&lt;/p&gt;
+
+&lt;p&gt;We still have quite a bit left to do however before we’re finished though.  Let’s try some of our new advanced parameter tricks.  First, let’s make it so that our function can be used in the pipeline.  Why is it important to be able to pipe to our function?  Because right now, to use our command someone would have to type:&lt;/p&gt;
+
+&lt;p&gt;Get-DiskSpace –ServerName ‘Hostname’&lt;/p&gt;
+
+&lt;p&gt;But they should also be able to use our command by typing:&lt;/p&gt;
+
+&lt;p&gt;An array of hostnames Pipe Get-DiskSpace&lt;/p&gt;
+
+&lt;p&gt;While that does’t work yet, It’s easy to implement.  All we need to do is add a special option called ValueFromPipeline = True in front of our ServerName parameter.  Let’s do that now.&lt;/p&gt;
+
+&lt;p&gt;We can also make any of the parameters mandatory if we’d like by adding mandatory=true, but we don’t need to do that for this script.&lt;/p&gt;
+
+&lt;p&gt;Alright, let’s add three more parameters, one named free, one named total, and one named percent.  In front of each of these, add “Switch”.  Switch turns parameters into special Boolean switches, that way we can call:&lt;/p&gt;
+
+&lt;p&gt;“Get-DiskSpace dash free” for example to return the amount of disk space available.&lt;/p&gt;
+
+&lt;p&gt;Before we actually implement those switches, let’s create an array right before the foreach loop.   Now add array += in front of our Get-WMIObject call.  Now at the end of our script, we’ll return the array.  Make sure every function that you write returns something, even if it’s just a True for success.&lt;/p&gt;
+
+&lt;p&gt;If you haven’t ran the script for a little while, now might be a good time to look at it again to see our current output.  First type $credentials = Get-Credential, and fill in some credentials for a remote server.  Then type:&lt;/p&gt;
+
+&lt;p&gt;“Get-DiskSpace dash PSCredential credential dash ServerName” followed by the IP of the server.&lt;/p&gt;
+
+&lt;p&gt;Your output should look similar to ours, and as you can see, we already have the necessary information to implement the switches for total space, free space, and percent.  Let’s edit our script RIGHT before the return array at the end.  We’re going to use a “Switch” instead of a bunch of ugly if statements, and we’ll use a variable named PSBoundParameters.Keys&lt;/p&gt;
+
+&lt;p&gt;This magical variable actually provides a list of all of the parameters that have been set when the function is called.  It’s extremely helpful, especially for what we’re about to do.&lt;/p&gt;
+
+&lt;p&gt;The code for our free, total, and percent switches will all look nearly identical, they consist of iterating through our array, and returning a new array with the specific values we care about.  Percent is a little unique in that we divide the amount of free space by the total size of the disk.  Feel free to pause briefly to examine how our code is doing the work here.&lt;/p&gt;
+
+&lt;p&gt;PAUSE&lt;/p&gt;
+
+&lt;p&gt;Alright, we are going to introduce one final concept before concluding the video, and that concept is called “Splatting”.  Splatting is just a technique for providing parameters to function by using a Hashtable, instead of outright specifying them.  Why would we want to use splatting in this function?  Because earlier we decided that specifying credentials or the server name should be optional.  Right now if you call Get-DiskSpace without any parameters, the command will fail.&lt;/p&gt;
+
+&lt;p&gt;We COULD solve that by making a few ugly sets of if statements, like:&lt;/p&gt;
+
+&lt;p&gt;“if credentials are supplied, call Get-WMIObject with credentials, else call it without credentials” and so on, but it would look messy.  Instead, we’ll splat.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at our current Get-WMIObject call.  What parameters are we going to call no matter what is supplied?  For our function, we’re always going to want to specify the class as Win32 LogicalDisk, and we always want the filter to be set as DriveType=3.  So let’s create a hash table containing these values before our foreach.  Type:&lt;/p&gt;
+
+&lt;p&gt;parms = @ brace class=Win32LogicalDisk ; filter=DriveType 3 close brace&lt;/p&gt;
+
+&lt;p&gt;If you’re not used to PowerShell Hashmaps, go ahead and run this line, then type parms to look at the object.  Just think of Hashmaps as an array of keys that are mapped to values.&lt;/p&gt;
+
+&lt;p&gt;Alright, on the line right after we set up the Hashmap, add the following line:&lt;/p&gt;
+
+&lt;p&gt;—&lt;/p&gt;
+
+&lt;p&gt;This line is fairly simple, it is just saying, if someone runs this command with the PSCredential variable set, then add it to our parameter hash map.  Now we’re going to add a relatively similar line at the top of our foreach, go ahead and add this:&lt;/p&gt;
+
+&lt;p&gt;—&lt;/p&gt;
+
+&lt;p&gt;This line just says that if the name of the server is set, then we want to add the ComputerName parameter to our hashmap along with the name of the server.  We have to have it in the foreach loop, because we want this to work even if the person running it supplies a list of servers.&lt;/p&gt;
+
+&lt;p&gt;Now to finally apply the splatting.  Completely remove all the parameters currently attached to Get-WMIObject, and replace them with @parms.  You may be thinking, why an @ sign?  Don’t we need a $ sign? No, when calling a function, the @ sign actually tells PowerShell to splat the variables, just trust us.&lt;/p&gt;
+
+&lt;p&gt;Believe it or not, our script is finally done.  Go ahead and commit the code to your repository, that way everyone else on the team can use it.  Now how do we call it?  Go ahead and close out of PowerShell ISE and just open up a fresh PowerShell window for the demonstration.&lt;/p&gt;
+
+&lt;p&gt;Type Import-Module DevOpsLibrary&lt;/p&gt;
+
+&lt;p&gt;then hit enter&lt;/p&gt;
+
+&lt;p&gt;Alright, our module has now been imported.  Now type Get-Help Get-DiskSpace to see our beautiful documentation again!&lt;/p&gt;
+
+&lt;p&gt;You can now call the function any way that you’d like, you can do&lt;/p&gt;
+
+&lt;p&gt;“Get-DiskSpace dash percent” to return the percentage free of our local machine, or pipe in a list of servers if you’d like.  Our script went from being difficult to use to completely reusable!  If we want to add more functions to our PowerShell Module, just save each function as functionName.ps1 in your module’s directory.  Your team will love being able to just call import module to reuse your code, and if the video helped you feel free to send it to your teammates as well.  Thank you so much for watching!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/writing-quality-reusable-powershell</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/writing-quality-reusable-powershell</guid>
+        
+        
+        <category>powershell</category>
+        
+      </item>
+    
+      <item>
+        <title>Salted Chocolatey Windows</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/WYxXUQCTVWw&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;Today we’re going to combine Salt, Windows, and Chocolatey all in one episode! If you’re unfamiliar with the SaltStack, you may want to watch our earlier episodes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;VagrantFile:&lt;/strong&gt;
+http://devopslibrary.com/episode6-saltychocolate.zip&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Transcript:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hello, this is Samantha again with the Devops Library, and today we’re going to talk about Salt, Windows, and Chocolatey all in one episode!  If you’re unfamiliar with the SaltStack, you may want to watch our earlier episodes.  Today we’re going to get started with one saltmaster named salt, and a fresh Server 2012 R2 Server named winminion.  We already have the Saltmaster set up, so now just need to install the minion service on our Windows server.  First download the installation files from the SaltStack website.  We’ll use the GUI to install the service, but you can always do a silent install using /S /master=nameOfMaster /minion-name=nameOfMinion.&lt;/p&gt;
+
+&lt;p&gt;Now during the install, make sure that the minion can resolve the hostname for the salt master.  When naming the minion, we generally just use the hostname, but feel free to use whatever you’d like.&lt;/p&gt;
+
+&lt;p&gt;Well that was easy, let’s switch to our Salt master.  All we need to do now is accept the cert using&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;salt-key –A&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we’re set!  You can now begin running commands on your Windows minion using salt, let’s try that now.  Run&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Salt ‘*’ test.ping&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should see winMinion return true.  If it doesn’t, run the command one more time, sometimes it takes a little too long on the very first run.  Now let’s check out some of the grains available, do a&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Salt ‘*’ grains.items&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You can use any of these items when targeting a server with Salt.  So let’s say you have a bunch of Windows &amp;amp; Linux salt minions, but you only want to run a command on the 2012 VMs, all you would need to run is:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Salt –G ‘OSrelease:2012Server’ cmd.run followed by the Name Of The Command&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now what if the command you’re wanting to run is Powershell, not batch?  Just run&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Salt ‘*’ cmd.run theNameOfTheCommand followed by shell=powershell&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You can do that with a ton of languages by the way, pretty much any shell that you’d like.&lt;/p&gt;
+
+&lt;p&gt;Well that was all easy, let’s try adding a little Chocolatey to the mix.  Chocolatey is to Windows what Apt-Get is to Ubuntu.  It’s a wonderful package manager that makes installing new software on windows extremely easy.  It’s also extremely easy to install, and combines really well with configuration management tools.  Let’s go ahead and install it now through Salt.&lt;/p&gt;
+
+&lt;p&gt;First, let’s visit Chocolatey.org to find the install command.  Next, let’s use salt to run it in Powershell on our Windows minion.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Salt ‘*’ cmd.run followed by the download string, and shell=powershell&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s it, Chocolatey is now installed.  If we had a hundred windows minions, it would now be installed on all 100.&lt;/p&gt;
+
+&lt;p&gt;Now time to call Chocolatey.  Think of a Windows package that you like, and search for it on the Chocolatey repository.  The odds are extremely high that a package has already been made.  We’ll search for Sublime, because it’s one of our favorite editors on Windows.&lt;/p&gt;
+
+&lt;p&gt;There it is, Sublime Text 3.  And if you look, you can see that for installing a package with chocolatey, all that you have to do is call&lt;/p&gt;
+
+&lt;p&gt;Choco install then the name of the package&lt;/p&gt;
+
+&lt;p&gt;We COULD just run &lt;code class=&quot;highlighter-rouge&quot;&gt;choco install sublimetext3&lt;/code&gt; directly on our windows box, but let’s pretend we have a few hundred minions.  Run&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Salt ‘*’ cmd.run ‘choco install sublimetext3’ shell=powershell&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s it!  No matter how many windows minions we have, they would now all of sublime text installed!  Now while you probably aren’t going to be comfortable just running commands on all of your production servers simultaneously, it’s very easy to set up a salt state SLS file that has all of the packages you want installed.  Once you’ve tested it on your dev servers, THEN you can roll it out to your production servers doing just a salt state.highstate&lt;/p&gt;
+
+&lt;p&gt;Well that’s plenty for today, thank you for watching and be sure to like our videos if you like them!  Let us know what else you’d like to see!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/salted-chocolatey-windows</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/salted-chocolatey-windows</guid>
+        
+        
+        <category>saltstack</category>
+        
+      </item>
+    
+      <item>
+        <title>Salt States</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/AsvVp-ldT2Q&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;What if we want to write a script that does multiple things, or ensure several packages are installed? We just need to create a salt state file. Hopefully if you’re watching this you’re already a little familiar with Salt, if not feel free to watch our SaltStack tutorial first.&lt;/p&gt;
+
+&lt;p&gt;Vagrant File:
+http://devopslibrary.com/episode4-saltstates.zip&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/salt-states</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/salt-states</guid>
+        
+        
+        <category>saltstack</category>
+        
+      </item>
+    
+      <item>
+        <title>Joining Ubuntu to Active Directory</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/ZQD0rLZMNho&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;Welcome to the DevOpsLibrary, this is Samantha with Episode 11 and today we’re going to cover how to join a Linux server to Active Directory (Ubuntu specifically).  Why are we devoting an entire video to what sounds like such a simple task?  For two reasons.  One is that we’ve seen countless companies use Active Directory for all of their windows servers, only to resort to using local accounts on their Linux servers.  And secondly, once you look into joining a Linux server to AD, you’ll realize there are dozens of ways of doing so, but none of them are intuitive.&lt;/p&gt;
+
+&lt;p&gt;We’re going to start out with two servers, a Windows 2012 VM serving as a domain controller, DNS server, and fileserver, as well as a fresh 14.04 Ubuntu VM.&lt;/p&gt;
+
+&lt;p&gt;The Ubuntu server must be able to resolve the domain controller, so make sure that you can ping the name of your domain successfully from the Ubuntu VM.  Don’t worry if the ping fails to resolve, all you need to do is add the Windows server to the Ubuntu VM’s list of nameservers.  To do so, run:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;echo ‘prepend domain-name-servers 172.31.19.187;’ &amp;gt;&amp;gt; /etc/dhcp/dhclient.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;followed by:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ifdown eth0 &amp;amp;&amp;amp; ifup eth0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now go ahead and try to ping your domain name, it should resolve successfully.  You may be wondering why we didn’t just add the nameserver to the interfaces file or resolv.conf.  The reason is because in some environments (especially AWS), the DHCP server will hand out the nameservers.  This is normally fine, but in order to join the domain, the domain DNS server MUST be the first entry, and the only way to do that is to prepend it in the dhclient.conf file (unless of course your DHCP server is already handing out the correct domain DNS servers!).&lt;/p&gt;
+
+&lt;p&gt;Next, we need to download the open source PowerBroker Identity Services package.  You can run the same command we’re running now to retrieve the latest 64bit version as of April of 2015, or you can visit BeyondTrust.com to look for the package yourself.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;wget http://download.beyondtrust.com/PBISO/8.2.2/linux.deb.x64/pbis-open-8.2.2.2993.linux.x86_64.deb.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you’re wondering why we’re using PowerBroker (formerly known as Likewise Open), instead of one of the dozens of other ways of joining AD, it’s because out of all of the methods we’ve tried, it’s been the easiest and most reliable way of doing it, while remaining Open Source and free.  If you’d like, you can join Ubuntu by hand using the built in Winbind, but it’s much easier to let PowerBroker do the work for you.  Realm D is another option, but at the time of the tutorial it still had quite a few bugs.&lt;/p&gt;
+
+&lt;p&gt;Well, Now that the package has downloaded, let’s make it executable by running:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;chmod a+x pbis-open-8.2.2.2993.linux.x86_64.deb.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, let’s install the package by running SH, followed by the name of the package, and install.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sh ./pbis-open-8.2.2.2993.linux.x86_64.deb.sh install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you can finally join the domain, just run:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;domainjoin-cli join&lt;/code&gt; followed by the name of your domain and an active directory username and password with permission to join the domain.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;domainjoin-cli join devopslibrary.com ken Password&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should now be able to SSH in by using username @ domainname for your credentials.  Let’s try that now.&lt;/p&gt;
+
+&lt;p&gt;It worked!  But we can’t sudo obviously, and wouldn’t it be nicer if bash came up automatically?  Let’s fix that now.  Log back in with a user with root privileges and run:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;echo ‘%domain^admins ALL=(ALL) ALL’ &amp;gt;&amp;gt; /etc/sudoers&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;That line just gives any domain admin account sudoers access, you could also add it by using visudo.&lt;/p&gt;
+
+&lt;p&gt;Next, let’s make it so you can login by just typing the domain username, without needing to specify the domain.  Run:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/opt/pbis/bin/config AssumeDefaultDomain True&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Lastly, let’s make any domain user default to bin bash at login.  Run:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/opt/pbis/bin/config LoginShellTemplate /bin/bash # Set default to bash&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Pause:&lt;/p&gt;
+
+&lt;p&gt;Go ahead and try to login again now with a domain admin account, you should be able to sudo.&lt;/p&gt;
+
+&lt;p&gt;Well done!  But don’t stop there!  Let’s set up home directories!  To do so, we’re going to need a network share to store them first.  While a DFS share is recommended for redundancy, we’ll show you how to quickly get going by creating a shared folder on our domain controller.&lt;/p&gt;
+
+&lt;p&gt;All that you need to do is create a folder, we’ll name ours UserProfiles.&lt;/p&gt;
+
+&lt;p&gt;Now make sure you share the folder, giving authenticated users rights to “Change” and “Read”.&lt;/p&gt;
+
+&lt;p&gt;Lastly, we need to go to the advanced permissions settings.  For authenticated users, ensure they have “Trave Folder”, “List Folder”, “Read Attributes”, “Create folders”, and “Read Permissions” enabled.  Also add “CREATOR OWNER”, with Full Control to our folder.  What these settings will do is make it so that any domain user can create a new folder within UserProfiles (which we’ll do automatically in a few minutes) and have full access to everything within their own folder, but no access to anyone else’s (Unless they’re a domain admin of course).&lt;/p&gt;
+
+&lt;p&gt;Alright, we’re ready to go back to our Ubuntu VM.  Let’s install the CIFS Utilities and Libpam.  Run:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get install cifs-utils libpam-mount –y&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We’re using PAM because it’s able to use our login credentials to automatically mount a network share at login, and CIFS is the type of share we’re connecting to.&lt;/p&gt;
+
+&lt;p&gt;We need to edit the PAM mount configuration.  To do so, you could just edit it with VI directly at&lt;/p&gt;
+
+&lt;p&gt;/etc/security/pam_mount.conf.xml, but we’ll make it easier on you.  Run the following block of code to fill out the configuration, replacing dc01.devopslibrary.com with the name of your fileserver, and the mountpoint will need to be “home local your domainname”.  We’ve pasted the block into this video’s summary, that way you can copy and paste it instead of typing it out.  It’s extremely important that you make the configuration identical to this, unless you really know what you’re doing.  The first part of it is just saying what volume to mount, and we tell it to use our domain user credentials to mount it.  The sec=krb5i part is essential for mounting Windows shares correctly, and the MK mountpoint line automatically un mounts the share when you logoff.&lt;/p&gt;
+
+&lt;p&gt;```cat &amp;gt;/etc/security/pam_mount.conf.xml «EOL&lt;/p&gt;
+&lt;pam_mount&gt;
+&amp;lt;volume fstype=”cifs” server=”dc01.devopslibrary.com”
+path=”UserProfiles” mountpoint=”/home/local/DEVOPSLIBRARY”
+options=”sec=krb5i,user=%(DOMAIN_USER)@%(DOMAIN_NAME),uid=%(USERUID),gid=%(USERGID),cruid=%(USERUID),nodev,nosuid,file_mode=0700,dir_mode=0700″&amp;gt;
+&lt;and&gt;&lt;not&gt;&lt;user&gt;&lt;/user&gt;&lt;/not&gt;&lt;/and&gt;
+
+&amp;lt;mkmountpoint enable=”1″ remove=”true” /&amp;gt;
+&lt;/pam_mount&gt;
+&lt;p&gt;EOL
+```
+Alright, we’re almost finished.  If you were to login right now, as long as a folder matching your username is present under the UserProfiles share, your home directory will mount successfully.  However, we don’t want to have to set up each user’s folder, so we’ll use a tool that’s part of PAM to do it.  Let’s edit:&lt;/p&gt;
+
+&lt;p&gt;/etc/pam.d/common-session.  At the very end of this file, add the following line:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;session    required   pam_mkhomedir.so skel=/etc/skel/ umask=0022 &amp;gt;&amp;gt; /etc/pam.d/common-session&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;What this line does it make it so that the pam_mkhomedir script will automatically create a home directory for each user under UserProfile if it doesn’t already exist.  You might be wondering what etsy skel is for.  Etsy skel is known as the skeleton directory, if you’re from the windows world it’s very similar to the “Default User” concept.  Anything that you add to that directory will be added by default to anyone home folder the first time they login.&lt;/p&gt;
+
+&lt;p&gt;If you’re interested in seeing the skeleton folder in action, run the following two lines:&lt;/p&gt;
+
+&lt;p&gt;sed -i ‘/#force_color_prompt=yes/c\force_color_prompt=yes’ /root/.bashrc&lt;/p&gt;
+
+&lt;p&gt;cp /root/.bashrc /etc/skel/.profile # Skeleton&lt;/p&gt;
+
+&lt;p&gt;This will copy the root bashRC file as the default profile file for new users, and as an added bonus we’ve enabled colored prompts, because everything looks better in color.&lt;/p&gt;
+
+&lt;p&gt;Well, it’s finally time to see if our hard work paid off.  Go ahead and log off and back on, using a domain account that’s never logged into our Linux VM before.  You should see it automatically create a new folder in our file share for the user, and look, our prompt has color!  Any file we add now to our home directory will be immediately available to any other Linux VMs that we tie in to AD.  If we try to access the files of another user you’ll see that we can’t, unless we’re a domain admin.&lt;/p&gt;
+
+&lt;p&gt;If you’d like to lock your Linux machines down further you can always run&lt;/p&gt;
+
+&lt;p&gt;Opt PBIS bin config RequireMemberShipOf followed by the group and usernames that you want to have access to SSH in, everyone else will be blocked.&lt;/p&gt;
+
+&lt;p&gt;Hopefully everything worked out great!  If you ran into any problems, be sure to tail “var log auth.log”, it helps a lot with troubleshooting, and feel free to leave us a message in the comments.  Thank you for watching!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/joining-ubuntu-to-active-directory</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/joining-ubuntu-to-active-directory</guid>
+        
+        
+        <category>linux</category>
+        
+      </item>
+    
+      <item>
+        <title>Jenkins for Operations</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/OfptBK8AB_c&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;If you haven’t heard of Jenkins, it’s something that your developer friends have probably been using for several years, but it can help tremendously on the operations side as well. Jenkins is an open source continuous integration and build server, what this basically means for operations is that it provides a great place to run things over and over reliably, and connects easily to a variety of other tools such as source control.&lt;/p&gt;
+
+&lt;p&gt;Vagrant File: &lt;code class=&quot;highlighter-rouge&quot;&gt;http://devopslibrary.com/episode3-jenkins.zip&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Transcript:&lt;/p&gt;
+
+&lt;p&gt;An even simpler explanation is that if you have a bunch of scripts that your team runs regularly, Jenkins will give you the perfect interface for running those scripts on any and as many servers as you’d like, while also tracking who ran what and when.&lt;/p&gt;
+
+&lt;p&gt;Let me go ahead and show you a little bit about what we’re talking about.  Once you’ve installed Jenkins, this is exactly what the interface is going to look like.  Note–If you need help installing Jenkins, just visit wiki.jenkins-ci.org or use our Vagrant file to get started immediately.&lt;/p&gt;
+
+&lt;p&gt;Now back to Jenkins.  Jenkins uses the word job to refer to any process that consists of a step, or multiple steps to run.  We’re going to begin by creating a job that’s runs a short bash script.  Click “create new job”, name the job, and select “Freestyle Project” and hit ok.  Now you should see the job creation screen.  Type in a description of the job if you’d like, then scroll down to Build.  Click Add build step, select “Execute Shell”, then type in a bash command or script that you’d like to run.  Now hit save.&lt;/p&gt;
+
+&lt;p&gt;You should now see the summary page for the job.  You can hit Build Now to run the job, go ahead and try that now.  You should see a little blue ball show up under build history, for some reason Jenkins defaults to blue being the color of success, but you can change that to green easily, anyway click that link.&lt;/p&gt;
+
+&lt;p&gt;Now go to “Console Output”, you’ll see the output of the command exactly as if you had ran the script yourself on the server.  You’ll also see who started the job, which will default to anonymous until you set up authentication.  On that note, Jenkins supports LDAP, and a variety of other authentication schemes, with a ton of options for setting permissions.  You could have one team that makes jobs, and another that can only run them for instance.&lt;/p&gt;
+
+&lt;p&gt;Now let’s try making a slightly more complicated job.  Let’s say you want to run a script that creates a folder, but you want to specify the name of the folder.  Go back to the Jenkins home page, create a new job, but this time, check the box that says “This build is parameterized” on the job configuration page.  The click add parameter, and choose string parameter.  Go ahead and give the string a name, a default value if you’d like, and a description.&lt;/p&gt;
+
+&lt;p&gt;Now add a build step, this time type &amp;lt;pre&amp;gt;mkdir ${NameOfString}&amp;lt;/pre&amp;gt; on the first line, hit enter, then type &amp;lt;pre&amp;gt;ls&amp;lt;/pre&amp;gt;.&lt;/p&gt;
+
+&lt;p&gt;Go ahead and look at the Post-Build actions while you’re here, you’ll see that you can automatically send out an email when a job fails, trigger other jobs, and a handful of other options.  Don’t worry about adding any right now, but later on they’ll come in handy.&lt;/p&gt;
+
+&lt;p&gt;Now hit save.  Try to build the job, you will see that it now asks you to fill in a parameter.  Type in whatever you would like the name of the folder to be and hit build.  Run it one more time, this time using a different name for the folder, then view the console output.  You should now see that both folders have been created using the name that you specified.&lt;/p&gt;
+
+&lt;p&gt;While this is just a tiny fraction of what you can do with Jenkins, once you get the hang of it, your team can set up jobs for just about any task you can imagine, using Bash, Powershell, Github for version control, automated testing to verify that jobs have completed, and pretty much anything else you can think of.  Thanks for watching, let us know if you have any questions!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/jenkins-for-operations</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/jenkins-for-operations</guid>
+        
+        
+        <category>jenkins</category>
+        
+      </item>
+    
+      <item>
+        <title>Jenkins Slaves &amp; PowerShell</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/AN_uc9YqEC4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;Today we’re going to talk about Jenkins slaves, and PowerShell jobs. We’ll be starting out with two servers, a Jenkins master, and a fresh Server 2012 R2 VM with the latest Java JDK and .NET 3.5 installed. If you’d like to get started quickly, download our Vagrant File or watch the previous Jenkins episode if you want help getting started.&lt;/p&gt;
+
+&lt;p&gt;VagrantFile:
+http://devopslibrary.com/episode5-jenkins.zip&lt;/p&gt;
+
+&lt;p&gt;Transcript:&lt;/p&gt;
+
+&lt;p&gt;Welcome to the Devops Library, this is episode 5.  Special shout out to Phil Porada for his suggestion of featuring a Jenkins tutorial, so today we’re going to talk about Jenkins slaves, and PowerShell jobs.  We’ll be starting out with two servers, a Jenkins master, and a fresh Server 2012 R2 VM with the latest Java JDK and .NET 3.5 installed.  If you’d like to get started quickly, download our Vagrant File or watch the previous Jenkins episode which should help you.&lt;/p&gt;
+
+&lt;p&gt;Alright let’s go. We find ourselves at a fresh Jenkins install, ready to create a job.  But this time, we want to run Powershell not Bash.  As our Jenkins master was installed on a Linux server, we can’t run Powershell directly from it, but we can run it on a Windows Jenkins Slave.  Keep in mind you can always install the Jenkins master on Windows, but we recommend using Linux unless you’re exclusively a Windows shop.  Now what is a Jenkins slave you ask?  A slave is just a server that you’ve set up within Jenkins that you can run your jobs from.  For performance, it’s actually better to never run the jobs themselves directly on the master, and to always use slaves.&lt;/p&gt;
+
+&lt;p&gt;Today, we’re going to start by setting up our first slave, a Windows server.  Start by clicking “manage Jenkins”, then head to “Manage Nodes”.  Here you should see a single node named “master”.  That’s our Jenkins master that’s also running the WebUI.  Let’s click “New Node”.  Select Dumb Slave, and give the slave a name, we’ll just name ours winslave01.  Click ok.&lt;/p&gt;
+
+&lt;p&gt;Go ahead and fill in a description if you’d like, now look at the number of executors.  The number of executors determines how many jobs can be ran simultaneously on this slave, so if you have 2 executors, and 5 jobs scheduled, 3 of them will be held until the first two finish.  If you haven’t gathered much performance data, a pretty safe method is to set this number to the amount of cores the slave server has.  Now for the remote directory, we’re going to type C:\jenkins.  Let’s go ahead and quickly RDP into our Windows server and create that folder.  If you don’t create the folder, Jenkins will fail to install on the slave.&lt;/p&gt;
+
+&lt;p&gt;Alright, now back to Jenkins.  On the line that says Labels, just type windows.  Labels are used when setting up jobs, they allow you to specify which slaves the job will be run on.  Now change the Launch method to “Launch slave agents via Java WebStart”.  If we were setting up a Linux slave, it’s easiest to launch via SSH, but trust us when we say to use webstart for Windows slaves.&lt;/p&gt;
+
+&lt;p&gt;Now hit save.  Jenkins should return you to the nodes page, and you’ll see that our windows slave has an X on it because it’s not connected, go ahead and click that now.  Right click the Launch button, and copy the shortcut.  Now switch to our Windows server and visit that URL.  Run the application, and you should see a little Jenkins butler window show up. At this point, the slave is live, but let’s do one more thing.  At the top left of the window, hit the File dropdown and click install as Windows Service.  That’s all you have to do, now we have a Windows slave.&lt;/p&gt;
+
+&lt;p&gt;Head back to the Jenkins homepage.  On the left hand side of the screen you should now see “master” and winslave01 under the build executors.  We have one last thing that we need to do to be able to run Powershell commands.  By default, when creating a job, Jenkins will only give you the option of running a shell or windows batch command.  We need to install a plugin to support Powershell.  Go back to manage Jenkins, then hit manage plugins.  Click the available tab, and feel free to browse the huge collection available.  We’re going to select the “Powershell Plugin”.  Check it, and hit Download now and install after restart.  Now check the box that says restart Jenkins when installation completes.  Jenkins will now wait until all jobs have finished running, install the plugin, and quickly restart.&lt;/p&gt;
+
+&lt;p&gt;Now that we have the plugin, let’s create our first Powershell job.  Click new item, name the job, select freestyle project and hit ok.  First, let’s make sure that this job will only run on our Windows slaves.  Check the box that says “restrict where this project can run”, and type in the label we created earlier, “windows”.  Under Build, add a build step for Windows Powershell.  Type a powershell command, we’ll use “Get-Help”, then save the job.&lt;/p&gt;
+
+&lt;p&gt;Now let’s run it.  Click build now, then go to the console output.  You should now see the output of your first Powershell job!  Congrats!  There is so much more that you can do with Jenkins, and remember you can always add more slaves, or design the jobs to run commands on remote servers using ssh or WinRM.  As always, please let us know what you’d like to see more of in the comments.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/jenkins-slaves-powershell</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/jenkins-slaves-powershell</guid>
+        
+        
+        <category>jenkins</category>
+        
+      </item>
+    
+      <item>
+        <title>Jenkins &amp; GitHub + Powershell Params</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/RuWMoVb_Ji0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;Hello! This is Samantha with the DevOpsLibrary Episode 8, today we’ll talk about how to integrate Jenkins Powershell and Github together for Operations.&lt;/p&gt;
+
+&lt;p&gt;VagrantFile:
+http://devopslibrary.com/episode5-jenkins.zip&lt;/p&gt;
+
+&lt;p&gt;Transcript:&lt;/p&gt;
+
+&lt;p&gt;Hello! This is Samantha with the DevOpsLibrary Episode 8, today we’ll talk about how to integrate Jenkins &amp;amp; Github for version control. Today we’re going to start off with a Jenkins master running on Ubuntu, with a Server 2012 R2 slave. If you’ve seen our earlier videos on Jenkins you should already have a pretty good grasp on how to create jobs, but today we’ll expand on how to tie them in with version control. Let’s go ahead and get started.
+First, go to manage Jenkins, then manage plugins.
+Go to available, then search for “git plugin”. Go ahead and install the plugin, and check the box to restart Jenkins when the installation is complete. Note, you should also have already installed the Powershell plugin if you’ve been following our previous videos, if you haven’t, go ahead and do that now as well.
+Now that the installation is complete, we’re going to make sure you don’t run into a bug with the Matrix project plugin like we did. Go back to manage Jenkins, then manage plugins. If you see a note at the top of the page saying that several plugins have been disabled due to cyclic dependencies, then we’ll have to downgrade the Matrix plugin. If you don’t see any errors, you’re fine.
+For those who need to downgrade, just click the installed tab, and look for Matrix Project. If the version says 1.4.1, hit Downgrade, then restart Jenkins.
+Alright, now we’re finally ready to set up our first version controlled job. If you’re not familiar with Github or version control, let us know in the comments and we’ll create a video covering it. For now, at least make sure you have signed up for an account on Github.com, as well as created a repository.
+The last thing that we need to do before creating our job is ensuring the Git is installed on the master as well as our Windows Slave. On the master, just run apt-get install git.
+For the WinSlave, just head to git-scm.com, then download and run the installer. Note. During the install, ensure that you select “Use Git from the Windows Command Prompt”, as we want Git to be added to our path. If you want to verify that git was installed successfully, just open up a command prompt and run git. Lastly, the Jenkins Slave service must be restarted so that it can pick up git. We’ll do that now. You could also just reboot the Windows Slave.&lt;/p&gt;
+
+&lt;p&gt;Looks like we’re ready to finally create our job!
+Now go ahead and switch back to Jenkins. Click Add New Job. We’ll name ours Github Test.
+Make sure it’s a freestyle job, then hit ok. We’ll restrict the job to run on our Windows slave since we’re running Powershell, but if you’re a Linux shop feel free to follow along and use Bash.
+Now under Source Code Management, select Git.&lt;/p&gt;
+
+&lt;p&gt;For the repository URL, use https://github.com/Username/nameOfRepo.git. We’re just going to use our DevOpsLibrary repository. Now for credentials, click Add, and enter your Github Username and Password, then hit ok.
+Now click “Additional Behaviors”, then select “Check Out to a Sub-Directory”. Go ahead and leave the actual directory blank, as Jenkins will default to checking out to the job’s workspace, which is what we want.
+Finally, add a build step to run Windows Powershell. Type in ./githubtest.ps1, and hit save.
+Now before we run the job, we need to actually create the githubtest.ps1 file. Go to your repository and create a new file named githubtest.ps1&lt;/p&gt;
+
+&lt;p&gt;Edit the file, and type in:
+Write-Host “Followed by hello world or whatever you’d like the script to say”, then hit save.
+Now commit the changes.
+And sync back to github.&lt;/p&gt;
+
+&lt;p&gt;We are finally ready to kick off our job! Go ahead and build the GitHubTest job! Now check the console output. You should see something very similar to what we’re looking at now, with Git automatically pulling our repository from Github, then running our script. There it is, our Write Host message! Great job!
+We’re going to do one last thing though to show you how easy it is to update our job, as well as to add parameters. Go back to your text editor, we’re going to edit the githubtest.ps1 file. At the very top, add param($variabletest)
+On the second line, add $variabletest somewhere within the Write Host line.&lt;/p&gt;
+
+&lt;p&gt;Now commit the changes, and sync back to Github.&lt;/p&gt;
+
+&lt;p&gt;Let’s go back to Jenkins now, but before we kick the job back off, go to configure, we’re going to add a parameter in Jenkins. It’ll make sense trust me.&lt;/p&gt;
+
+&lt;p&gt;Look for a box that says “This build is parameterized” and check it. Click Add Parameter, and select Choice. For the name, type jenkinsvariabletest.&lt;/p&gt;
+
+&lt;p&gt;Now type in a couple of choices, whatever you’d like. Next, scroll all the way back down to our build step. We’re going to add –variabletest at the end, which tells Powershell what param we’re targeting. Note, you don’t HAVE to have that, but it does help for readability, as well as when you start adding more parameters. Right after that, type $env:jenkinsvariabletest test.
+What this will do is grab the variable that’s set when the Jenkins job is ran (from the parameter that we set above). It’ll make sense in a second trust me, just go ahead and save the job.&lt;/p&gt;
+
+&lt;p&gt;Now hit build.&lt;/p&gt;
+
+&lt;p&gt;Notice this time, instead of building immediately, Jenkins is now presenting us with the options that we specified. Go ahead and select one, then hit build. Now view the console.
+There’s our variable! Jenkins passed it to our Powershell script, which was automatically updated by pulling from Github! You’re off to a great start on creating Jenkins jobs for operations! While we’re finished for now, we encourage you to check out the other parameter types when creating a new job. Thank you for watching!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/jenkins-github-powershell-params</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/jenkins-github-powershell-params</guid>
+        
+        
+        <category>jenkins</category>
+        
+      </item>
+    
+      <item>
+        <title>Introduction to Docker</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/cxveLKw6BVw&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;Welcome to our Docker Beginner Tutorial! Docker is one of those things that people tend to get a pretty strong opinion one way or another very quickly, but we promise you, that if you use Linux at all in your organization, you’ll probably end up eventually loving it. Even if you’re a windows shop you might end up loving it too.&lt;/p&gt;
+
+&lt;p&gt;VagrantFile:
+http://devopslibrary.com/episode7-docker.zip&lt;/p&gt;
+
+&lt;p&gt;Transcript:&lt;/p&gt;
+
+&lt;p&gt;Hello again this is Samantha with the DevOps library episode 7.  We’re glad you found yourself here.  Today is an exciting day as we’ll be going over docker.  Docker is one of those things that people tend to get a pretty strong opinion one way or another very quickly, but we promise you, that if you use Linux at all in your organization, you’ll probably end up eventually loving it.  Even if you’re a windows shop you might end up loving it too.&lt;/p&gt;
+
+&lt;p&gt;Anyway, let’s get started. I’m going to assume that most of the people watching this video are familiar with virtualization and spinning up VMs.  It doesn’t matter what HyperVisor you’re used to, whether it’s HyperV, VMware, KVM and so on.  The process is pretty much the same.  You create the VM which has it’s own totally separate OS, libraries, and so on.  This process takes at least a few minutes if not a half hour.  Then you need to load the applications to the VM, which takes even more time.  When you use Docker, you basically get to skip this entire process.  It’s really cool.&lt;/p&gt;
+
+&lt;p&gt;Docker doesn’t create VMs, it creates containers, which actually share resources with the host, so there’s no overhead for the hypervisor or VM.  While containers do feel like VMs in terms of how isolated they are, spinning a new one up literally takes seconds.  If you’re wondering about application deployment, or how they’re different vs. a VM, that’s another awesome thing about Docker, it’s extremely portable.  You can create a docker container on your local workstation, install all the application software and dependencies that you need, then commit the container to the Docker repository.  At that point it’s just a quick pull on your production server and your application is completely deployed.  Also, if you build something in Docker on Ubuntu, then wander off to a Redhat server, the container will run EXACTLY the same way.  Well, I guess I should stop talking so that you can get started doing the tutorial.&lt;/p&gt;
+
+&lt;p&gt;Today we’re going to start out with just a standard Ubuntu 14.04 server, with nothing extra installed.&lt;/p&gt;
+
+&lt;p&gt;Now let’s go ahead and install Docker.  To get the latest version, run:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;curl –sSL https://get.docker.com/ubuntu/&lt;/td&gt;
+      &lt;td&gt;sudo sh&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Now let’s go ahead and create our first container.  Think of the container as a VM.  Now type.&lt;/p&gt;
+
+&lt;p&gt;docker run -i -t ubuntu /bin/bash&lt;/p&gt;
+
+&lt;p&gt;Let’s look at the command, “docker run” creates a new container, the dash I runs the shell interactively, so that when you exit from the shell the container stops, the dash T creates a pseudo-tty, or in other words makes it so you see a prompt.    We’re also specifying Ubuntu as the image to pull from.  Docker will pull this image from the Docker repository automatically.  Lastly, we specify /bin/bash, so that Docker automatically starts bash on the container.  This could easily be a specific service like apache for instance.&lt;/p&gt;
+
+&lt;p&gt;Once Docker finishes downloading the Ubuntu image, you should almost immediately land inside the new docker container.&lt;/p&gt;
+
+&lt;p&gt;Looks like our container is finally up, I’ll just create a quick file on the root, exit from the container shell, and do an LS so that you can see we now have a totally new environment to play around with.&lt;/p&gt;
+
+&lt;p&gt;Alright, now that we’re back on our host, how to we see what containers we currently have set up?  Just run docker ps.&lt;/p&gt;
+
+&lt;p&gt;Notice we don’t see the container that we created listed, the reason is because we exited bash, and since that’s the only thing the container was running, the container automatically stopped.  Go ahead and run docker ps –a to see all containers, including those that have stopped.&lt;/p&gt;
+
+&lt;p&gt;There’s our container!  Now to start it back up, we can run either docker start followed by the long container ID, or we can use the nickname that docker automatically gave it.  Go ahead and do that now.&lt;/p&gt;
+
+&lt;p&gt;The container is now running, but we haven’t attached to it.  To do so, run docker attach followed by the name of the container.&lt;/p&gt;
+
+&lt;p&gt;Awesome we’re back in.  However, one of the best parts of Docker is seeing how fast the new containers come up, so let’s go ahead and exit the container one more time.&lt;/p&gt;
+
+&lt;p&gt;Let’s delete our container too, run docker rm then the name of the container.&lt;/p&gt;
+
+&lt;p&gt;Now run docker images.  You should see a list of images.  These are the images that we’ve already downloaded, and they’re basically cached by docker.    Let’s go ahead and create a brand new container, running the same command that we did before.&lt;/p&gt;
+
+&lt;p&gt;docker run -i -t ubuntu /bin/bash&lt;/p&gt;
+
+&lt;p&gt;The container should start almost immediately.  It’s like having a perfect brand new VM to play around with, but with no waiting time.  That’s just one tiny part of Docker though.  Let’s try one last feature before we wrap up the video.  Install Apache on the container.&lt;/p&gt;
+
+&lt;p&gt;Now click CTRL-P, followed by CTRL-Q.  That detaches us from the Docker container without stopping it.  While it doesn’t matter if it’s stopped or not for what we’re about to do next, it’s a nice trick to know.  Now let’s run docker ps to get the name of our container.  Then run&lt;/p&gt;
+
+&lt;p&gt;Docker commit followed by the container name, then a name for a new image.  We’ll name ours apacheimage&lt;/p&gt;
+
+&lt;p&gt;Now run docker images to see our list of images again, you should see apacheimage in the list.  Lastly, let’s do one final command.&lt;/p&gt;
+
+&lt;p&gt;Docker run –I –t apacheimage /bin/bash&lt;/p&gt;
+
+&lt;p&gt;This is exactly like the command we’ve been running to create our Ubuntu containers, but this time, our container already has apache installed.  While we’ve only shown you a couple of Docker’s features, I hope that’s enough to get you started.  There is so much more that you can do with it, and we’ll be covering those features soon.  Thanks again for watching, please like our video if you enjoyed it!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/docker-beginner-tutorial</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/docker-beginner-tutorial</guid>
+        
+        
+        <category>docker</category>
+        
+      </item>
+    
+      <item>
+        <title>ELK Stack for Logging Tutorial</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/2-Bzm25dLRQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
+
+&lt;p&gt;Hello and welcome to the DevOps Library, this is Samantha with Episode 9, the ELK stack. Before we get started, let me quickly explain what the ELK stack is. ELK is an amazing Open Source logging system, and we have yet to find a single company that would not benefit tremendously by setting it up.&lt;/p&gt;
+
+&lt;p&gt;VagrantFile:
+http://devopslibrary.com/episode9-ELK.zip&lt;/p&gt;
+
+&lt;p&gt;Transcript:&lt;/p&gt;
+
+&lt;p&gt;Hello and welcome to the DevOps Library, this is Samantha with Episode 9, the ELK stack.  Before we get started, let me quickly explain what the ELK stack is.  ELK is an amazing Open Source logging system, and we have yet to find a single company that would not benefit tremendously by setting it up.  If you’ve heard of Splunk, or might even be using Splunk now, one thing that you need to keep in mind is that Splunk is insanely and incredibly expensive.  ELK will provide with just as much if not more than Splunk when set up properly, and has a huge price tag of exactly zero.  Almost every company we’ve been to usually starts out using Splunk, they end up loving it, a few months later they realize they can’t spend a couple hundred thousand just on logging, and that’s when they realize everything they’ve come to love can be done for free.&lt;/p&gt;
+
+&lt;p&gt;Well, now that we’ve angered the Splunk gods, and hopefully made you interested in ELK, let’s get started.&lt;/p&gt;
+
+&lt;p&gt;ELK stands for three separate pieces.  The E stands for ElasticSearch, which is where we’ll be storing all of our logs.  The L stands for LogStash, which we can use for both shipping the logs from servers, as well as processing and dumping them into ElasticSearch.  And lastly is the K which stands for Kibana.  Kibana is a gorgeous web interface, which has traditionally been hosted through Nginx or Apache, but as of Kibana 4 is now a standalone application.&lt;/p&gt;
+
+&lt;p&gt;Today we’re going to keep it simple, and install all of these on a single fresh 14.04 Ubuntu Server.  NOTE, ELK does require a bit more memory and CPU power than most of tutorials, please ensure that the VM you’re using has at least 2GB of memory, and preferably 2 CPUs (which our VagrantFile includes automatically for VirtualBox).  Please keep in mind that the architecture we’re setting up today is NOT how we would set it up for a large enterprise.  ELK does scale extremely well, but properly setting up horizontal scaling will be covered in a later video.&lt;/p&gt;
+
+&lt;p&gt;Alright, let’s begin!  First, let’s begin by adding the apt key and repository for ElasticSearch.  Run:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wget -qO – https://packages.elasticsearch.org/GPG-KEY-elasticsearch&lt;/td&gt;
+      &lt;td&gt;sudo apt-key add –&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Followed by:&lt;/p&gt;
+
+&lt;p&gt;sudo add-apt-repository “deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main”&lt;/p&gt;
+
+&lt;p&gt;Now we just need to call apt-get update.&lt;/p&gt;
+
+&lt;p&gt;Alright let’s install some packages, do:&lt;/p&gt;
+
+&lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get install default-jdk elasticsearch -y&lt;/p&gt;
+
+&lt;p&gt;We’ll need to start ElasticSearch after it installs, to do that let’s just run:&lt;/p&gt;
+
+&lt;p&gt;Service elasticsearch start&lt;/p&gt;
+
+&lt;p&gt;Now we need to install Logstash.  The best way to install it is actually to grab the latest debian packages, so let’s do:&lt;/p&gt;
+
+&lt;p&gt;wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb&lt;/p&gt;
+
+&lt;p&gt;Go ahead and install that using:&lt;/p&gt;
+
+&lt;p&gt;dpkg -i logstash_1.4.2-1-2c0f5a1_all.deb&lt;/p&gt;
+
+&lt;p&gt;We also want the contributed community plugins for Logstash as well, so one more long wget.  This time:&lt;/p&gt;
+
+&lt;p&gt;wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash-contrib_1.4.2-1-efd53ef_all.deb&lt;/p&gt;
+
+&lt;p&gt;Alright, let’s install that as well.&lt;/p&gt;
+
+&lt;p&gt;dpkg -i logstash-contrib_1.4.2-1-efd53ef_all.deb&lt;/p&gt;
+
+&lt;p&gt;We don’t need to start Logstash quite yet as we still need to make a configuration file for it.  Let’s go ahead and do that now.  Head to etsy logstash conf.d&lt;/p&gt;
+
+&lt;p&gt;Once there, create a new file, we’ll name ours logstash.conf&lt;/p&gt;
+
+&lt;p&gt;Now just follow along.  Logstash configurations generally consists of some inputs, some filters, and some outputs.  We won’t worry about filtering today, so let’s start with setting up an input.  Type Input followed by a pair of braces.  Now inside of those, we’ll add two types of input.  For the first one, type stdin followed by another pair of braces.  Stdin will make it so that we can pipe standard input directly into Logstash, or in other words anything we type while running Logstash in the foreground will get piped straight to our output that we’ll set up shortly.&lt;/p&gt;
+
+&lt;p&gt;Alright let’s add one final input, type:&lt;/p&gt;
+
+&lt;p&gt;file brace&lt;/p&gt;
+
+&lt;p&gt;type goes to syslog&lt;/p&gt;
+
+&lt;p&gt;path goes to var slash log slash star&lt;/p&gt;
+
+&lt;p&gt;start_position goes to “beginning”&lt;/p&gt;
+
+&lt;p&gt;close brace&lt;/p&gt;
+
+&lt;p&gt;This input will automatically pipe anything that goes to our system logs, like our syslog for example, straight to our output.  Also notice that we specified that we’d like our start position to be at the beginning.  Normally, Logstash starts out by tailing any files that we specify, but because we want some extra data to play around with, we’re starting at the beginning, so that Logstash parses everything that’s already in our var logs folder.&lt;/p&gt;
+
+&lt;p&gt;Well that’s enough inputs, let’s set up two outputs for our data.&lt;/p&gt;
+
+&lt;p&gt;Type:&lt;/p&gt;
+
+&lt;p&gt;Output, then within the braces type STD out.&lt;/p&gt;
+
+&lt;p&gt;Codec goes to rubydebug&lt;/p&gt;
+
+&lt;p&gt;This one just outputs everything Logstash receives to standard out when Logstash is ran in the Foreground.  For our second output, type elasticsearch, host goes to localhost then close your braces.  This second output dumps everything into elasticsearch, so that our logs have a place to stay.  Double check your file and make sure it looks like ours, then save it.&lt;/p&gt;
+
+&lt;p&gt;Alright.  While we could start the logstash service now by doing service logstash start, let’s run it in the foreground to make sure everything is working properly.  Logstash lives in opt, so run&lt;/p&gt;
+
+&lt;p&gt;/opt/logstash/bin/logstash -f logstash.conf&lt;/p&gt;
+
+&lt;p&gt;You should start getting blasted by a ton of events from Logstash.  All of those are also pouring straight into ElasticSearch.  Once it calms down (probably in a minute or two depending on how old the instance you’re using is), go ahead and try typing a few messages and pressing enter.  They’ll get saved in ElasticSearch as well, since you added the standard-in line to the Logstash inputs.&lt;/p&gt;
+
+&lt;p&gt;Alright, once you’ve finished dumping some messages in, go ahead and hit CTRL-Z to suspend the process, then type bg ENTER to let Logstash keep running in the background.  You can always type fg to bring it back to the foreground, or kill it completely using CTRL-C.  When you aren’t testing, it makes a lot more sense to just run Logstash as a service, but we’re just exploring right now.&lt;/p&gt;
+
+&lt;p&gt;Now that Logstash and ElasticSearch are finished, we have one last piece that we need to install.  Let’s go ahead and download Kibana.  Do:&lt;/p&gt;
+
+&lt;p&gt;wget https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz&lt;/p&gt;
+
+&lt;p&gt;Alright, we’ll untar that to opt, run:&lt;/p&gt;
+
+&lt;p&gt;tar -xvf kibana-4.0.1-linux-x64.tar.gz -C /opt&lt;/p&gt;
+
+&lt;p&gt;Now go to that directory.  We’re going to just quickly rename the folder to kibana, then run:&lt;/p&gt;
+
+&lt;p&gt;/opt/kibana/bin/kibana&lt;/p&gt;
+
+&lt;p&gt;Believe it or not you’re finally finished and can begin playing with the stack!  You can access Kibana using a web browser on port 5601.  If you’re using our VagrantFile, just visit 192.168.5.10:5601.&lt;/p&gt;
+
+&lt;p&gt;When you first access Kibana, make sure you set the Time-Field name to @timestamp.  Once that’s saved, go ahead to the discover tab and select a recent date range.  We’ll add the host, message, and type of message for now.  Note that you can zoom in on a timeframe by selecting the range on the graph.&lt;/p&gt;
+
+&lt;p&gt;We highly recommend spending some time getting to know Kibana.  Here’s a couple of screenshots of different ways you can use it to visualize data.  Soon we will be releasing several more videos, covering each part of the ELK stack in depth, but hopefully that’s enough to get you going!  Thank you so much for watching!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
+        <link>http://devopslibrary.com/lessons/elk-stack-for-logging-tutorial</link>
+        <guid isPermaLink="true">http://devopslibrary.com/lessons/elk-stack-for-logging-tutorial</guid>
+        
+        
+        <category>elk</category>
+        
+      </item>
+    
   </channel>
 </rss>
