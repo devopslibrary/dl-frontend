@@ -6,8 +6,8 @@
 </description>
     <link>http://devopslibrary.com/</link>
     <atom:link href="http://devopslibrary.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 26 Feb 2016 13:01:34 -0500</pubDate>
-    <lastBuildDate>Fri, 26 Feb 2016 13:01:34 -0500</lastBuildDate>
+    <pubDate>Fri, 26 Feb 2016 13:10:15 -0500</pubDate>
+    <lastBuildDate>Fri, 26 Feb 2016 13:10:15 -0500</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -27,6 +27,27 @@
         <pubDate>Fri, 26 Feb 2016 00:00:00 -0500</pubDate>
         <link>http://devopslibrary.com/courses/vagrantintroduction/</link>
         <guid isPermaLink="true">http://devopslibrary.com/courses/vagrantintroduction/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Redirect powershell</title>
+        <description>&lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+
+&lt;title&gt;Redirecting...&lt;/title&gt;
+&lt;link rel=&quot;canonical&quot; href=&quot;/lessons/writing-quality-reusable-powershell&quot; /&gt;
+
+&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=/lessons/writing-quality-reusable-powershell&quot; /&gt;
+
+&lt;h1&gt;Redirecting...&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;/lessons/writing-quality-reusable-powershell&quot;&gt;Click here if you are not redirected.&lt;/a&gt;
+&lt;script&gt;location=&quot;/lessons/writing-quality-reusable-powershell&quot;&lt;/script&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 26 Feb 2016 00:00:00 -0500</pubDate>
+        <link>http://devopslibrary.com/courses/powershell/</link>
+        <guid isPermaLink="true">http://devopslibrary.com/courses/powershell/</guid>
         
         
       </item>
@@ -482,45 +503,6 @@ Alright, we’re almost finished.  If you were to login right now, as long as a 
         
         
         <category>linux</category>
-        
-      </item>
-    
-      <item>
-        <title>Jenkins for Operations</title>
-        <description>&lt;div class=&quot;video&quot;&gt;&lt;figure&gt;&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;//www.youtube.com/embed/OfptBK8AB_c&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/figure&gt;&lt;/div&gt;
-
-&lt;p&gt;If you haven’t heard of Jenkins, it’s something that your developer friends have probably been using for several years, but it can help tremendously on the operations side as well. Jenkins is an open source continuous integration and build server, what this basically means for operations is that it provides a great place to run things over and over reliably, and connects easily to a variety of other tools such as source control.&lt;/p&gt;
-
-&lt;p&gt;Vagrant File: &lt;code class=&quot;highlighter-rouge&quot;&gt;http://devopslibrary.com/episode3-jenkins.zip&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Transcript:&lt;/p&gt;
-
-&lt;p&gt;An even simpler explanation is that if you have a bunch of scripts that your team runs regularly, Jenkins will give you the perfect interface for running those scripts on any and as many servers as you’d like, while also tracking who ran what and when.&lt;/p&gt;
-
-&lt;p&gt;Let me go ahead and show you a little bit about what we’re talking about.  Once you’ve installed Jenkins, this is exactly what the interface is going to look like.  Note–If you need help installing Jenkins, just visit wiki.jenkins-ci.org or use our Vagrant file to get started immediately.&lt;/p&gt;
-
-&lt;p&gt;Now back to Jenkins.  Jenkins uses the word job to refer to any process that consists of a step, or multiple steps to run.  We’re going to begin by creating a job that’s runs a short bash script.  Click “create new job”, name the job, and select “Freestyle Project” and hit ok.  Now you should see the job creation screen.  Type in a description of the job if you’d like, then scroll down to Build.  Click Add build step, select “Execute Shell”, then type in a bash command or script that you’d like to run.  Now hit save.&lt;/p&gt;
-
-&lt;p&gt;You should now see the summary page for the job.  You can hit Build Now to run the job, go ahead and try that now.  You should see a little blue ball show up under build history, for some reason Jenkins defaults to blue being the color of success, but you can change that to green easily, anyway click that link.&lt;/p&gt;
-
-&lt;p&gt;Now go to “Console Output”, you’ll see the output of the command exactly as if you had ran the script yourself on the server.  You’ll also see who started the job, which will default to anonymous until you set up authentication.  On that note, Jenkins supports LDAP, and a variety of other authentication schemes, with a ton of options for setting permissions.  You could have one team that makes jobs, and another that can only run them for instance.&lt;/p&gt;
-
-&lt;p&gt;Now let’s try making a slightly more complicated job.  Let’s say you want to run a script that creates a folder, but you want to specify the name of the folder.  Go back to the Jenkins home page, create a new job, but this time, check the box that says “This build is parameterized” on the job configuration page.  The click add parameter, and choose string parameter.  Go ahead and give the string a name, a default value if you’d like, and a description.&lt;/p&gt;
-
-&lt;p&gt;Now add a build step, this time type &amp;lt;pre&amp;gt;mkdir ${NameOfString}&amp;lt;/pre&amp;gt; on the first line, hit enter, then type &amp;lt;pre&amp;gt;ls&amp;lt;/pre&amp;gt;.&lt;/p&gt;
-
-&lt;p&gt;Go ahead and look at the Post-Build actions while you’re here, you’ll see that you can automatically send out an email when a job fails, trigger other jobs, and a handful of other options.  Don’t worry about adding any right now, but later on they’ll come in handy.&lt;/p&gt;
-
-&lt;p&gt;Now hit save.  Try to build the job, you will see that it now asks you to fill in a parameter.  Type in whatever you would like the name of the folder to be and hit build.  Run it one more time, this time using a different name for the folder, then view the console output.  You should now see that both folders have been created using the name that you specified.&lt;/p&gt;
-
-&lt;p&gt;While this is just a tiny fraction of what you can do with Jenkins, once you get the hang of it, your team can set up jobs for just about any task you can imagine, using Bash, Powershell, Github for version control, automated testing to verify that jobs have completed, and pretty much anything else you can think of.  Thanks for watching, let us know if you have any questions!&lt;/p&gt;
-</description>
-        <pubDate>Tue, 13 Oct 2015 13:00:00 -0400</pubDate>
-        <link>http://devopslibrary.com/lessons/jenkins-for-operations</link>
-        <guid isPermaLink="true">http://devopslibrary.com/lessons/jenkins-for-operations</guid>
-        
-        
-        <category>jenkins</category>
         
       </item>
     
