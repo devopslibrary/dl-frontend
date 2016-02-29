@@ -62,7 +62,7 @@ function Install-Salt() {
       [string]$runservice = "true",
 
       [Parameter(Mandatory=$false,ValueFromPipeline=$true)] 
-      [string]$minion = "salt-minion",
+      [string]$minion = "",
   
       [Parameter(Mandatory=$false,ValueFromPipeline=$true)] 
       [string]$master = "salt"
@@ -135,6 +135,11 @@ function Install-Salt() {
     # Install minion silently
     Write-Output "Installing Salt minion"
     #Wait for process to exit before continuing.
+
+    # If minion name not set, use hostname.
+    if (!$minion) {
+        $minion = $([System.Net.Dns]::GetHostByName(($env:computerName))).Hostname
+    }
     C:\tmp\salt.exe /S /minion-name=$minion /master=$master | Out-Null
 
 
