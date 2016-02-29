@@ -65,7 +65,7 @@ function Install-Salt() {
       [string]$minion = "salt-minion",
   
       [Parameter(Mandatory=$false,ValueFromPipeline=$true)] 
-      [string]$master = "master"
+      [string]$master = "salt"
     )
 
     Write-Verbose "Parameters passed in:"
