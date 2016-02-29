@@ -126,14 +126,14 @@ function Install-Salt() {
     }
 
     # Download minion setup file
-    Write-Output -NoNewline "Downloading Salt minion installer Salt-Minion-$version-$arch-Setup.exe"
+    Write-Output "Downloading Salt minion installer Salt-Minion-$version-$arch-Setup.exe"
     $webclient = New-Object System.Net.WebClient
     $url = "https://repo.saltstack.com/windows/Salt-Minion-$version-$arch-Setup.exe"
     $file = "C:\tmp\salt.exe"
     $webclient.DownloadFile($url, $file)
 
     # Install minion silently
-    Write-Output -NoNewline "Installing Salt minion"
+    Write-Output "Installing Salt minion"
     #Wait for process to exit before continuing.
     C:\tmp\salt.exe /S /minion-name=$minion /master=$master | Out-Null
 
@@ -167,12 +167,12 @@ function Install-Salt() {
       # If the salt-minion service is still not running, something probably
       # went wrong and user intervention is required - report failure.
       If ($service.Status -eq "Stopped") {
-        Write-Output -NoNewline "Failed to start salt minion"
+        Write-Output "Failed to start salt minion"
         exit 1
       }
     }
     Else {
-      Write-Output -NoNewline "Stopping salt minion and setting it to 'Manual'"
+      Write-Output "Stopping salt minion and setting it to 'Manual'"
       Set-Service "salt-minion" -startupType "Manual"
       Stop-Service "salt-minion"
     }
