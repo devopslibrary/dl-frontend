@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Introduction to Docker</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://devopslibrary.com/lessons/docker-beginner-tutorial">
+  <link rel="alternate" type="application/rss+xml" title="DevOps Library" href="http://devopslibrary.com/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">DevOps Library</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Introduction to Docker</h1>
+    <p class="post-meta"><time datetime="2015-10-13T13:00:00-04:00" itemprop="datePublished">Oct 13, 2015</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="video"><figure><iframe width="640" height="480" src="//www.youtube.com/embed/cxveLKw6BVw" frameborder="0" allowfullscreen=""></iframe></figure></div>
+
+<p>Welcome to our Docker Beginner Tutorial! Docker is one of those things that people tend to get a pretty strong opinion one way or another very quickly, but we promise you, that if you use Linux at all in your organization, you’ll probably end up eventually loving it. Even if you’re a windows shop you might end up loving it too.</p>
+
+<p>VagrantFile:
+http://devopslibrary.com/episode7-docker.zip</p>
+
+<p>Transcript:</p>
+
+<p>Hello again this is Samantha with the DevOps library episode 7.  We’re glad you found yourself here.  Today is an exciting day as we’ll be going over docker.  Docker is one of those things that people tend to get a pretty strong opinion one way or another very quickly, but we promise you, that if you use Linux at all in your organization, you’ll probably end up eventually loving it.  Even if you’re a windows shop you might end up loving it too.</p>
+
+<p>Anyway, let’s get started. I’m going to assume that most of the people watching this video are familiar with virtualization and spinning up VMs.  It doesn’t matter what HyperVisor you’re used to, whether it’s HyperV, VMware, KVM and so on.  The process is pretty much the same.  You create the VM which has it’s own totally separate OS, libraries, and so on.  This process takes at least a few minutes if not a half hour.  Then you need to load the applications to the VM, which takes even more time.  When you use Docker, you basically get to skip this entire process.  It’s really cool.</p>
+
+<p>Docker doesn’t create VMs, it creates containers, which actually share resources with the host, so there’s no overhead for the hypervisor or VM.  While containers do feel like VMs in terms of how isolated they are, spinning a new one up literally takes seconds.  If you’re wondering about application deployment, or how they’re different vs. a VM, that’s another awesome thing about Docker, it’s extremely portable.  You can create a docker container on your local workstation, install all the application software and dependencies that you need, then commit the container to the Docker repository.  At that point it’s just a quick pull on your production server and your application is completely deployed.  Also, if you build something in Docker on Ubuntu, then wander off to a Redhat server, the container will run EXACTLY the same way.  Well, I guess I should stop talking so that you can get started doing the tutorial.</p>
+
+<p>Today we’re going to start out with just a standard Ubuntu 14.04 server, with nothing extra installed.</p>
+
+<p>Now let’s go ahead and install Docker.  To get the latest version, run:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>curl –sSL https://get.docker.com/ubuntu/</td>
+      <td>sudo sh</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now let’s go ahead and create our first container.  Think of the container as a VM.  Now type.</p>
+
+<p>docker run -i -t ubuntu /bin/bash</p>
+
+<p>Let’s look at the command, “docker run” creates a new container, the dash I runs the shell interactively, so that when you exit from the shell the container stops, the dash T creates a pseudo-tty, or in other words makes it so you see a prompt.    We’re also specifying Ubuntu as the image to pull from.  Docker will pull this image from the Docker repository automatically.  Lastly, we specify /bin/bash, so that Docker automatically starts bash on the container.  This could easily be a specific service like apache for instance.</p>
+
+<p>Once Docker finishes downloading the Ubuntu image, you should almost immediately land inside the new docker container.</p>
+
+<p>Looks like our container is finally up, I’ll just create a quick file on the root, exit from the container shell, and do an LS so that you can see we now have a totally new environment to play around with.</p>
+
+<p>Alright, now that we’re back on our host, how to we see what containers we currently have set up?  Just run docker ps.</p>
+
+<p>Notice we don’t see the container that we created listed, the reason is because we exited bash, and since that’s the only thing the container was running, the container automatically stopped.  Go ahead and run docker ps –a to see all containers, including those that have stopped.</p>
+
+<p>There’s our container!  Now to start it back up, we can run either docker start followed by the long container ID, or we can use the nickname that docker automatically gave it.  Go ahead and do that now.</p>
+
+<p>The container is now running, but we haven’t attached to it.  To do so, run docker attach followed by the name of the container.</p>
+
+<p>Awesome we’re back in.  However, one of the best parts of Docker is seeing how fast the new containers come up, so let’s go ahead and exit the container one more time.</p>
+
+<p>Let’s delete our container too, run docker rm then the name of the container.</p>
+
+<p>Now run docker images.  You should see a list of images.  These are the images that we’ve already downloaded, and they’re basically cached by docker.    Let’s go ahead and create a brand new container, running the same command that we did before.</p>
+
+<p>docker run -i -t ubuntu /bin/bash</p>
+
+<p>The container should start almost immediately.  It’s like having a perfect brand new VM to play around with, but with no waiting time.  That’s just one tiny part of Docker though.  Let’s try one last feature before we wrap up the video.  Install Apache on the container.</p>
+
+<p>Now click CTRL-P, followed by CTRL-Q.  That detaches us from the Docker container without stopping it.  While it doesn’t matter if it’s stopped or not for what we’re about to do next, it’s a nice trick to know.  Now let’s run docker ps to get the name of our container.  Then run</p>
+
+<p>Docker commit followed by the container name, then a name for a new image.  We’ll name ours apacheimage</p>
+
+<p>Now run docker images to see our list of images again, you should see apacheimage in the list.  Lastly, let’s do one final command.</p>
+
+<p>Docker run –I –t apacheimage /bin/bash</p>
+
+<p>This is exactly like the command we’ve been running to create our Ubuntu containers, but this time, our container already has apache installed.  While we’ve only shown you a couple of Docker’s features, I hope that’s enough to get you started.  There is so much more that you can do with it, and we’ll be covering those features soon.  Thanks again for watching, please like our video if you enjoyed it!</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//devopslibrary.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">DevOps Library</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>DevOps Library</li>
+          <li><a href="mailto:admin@devopslibrary.com">admin@devopslibrary.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/kenerwin88"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">kenerwin88</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/devopslibrary"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">devopslibrary</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Welcome to the DevOps Library!  We have the best videos for the best admins!
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+<!-- Piwik -->
+<script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+    var u="//kendog15.piwikpro.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+<noscript><p><img src="//kendog15.piwikpro.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+  </body>
+
+</html>
