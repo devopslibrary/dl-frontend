@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Writing Quality Reusable PowerShell</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://devopslibrary.com/lessons/writing-quality-reusable-powershell">
+  <link rel="alternate" type="application/rss+xml" title="DevOps Library" href="http://devopslibrary.com/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">DevOps Library</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Writing Quality Reusable PowerShell</h1>
+    <p class="post-meta"><time datetime="2015-10-13T13:00:00-04:00" itemprop="datePublished">Oct 13, 2015</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="video"><figure><iframe width="640" height="480" src="//www.youtube.com/embed/ZQD0rLZMNho" frameborder="0" allowfullscreen=""></iframe></figure></div>
+
+<p>https://www.youtube.com/watch?v=7jU15_7pPkY</p>
+
+<p>Transcript:</p>
+
+<p>Welcome to the DevOps Library, this is Samantha with Episode 10.  Today we’re going to talk about writing high quality, reusable PowerShell code.  We will start out by looking at a typical PowerShell script that we found in the wild–and by rewriting it we’ll cover how and why to write commandlets instead of scripts.  We’ll also cover a few advanced topics such as Hashmaps, Splatting, and creating modules from scratch.</p>
+
+<p>Let’s get started.  Here we have a short typical PowerShell script we found on Technet named CheckFreeDiskSpace.ps1.  Before we examine it, let’s just try to run it first.</p>
+
+<p>(sigh) It’s asking for credentials, and can’t find a file named computers.txt on our D drive.</p>
+
+<p>While it wouldn’t be that much work to revise this script for our own use, what if the script were more complex?  By the time we figure out what needs to be changed, we may as well have started from scratch.</p>
+
+<p>Unfortunately this type of code is what a lot of sysadmins end with before moving on to writing their next script.  However, if you follow along we’ll show you how to write code that’s more useful for others to use, as well as yourself when you’re trying to build off of old scripts.</p>
+
+<p>Before we get started–Let’s do some organizing and create an area to store our future PowerShell modules.</p>
+
+<p>First create and clone a repository.  Our code should be in version control, as it allows for easily reverting when something breaks and simplifies sharing with a team.  If you don’t have a repository, we highly recommend setting one up for free on Github.com.</p>
+
+<p>Inside of our repository, create a new folder named modules.  This where we’ll store any PowerShell modules that we create.</p>
+
+<p>Let’s create our first one–make a new directory, we’ll call ours DevOpsLibrary.</p>
+
+<p>Inside, add a file named DevOpsLibrary.psm1. It’s important that the name of this file match the name of the folder, as PowerShell will automatically look for this file when we call Import-Module.  It only needs to contain the line seen here:</p>
+
+<p>PAUSE</p>
+
+<p>It’s a little trick we use that just “dot sources” every ps1 file within the same folder as the module.  In other words, when we type import-module DevopsLibrary later on, PowerShell will load every function that we save with the extension .ps1 in our module’s folder.</p>
+
+<p>PowerShell will also look for an optional file with the extension psd1, known as the manifest.  We won’t worry about it in this episode as it’s primarily used for adding supplemental information.</p>
+
+<p>We have one more thing that we need to do before rewriting the script.  If we try to run Import-Module, PowerShell isn’t going to know where our module is located.  By default, PowerShell looks for modules in two places, one under:</p>
+
+<p>system 32, windows powershell, V1.0 modules</p>
+
+<p>and the second under:</p>
+
+<p>user documents windows powershell modules</p>
+
+<p>While we could move our module, we would prefer to keep it where it is so that our code is version controlled.  We just need to add our modules folder path to the PSModulePath variable in System.  Once we have done that, make sure that you close and reopen PowerShell.  Now we’re finally ready to rewrite the script.</p>
+
+<p>Let’s begin by renaming the file to something that fits in with the standard PowerShell convention of Verb-Noun.  To see a list of suggested verbs, just run “Get-Verb”.  Since our script is retrieving information on disk space, let’s use “Get” for the verb, and “DiskSpace” for the noun.  Save the file as Get-DiskSpace.ps1 under our DevOpsLibrary module folder.</p>
+
+<p>Now let’s go ahead and wrap the entire script under a function named Get-DiskSpace.  It’s important that you give the function the same name as the file name, otherwise it’ll become difficult to locate your functions later on.</p>
+
+<p>Alright, that looks slightly better, but we still have two major problems.  One is that the list of computer names is hardcoded, and second, the script requires user interaction because we’re using “Get-Credential”.  Let’s break those out of the script by turning them into parameters.  Delete the “clear” line as well.  You should never use anything like “clear”, or “Write-Host”, as they make it frustrating for someone trying to reuse your code.  Instead, use commands like Write-Verbose or Write-Debug for testing.</p>
+
+<p>Let’s go ahead and delete the “file = Get-Content” line as well.  That line currently forces anyone that uses our script to supply a list of servers as text file.  That doesn’t make sense, they might want to pipe a list of hostnames, or pass them in as an array.  You should always write your code to be as concise, flexible, and simple as possible.  We’ll also replace the foreach with our own shorthand version.  If you haven’t seen the pipe percent combination before, it’s the same as a saying foreach, but instead of each item having a name, we reference them using dollar underscore.  In our example that means for every hostname in the variable ServerName, do Get-WMIObject, with the hostname being referenced by dollar underscore.</p>
+
+<p>Speaking of Get-WMIObject, discard everything after the pipe as well.  All of that formatting is useless.  While it may look more pleasing when the command is ran by hand, it’s about the worst thing we could do for reusability.  Let’s say someone else utilizes are script and wants to divide the returned number, do you think it’s easier to divide 500 or 500MB?  Remember to always separate logic from presentation.</p>
+
+<p>Before we go too much further, let’s make our function a real commandlet.  Add “Commandlet Binding” to the top of our function.  Then move our parameters out of the function signature to right after our commandlet binding call.</p>
+
+<p>What does this black magic do you ask?  It tells PowerShell that this is a real commandlet, which gives us many benefits.  One of which is advanced parameters, allowing us to create different sets of parameters, make some mandatory or optional, use cool commands like Write-Verbose and Write-Debug, as well as a couple of other tricks including easy documentation.</p>
+
+<p>Speaking of documentation, that’s something we recommend writing BEFORE you code a script, not after.  If we clearly outline what our function is going to do, what parameters it’s going to take, and possibly even include an example or two, it’ll be easy for us to stay focused on what our code should be doing.  Let’s go ahead and write our documentation now.</p>
+
+<p>At the top of the function, we’re going to add a comment block formatted in a special way so that PowerShell recognizes it.  By using five special keywords, dot Synopsis, dot Description, dot Parameter, dot Example, and dot Notes, we can add meaningful documentation to our commandlet.  Yes this does take a little extra time, but the time it saves you and your team is more than worth it, not to mention the benefits of planning what you code.</p>
+
+<p>Let’s start with the synopsis.</p>
+
+<p>Get-DiskSpace doesn’t imply what it returns, so let’s say that the function will return the total amount of disk space, and optionally the amount free or percentage free.</p>
+
+<p>Now onto the description.  The description can just be a slightly more in depth description of the synopsis.  Let’s also mention that the user can optionally pass in a set of credentials for running the command on a list of remote servers.  We’ll actually make it optional later on.</p>
+
+<p>For the Parameters, just type the name of each parameter, and on the next line just quickly describe what the parameter is used for.</p>
+
+<p>We’re going to go ahead and type two examples as well, one showing how to use our Get-DiskSpace command by piping a list of servers to it, as well as how to just return the percent of disk space free on the local server.  If you’re not ready to write the example documentation until you finish the script, that’s completely o-k, but please remember to come back to it!</p>
+
+<p>Lastly, we can add some notes.  Notes can be anything that you’d like.  Some people like to add the author of the script here, or just helpful information for the user.</p>
+
+<p>An important point to remember is that once you have documented the parameters of a function, and what it should return, you should stick with them once the code has been shared.  The reason is because you, or others on your team may now be depending on your function.  That doesn’t mean you can’t improve the code, or change HOW the commandlet does something, but everyone should be able to count on the parameters and what is returned to remain the same.</p>
+
+<p>Well at least we’re finally done with our documentation!  Want to see something neat? Hit F5 to run our partially completed commandlet.  Nothing happened of course as everything is wrapped in a function, which is exactly what we wanted.  Now type:</p>
+
+<p>Get-Help Get-DiskSpace</p>
+
+<p>See, it was worth it, look at how nice that looks!  Now when someone tries to use our code, instead of having to open up the script and look at it, they can just type Get-Help to see exactly how to use our commandlet!  Nice job!</p>
+
+<p>We still have quite a bit left to do however before we’re finished though.  Let’s try some of our new advanced parameter tricks.  First, let’s make it so that our function can be used in the pipeline.  Why is it important to be able to pipe to our function?  Because right now, to use our command someone would have to type:</p>
+
+<p>Get-DiskSpace –ServerName ‘Hostname’</p>
+
+<p>But they should also be able to use our command by typing:</p>
+
+<p>An array of hostnames Pipe Get-DiskSpace</p>
+
+<p>While that does’t work yet, It’s easy to implement.  All we need to do is add a special option called ValueFromPipeline = True in front of our ServerName parameter.  Let’s do that now.</p>
+
+<p>We can also make any of the parameters mandatory if we’d like by adding mandatory=true, but we don’t need to do that for this script.</p>
+
+<p>Alright, let’s add three more parameters, one named free, one named total, and one named percent.  In front of each of these, add “Switch”.  Switch turns parameters into special Boolean switches, that way we can call:</p>
+
+<p>“Get-DiskSpace dash free” for example to return the amount of disk space available.</p>
+
+<p>Before we actually implement those switches, let’s create an array right before the foreach loop.   Now add array += in front of our Get-WMIObject call.  Now at the end of our script, we’ll return the array.  Make sure every function that you write returns something, even if it’s just a True for success.</p>
+
+<p>If you haven’t ran the script for a little while, now might be a good time to look at it again to see our current output.  First type $credentials = Get-Credential, and fill in some credentials for a remote server.  Then type:</p>
+
+<p>“Get-DiskSpace dash PSCredential credential dash ServerName” followed by the IP of the server.</p>
+
+<p>Your output should look similar to ours, and as you can see, we already have the necessary information to implement the switches for total space, free space, and percent.  Let’s edit our script RIGHT before the return array at the end.  We’re going to use a “Switch” instead of a bunch of ugly if statements, and we’ll use a variable named PSBoundParameters.Keys</p>
+
+<p>This magical variable actually provides a list of all of the parameters that have been set when the function is called.  It’s extremely helpful, especially for what we’re about to do.</p>
+
+<p>The code for our free, total, and percent switches will all look nearly identical, they consist of iterating through our array, and returning a new array with the specific values we care about.  Percent is a little unique in that we divide the amount of free space by the total size of the disk.  Feel free to pause briefly to examine how our code is doing the work here.</p>
+
+<p>PAUSE</p>
+
+<p>Alright, we are going to introduce one final concept before concluding the video, and that concept is called “Splatting”.  Splatting is just a technique for providing parameters to function by using a Hashtable, instead of outright specifying them.  Why would we want to use splatting in this function?  Because earlier we decided that specifying credentials or the server name should be optional.  Right now if you call Get-DiskSpace without any parameters, the command will fail.</p>
+
+<p>We COULD solve that by making a few ugly sets of if statements, like:</p>
+
+<p>“if credentials are supplied, call Get-WMIObject with credentials, else call it without credentials” and so on, but it would look messy.  Instead, we’ll splat.</p>
+
+<p>Let’s look at our current Get-WMIObject call.  What parameters are we going to call no matter what is supplied?  For our function, we’re always going to want to specify the class as Win32 LogicalDisk, and we always want the filter to be set as DriveType=3.  So let’s create a hash table containing these values before our foreach.  Type:</p>
+
+<p>parms = @ brace class=Win32LogicalDisk ; filter=DriveType 3 close brace</p>
+
+<p>If you’re not used to PowerShell Hashmaps, go ahead and run this line, then type parms to look at the object.  Just think of Hashmaps as an array of keys that are mapped to values.</p>
+
+<p>Alright, on the line right after we set up the Hashmap, add the following line:</p>
+
+<p>—</p>
+
+<p>This line is fairly simple, it is just saying, if someone runs this command with the PSCredential variable set, then add it to our parameter hash map.  Now we’re going to add a relatively similar line at the top of our foreach, go ahead and add this:</p>
+
+<p>—</p>
+
+<p>This line just says that if the name of the server is set, then we want to add the ComputerName parameter to our hashmap along with the name of the server.  We have to have it in the foreach loop, because we want this to work even if the person running it supplies a list of servers.</p>
+
+<p>Now to finally apply the splatting.  Completely remove all the parameters currently attached to Get-WMIObject, and replace them with @parms.  You may be thinking, why an @ sign?  Don’t we need a $ sign? No, when calling a function, the @ sign actually tells PowerShell to splat the variables, just trust us.</p>
+
+<p>Believe it or not, our script is finally done.  Go ahead and commit the code to your repository, that way everyone else on the team can use it.  Now how do we call it?  Go ahead and close out of PowerShell ISE and just open up a fresh PowerShell window for the demonstration.</p>
+
+<p>Type Import-Module DevOpsLibrary</p>
+
+<p>then hit enter</p>
+
+<p>Alright, our module has now been imported.  Now type Get-Help Get-DiskSpace to see our beautiful documentation again!</p>
+
+<p>You can now call the function any way that you’d like, you can do</p>
+
+<p>“Get-DiskSpace dash percent” to return the percentage free of our local machine, or pipe in a list of servers if you’d like.  Our script went from being difficult to use to completely reusable!  If we want to add more functions to our PowerShell Module, just save each function as functionName.ps1 in your module’s directory.  Your team will love being able to just call import module to reuse your code, and if the video helped you feel free to send it to your teammates as well.  Thank you so much for watching!</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//devopslibrary.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">DevOps Library</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>DevOps Library</li>
+          <li><a href="mailto:admin@devopslibrary.com">admin@devopslibrary.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/kenerwin88"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">kenerwin88</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/devopslibrary"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">devopslibrary</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Welcome to the DevOps Library!  We have the best videos for the best admins!
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+<!-- Piwik -->
+<script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+    var u="//kendog15.piwikpro.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+<noscript><p><img src="//kendog15.piwikpro.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+  </body>
+
+</html>

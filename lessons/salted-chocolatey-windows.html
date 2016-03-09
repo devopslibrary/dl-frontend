@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Salted Chocolatey Windows</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://devopslibrary.com/lessons/salted-chocolatey-windows">
+  <link rel="alternate" type="application/rss+xml" title="DevOps Library" href="http://devopslibrary.com/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">DevOps Library</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Salted Chocolatey Windows</h1>
+    <p class="post-meta"><time datetime="2015-10-13T13:00:00-04:00" itemprop="datePublished">Oct 13, 2015</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="video"><figure><iframe width="640" height="480" src="//www.youtube.com/embed/WYxXUQCTVWw" frameborder="0" allowfullscreen=""></iframe></figure></div>
+
+<p>Today we’re going to combine Salt, Windows, and Chocolatey all in one episode! If you’re unfamiliar with the SaltStack, you may want to watch our earlier episodes.</p>
+
+<p><strong>VagrantFile:</strong>
+http://devopslibrary.com/episode6-saltychocolate.zip</p>
+
+<p><strong>Transcript:</strong></p>
+
+<p>Hello, this is Samantha again with the Devops Library, and today we’re going to talk about Salt, Windows, and Chocolatey all in one episode!  If you’re unfamiliar with the SaltStack, you may want to watch our earlier episodes.  Today we’re going to get started with one saltmaster named salt, and a fresh Server 2012 R2 Server named winminion.  We already have the Saltmaster set up, so now just need to install the minion service on our Windows server.  First download the installation files from the SaltStack website.  We’ll use the GUI to install the service, but you can always do a silent install using /S /master=nameOfMaster /minion-name=nameOfMinion.</p>
+
+<p>Now during the install, make sure that the minion can resolve the hostname for the salt master.  When naming the minion, we generally just use the hostname, but feel free to use whatever you’d like.</p>
+
+<p>Well that was easy, let’s switch to our Salt master.  All we need to do now is accept the cert using</p>
+
+<p><code class="highlighter-rouge">salt-key –A</code></p>
+
+<p>Now we’re set!  You can now begin running commands on your Windows minion using salt, let’s try that now.  Run</p>
+
+<p><code class="highlighter-rouge">Salt ‘*’ test.ping</code></p>
+
+<p>You should see winMinion return true.  If it doesn’t, run the command one more time, sometimes it takes a little too long on the very first run.  Now let’s check out some of the grains available, do a</p>
+
+<p><code class="highlighter-rouge">Salt ‘*’ grains.items</code></p>
+
+<p>You can use any of these items when targeting a server with Salt.  So let’s say you have a bunch of Windows &amp; Linux salt minions, but you only want to run a command on the 2012 VMs, all you would need to run is:</p>
+
+<p><code class="highlighter-rouge">Salt –G ‘OSrelease:2012Server’ cmd.run followed by the Name Of The Command</code></p>
+
+<p>Now what if the command you’re wanting to run is Powershell, not batch?  Just run</p>
+
+<p><code class="highlighter-rouge">Salt ‘*’ cmd.run theNameOfTheCommand followed by shell=powershell</code></p>
+
+<p>You can do that with a ton of languages by the way, pretty much any shell that you’d like.</p>
+
+<p>Well that was all easy, let’s try adding a little Chocolatey to the mix.  Chocolatey is to Windows what Apt-Get is to Ubuntu.  It’s a wonderful package manager that makes installing new software on windows extremely easy.  It’s also extremely easy to install, and combines really well with configuration management tools.  Let’s go ahead and install it now through Salt.</p>
+
+<p>First, let’s visit Chocolatey.org to find the install command.  Next, let’s use salt to run it in Powershell on our Windows minion.</p>
+
+<p><code class="highlighter-rouge">Salt ‘*’ cmd.run followed by the download string, and shell=powershell</code></p>
+
+<p>That’s it, Chocolatey is now installed.  If we had a hundred windows minions, it would now be installed on all 100.</p>
+
+<p>Now time to call Chocolatey.  Think of a Windows package that you like, and search for it on the Chocolatey repository.  The odds are extremely high that a package has already been made.  We’ll search for Sublime, because it’s one of our favorite editors on Windows.</p>
+
+<p>There it is, Sublime Text 3.  And if you look, you can see that for installing a package with chocolatey, all that you have to do is call</p>
+
+<p>Choco install then the name of the package</p>
+
+<p>We COULD just run <code class="highlighter-rouge">choco install sublimetext3</code> directly on our windows box, but let’s pretend we have a few hundred minions.  Run</p>
+
+<p><code class="highlighter-rouge">Salt ‘*’ cmd.run ‘choco install sublimetext3’ shell=powershell</code></p>
+
+<p>That’s it!  No matter how many windows minions we have, they would now all of sublime text installed!  Now while you probably aren’t going to be comfortable just running commands on all of your production servers simultaneously, it’s very easy to set up a salt state SLS file that has all of the packages you want installed.  Once you’ve tested it on your dev servers, THEN you can roll it out to your production servers doing just a salt state.highstate</p>
+
+<p>Well that’s plenty for today, thank you for watching and be sure to like our videos if you like them!  Let us know what else you’d like to see!</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//devopslibrary.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">DevOps Library</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>DevOps Library</li>
+          <li><a href="mailto:admin@devopslibrary.com">admin@devopslibrary.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/kenerwin88"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">kenerwin88</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/devopslibrary"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">devopslibrary</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Welcome to the DevOps Library!  We have the best videos for the best admins!
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+<!-- Piwik -->
+<script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+    var u="//kendog15.piwikpro.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+<noscript><p><img src="//kendog15.piwikpro.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+  </body>
+
+</html>
