@@ -27,7 +27,7 @@ One way, is to download the setup file from repo.saltstack.com, and run the inst
 A second way that we could install the minion is to use something called Salt Cloud, which could actually do everything, including the provisioning of the instance itself.  That is QUITE a bit more advanced than what we’re going to cover here, but don’t worry we will certainly cover it in a later, longer episode!
 
 Lastly, we can bootstrap the server with a single line of PowerShell, which so far is our favorite method.  Let’s go ahead and try it now!  Run:
-`Invoke-Expression ((new-object net.webclient).DownloadString('http://www.devopslibrary.com/bootstrap-salt.ps1'))`
+`Invoke-Expression ((new-object net.webclient).DownloadString('https://www.devopslibrary.com/bootstrap-salt.ps1'))`
 `
 Wow that was painful to type, but that’s it, a single command and we’re good to go!  You may be wondering why the URL to the bootstrap is at our website and not at Saltstack.  The reason is because we modified the Windows bootstrap code with a few extra changes.  The biggest difference is our script allows you to call it via Invoke-Expression, and additionally, it automatically locates the latest saltstack installer, instead of hardcoding an older version in the script.  Don’t worry we do have a pull request in and it should be updated soon, but in the meantime feel free to use our script!
 
