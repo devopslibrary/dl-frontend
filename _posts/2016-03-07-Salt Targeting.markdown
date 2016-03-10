@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "SaltStack Targeting"
+title:  "Salt Targeting"
 date:   2016-03-07 12:00:00 -0500
 categories: saltstack
-permalink: lessons/saltstack-targeting
+permalink: lessons/salt-targeting
 
 ---
-{% include youtube.html id="UPDATEME" %}
+{% include youtube.html id="nZjZvtrsLdU" %}
 
 Welcome back to the DevOps Library, we're glad you found yourself here!  Once again this is Samantha and today we’re going to learn about SaltStack targeting.  
 
