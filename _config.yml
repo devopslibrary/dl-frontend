@@ -22,4 +22,11 @@ markdown: kramdown
 # Outputting
 permalink: none
 
+# Gem Addons
 gems: [jekyll-redirect-from]
+
+# Analytics
+analytics:
+  provider: google
+  google:
+      tracking_id: 'UA-60115428-1'
