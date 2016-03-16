@@ -5,6 +5,7 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-transform: translate3d(0,0,0);
+  webkit-font-smoothing: antialiased; */
 }
 
 body {
@@ -143,6 +144,7 @@ h4 {
 .h--1 {
   font-size: 130%;
   line-height: 1.4;
+  margin-bottom: 0.3125em;
 }
 
 @media screen and (min-width: 48em) {
@@ -1302,7 +1304,9 @@ textarea {
 .path--static .path-title-link {
   border: 0;
 }
-
+.path-title {
+  margin-bottom: 0.3125em;
+}
 .path--min--l .path-content {
   padding-top: 42.75px;
 }
@@ -1382,6 +1386,9 @@ textarea {
 .path-next-label,
 .path-next-title {
   margin-bottom: 0;
+}
+.path-next-label {
+  line-height: 1.5;
 }
 
 .path-next-badge {
@@ -1839,7 +1846,27 @@ textarea {
 
 .mbxl {
   margin-bottom: 5em;
+  color: #E36E0B;
 }
+.post-title {
+  font-size:2.618em;
+  font-weight: 700;
+  text-align: center;
+  -webkit-margin-before: 1.33em;
+-webkit-margin-after: 1.33em;
+margin-bottom: 0.8em;
+}
+.post-content h2 {
+  font-family: "ff-enzo-web", Arial, Helvetica, Calibri, sans-serif;
+font-weight: 700;
+text-transform: none;
+letter-spacing: 0;
+font-size: 1.618em;
+line-height: 1.2;
+margin-bottom: 0.382em;
+}
+
+.post-content p {font-size: 1em;  }
 
 @media screen and (min-width: 48em) {
   .mbf--m {

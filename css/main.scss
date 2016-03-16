@@ -6,17 +6,17 @@
 
 
 // Our variables
-$base-font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif;
-$base-font-size:   16px;
+$base-font-family: "myriad-pro", Arial, Helvetica, Calibri, sans-serif;
+$base-font-size:   1em;
 $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
-$base-line-height: 1.5;
+$base-line-height: 1.618em;
 
 $spacing-unit:     30px;
 
-$text-color:       #111;
+$text-color:       #131313;
 $background-color: #fdfdfd;
-$brand-color:      #2a7ae2;
+$brand-color:      #62b562;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);

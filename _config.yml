@@ -11,16 +11,27 @@ email: admin@devopslibrary.com
 description: > # this means to ignore newlines until "baseurl:"
   Welcome to the DevOps Library!  We have the best videos for the best admins!
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://devopslibrary.com" # the base hostname & protocol for your site
+url: "https://devopslibrary.com" # the base hostname & protocol for your site
 twitter_username: devopslibrary
 github_username:  kenerwin88
 gems:
   - jekyll-redirect-from
+  - jekyll-seo-tag
+
 # Build settings
 markdown: kramdown
+safe: true
 
 # Outputting
 permalink: none
 
-# Gem Addons
-gems: [jekyll-redirect-from]
+whitelist:
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+
+twitter:
+  username: devopslibrary
+
+logo: images/logo.png
+
+social:
