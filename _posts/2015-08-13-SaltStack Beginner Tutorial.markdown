@@ -43,8 +43,8 @@ If you look at the command, the asterisk means run this on all servers reporting
 Next run ```salt '*nion’ cmd.run 'ifconfig'```.  This is going to run ifconfig on the minion, because it’s the only server that matches the target string ```*nion```.
 
 You can use any type of wildcard that you want, now let’s run one last command
-```salt * cmd.run 'df -h'```
-
-
+{% highlight bash %}
+salt * cmd.run 'df -h'
+{% endhighlight %}
 
 Notice we now can see the free space on both servers, as salt ran df –h on both servers.  I hope you can see how easy it was to get going.  Now keep in mind this is just a tiny fraction of what salt can do, we haven’t covered pillars, grains, states, or any of the other amazing features of salt, but I hope that’s enough to get you started.  Thanks for watching!
