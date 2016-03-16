@@ -8,13 +8,8 @@ permalink: lessons/salted-chocolatey-windows
 ---
 {% include youtube.html id="WYxXUQCTVWw" %}
 
-Today we’re going to combine Salt, Windows, and Chocolatey all in one episode! If you’re unfamiliar with the SaltStack, you may want to watch our earlier episodes.
-
-<strong>VagrantFile:</strong>
-http://devopslibrary.com/episode6-saltychocolate.zip
-
-<strong>Transcript:</strong>
-
+Introduction
+------------
 Hello, this is Samantha again with the Devops Library, and today we’re going to talk about Salt, Windows, and Chocolatey all in one episode!  If you’re unfamiliar with the SaltStack, you may want to watch our earlier episodes.  Today we’re going to get started with one saltmaster named salt, and a fresh Server 2012 R2 Server named winminion.  We already have the Saltmaster set up, so now just need to install the minion service on our Windows server.  First download the installation files from the SaltStack website.  We’ll use the GUI to install the service, but you can always do a silent install using /S /master=nameOfMaster /minion-name=nameOfMinion.
 
 Now during the install, make sure that the minion can resolve the hostname for the salt master.  When naming the minion, we generally just use the hostname, but feel free to use whatever you’d like.
@@ -23,6 +18,9 @@ Well that was easy, let’s switch to our Salt master.  All we need to do now i
 
 ```salt-key –A```
 
+
+Controlling Windows with Salt
+-----------------------------
 Now we’re set!  You can now begin running commands on your Windows minion using salt, let’s try that now.  Run
 
 ```Salt ‘*’ test.ping```
@@ -41,9 +39,11 @@ Now what if the command you’re wanting to run is Powershell, not batch?  Just
 
 You can do that with a ton of languages by the way, pretty much any shell that you’d like.
 
+Chocolatey
+----------
 Well that was all easy, let’s try adding a little Chocolatey to the mix.  Chocolatey is to Windows what Apt-Get is to Ubuntu.  It’s a wonderful package manager that makes installing new software on windows extremely easy.  It’s also extremely easy to install, and combines really well with configuration management tools.  Let’s go ahead and install it now through Salt.
 
-First, let’s visit Chocolatey.org to find the install command.  Next, let’s use salt to run it in Powershell on our Windows minion.
+First, let’s visit [Chocolatey.org](Chocolatey.org) to find the install command.  Next, let’s use salt to run it in Powershell on our Windows minion.
 
 ```Salt ‘*’ cmd.run followed by the download string, and shell=powershell```
 
@@ -59,6 +59,8 @@ We COULD just run ```choco install sublimetext3``` directly on our windows box, 
 
 ```Salt ‘*’ cmd.run ‘choco install sublimetext3’ shell=powershell```
 
+Conclusion
+----------
 That’s it!  No matter how many windows minions we have, they would now all of sublime text installed!  Now while you probably aren’t going to be comfortable just running commands on all of your production servers simultaneously, it’s very easy to set up a salt state SLS file that has all of the packages you want installed.  Once you’ve tested it on your dev servers, THEN you can roll it out to your production servers doing just a salt state.highstate
 
 Well that’s plenty for today, thank you for watching and be sure to like our videos if you like them!  Let us know what else you’d like to see!
