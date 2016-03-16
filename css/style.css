@@ -1449,7 +1449,6 @@ textarea {
     width: calc(100% - 1.25em - 40px);
   }
 }
-a {color: #62b562 !important}
 
 .path-next-label {
   color: #aebdc1;
