@@ -17,6 +17,7 @@ github_username:  kenerwin88
 gems:
   - jekyll-redirect-from
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Build settings
 markdown: kramdown
@@ -28,6 +29,7 @@ permalink: none
 whitelist:
   - jekyll-redirect-from
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 twitter:
   username: devopslibrary
