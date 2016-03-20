@@ -4,6 +4,7 @@ title:  "What is Vagrant?"
 date:   2015-06-22 12:00:00 -0500
 categories: vagrant
 permalink: lessons/what-is-vagrant
+excerpt: "Welcome to our course on Vagrant.  What is Vagrant, and what is it good for?  Vagrant is an amazing open source tool created by Hashicorp, and is most"
 
 ---
 {% include youtube.html id="aUew6WauUsI" %}

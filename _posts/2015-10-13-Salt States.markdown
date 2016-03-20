@@ -4,6 +4,7 @@ title:  "Salt States"
 date:   2015-10-13 12:00:00 -0500
 categories: saltstack
 permalink: lessons/salt-states
+excerpt: "Today we're going to go over Salt States.  Hopefully if you're watching this, you're already familiar with Salt, if not feel free to watch our Saltstack"
 
 ---
 {% include youtube.html id="AsvVp-ldT2Q" %}

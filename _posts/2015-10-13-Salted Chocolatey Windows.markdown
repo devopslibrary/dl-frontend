@@ -4,6 +4,7 @@ title:  "Salted Chocolatey Windows"
 date:   2015-10-13 12:00:00 -0500
 categories: saltstack
 permalink: lessons/salted-chocolatey-windows
+excerpt: "Today we're going to talk about Salt, Window, and Chocolatey all in one episode!  If you're unfamiliar with Saltstack, you may want to watch our earlier"
 
 ---
 {% include youtube.html id="WYxXUQCTVWw" %}

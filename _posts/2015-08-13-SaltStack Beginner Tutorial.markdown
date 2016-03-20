@@ -4,13 +4,13 @@ title:  "SaltStack Beginner Tutorial"
 date:   2015-08-13 12:00:00 -0500
 categories: saltstack
 permalink: lessons/saltstack-beginner-tutorial
+excerpt: "Today we're going to cover how to use Salt for Configuration Management.  First make sure you have two blank Ubuntu 14.04 VMs ready to go.  Next"
 
 ---
 {% include youtube.html id="TQjE2I8CrzQ" %}
 
 Introduction
 ------------
-Today we’ll cover how to get up and running with Salt for configuration management. If you haven’t heard of Salt or the SaltStack, it’s very similar to Puppet, Ansible, or Chef, but is becoming extremely popular.
 
 Welcome to the DevOps Library episode 2, today we’ll quickly cover how to get up and running with Salt for configuration management.  Well let’s get started.  First make sure you have two blank Ubuntu 14.04 VMs ready to go—we’ve already have a Vagrant file ready, so if you’d like to start at the same place, just download the Vagrant zip for Episode 2 on the website.  If you’re not familiar with Vagrant, just watch our video on how to get started with it.
 

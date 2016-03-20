@@ -4,6 +4,7 @@ title:  "Introduction to Docker"
 date:   2015-10-13 12:00:00 -0500
 categories: docker
 permalink: lessons/docker-beginner-tutorial
+excerpt: "Today we're going to go over Docker.  Docker doesn't create VMs, it creates containers, which actually share resources with the host, so there's no "
 
 ---
 {% include youtube.html id="cxveLKw6BVw" %}

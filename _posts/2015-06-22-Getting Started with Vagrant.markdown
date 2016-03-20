@@ -4,6 +4,7 @@ title:  "Getting Started with Vagrant"
 date:   2015-06-22 12:00:00 -0500
 categories: vagrant
 permalink: lessons/getting-started-with-vagrant
+excerpt: "Welcome to the third episode in our Vagrant course, today we're going to bring up our first Vagrant Machine, and explain VagrantFiles."
 
 ---
 {% include youtube.html id="QfyBWmzCdc0" %}

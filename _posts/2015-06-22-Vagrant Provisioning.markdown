@@ -4,6 +4,7 @@ title:  "Vagrant Provisioning"
 date:   2015-06-22 12:00:00 -0500
 categories: vagrant
 permalink: lessons/vagrant-provisioning
+excerpt: "Welcome to the fourth episode in our Vagrant Course!  Today we're going to talk about Vagrant Provisioning, which will allow us to run vagrant up.""
 
 ---
 {% include youtube.html id="5tPykQsuMfE" %}

@@ -4,6 +4,7 @@ title:  "Installing Vagrant"
 date:   2015-06-22 12:00:00 -0500
 categories: vagrant
 permalink: lessons/installing-vagrant
+excerpt: "Today we're going to cover installation of Vagrant.  Vagrant spins up fresh VMs automatically for you, using what is referred to as a Provider."
 
 ---
 {% include youtube.html id="8-brcyUKHNo" %}

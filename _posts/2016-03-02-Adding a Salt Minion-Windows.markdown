@@ -4,6 +4,7 @@ title:  "Adding a Windows Salt Minion"
 date:   2016-02-25 12:00:00 -0500
 categories: saltstack
 permalink: lessons/adding-a-salt-minion-windows
+excerpt: "In this short lesson, we're going to show you how to add a Windows minion to our Salt Master.  It's really easy so let's go ahead and get started!"
 
 ---
 {% include youtube.html id="VPZe1JDZrGs" %}

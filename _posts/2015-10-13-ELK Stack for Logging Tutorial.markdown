@@ -4,6 +4,7 @@ title:  "ELK Stack for Logging Tutorial"
 date:   2015-10-13 12:00:00 -0500
 categories: elk
 permalink: lessons/elk-stack-for-logging-tutorial
+excerpt: "ELK is an amazing Open Source logging system, and we have yet to find a single company that would not benefit tremendously from setting it up.  If you've"
 
 ---
 {% include youtube.html id="2-Bzm25dLRQ" %}

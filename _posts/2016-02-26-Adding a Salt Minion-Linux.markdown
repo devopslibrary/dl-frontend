@@ -4,6 +4,7 @@ title:  "Adding a Salt Minion"
 date:   2016-02-25 12:00:00 -0500
 categories: saltstack
 permalink: lessons/adding-a-salt-minion-linux
+excerpt: "Welcoem back!  Today we're going to add a Linux minion to our Salt Master!  If you're wondering what a minion is, don't worry, it's just Saltstack terminology"
 
 ---
 {% include youtube.html id="xqCJkF0lzAU" %}
