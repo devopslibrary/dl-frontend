@@ -203,11 +203,6 @@ a:hover,
   color: #167385;
 }
 
-img {
-  height: auto;
-  max-width: 100%;
-}
-
 input[type='text'],
 textarea {
   -webkit-appearance: none;
@@ -722,7 +717,10 @@ textarea {
   max-width: none;
   height: 23px;
 }
-
+.img-container img{
+  width: 40px;
+  height: 40px;
+}
 .moo {
   position: relative;
 }
@@ -1442,6 +1440,7 @@ textarea {
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+    width: calc(100% - 10px);
 }
 
 @media screen and (min-width: 48em) {
@@ -1911,10 +1910,6 @@ margin-bottom: 0.382em;
 
 .plm {
   padding-left: 1.25em;
-}
-
-.prm {
-  padding-right: 1.25em;
 }
 
 .ptxs {
