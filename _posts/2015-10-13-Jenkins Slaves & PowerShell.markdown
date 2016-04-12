@@ -9,7 +9,7 @@ excerpt: "Today we're going to talk about Jenkins Slave and PowerShell Jobs.  We
 ---
 {% include youtube.html id="AN_uc9YqEC4" %}
 
-[Download VagrantFile: https://www.devopslibrary.com/lessons/jenkins-slaves-powershell ](https://www.devopslibrary.com/lessons/jenkins-slaves-powershell)
+[Download VagrantFile: http://devopslibrary.com/episode5-jenkins.zip ](http://devopslibrary.com/episode5-jenkins.zip)
 
 Introduction
 ------------
