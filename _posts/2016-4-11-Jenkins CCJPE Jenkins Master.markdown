@@ -36,7 +36,7 @@ Let’s add the Java 8 repository first, run:
 add-apt-repository ppa:webupd8team/java -y
 {% endhighlight %}
 
-Next, run apt-get update.  
+Next, run `apt-get update`.  
 Then, once that finishes, type:
 
 {% highlight bash %}
