@@ -9,6 +9,8 @@ excerpt: "Today we're going to talk about Jenkins Slave and PowerShell Jobs.  We
 ---
 {% include youtube.html id="AN_uc9YqEC4" %}
 
+[Download VagrantFile: https://www.devopslibrary.com/lessons/jenkins-slaves-powershell ](https://www.devopslibrary.com/lessons/jenkins-slaves-powershell)
+
 Introduction
 ------------
 Welcome to the Devops Library, this is episode 5.  Special shout out to Phil Porada for his suggestion of featuring a Jenkins tutorial, so today we’re going to talk about Jenkins slaves, and PowerShell jobs.  We’ll be starting out with two servers, a Jenkins master, and a fresh Server 2012 R2 VM with the latest Java JDK and .NET 3.5 installed.  If you’d like to get started quickly, download our Vagrant File or watch the previous Jenkins episode which should help you.
