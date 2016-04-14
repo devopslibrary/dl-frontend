@@ -26,5 +26,4 @@ safe: true
 permalink: none
 
 whitelist:
-  - jekyll-redirect-from
   - jekyll-sitemap
