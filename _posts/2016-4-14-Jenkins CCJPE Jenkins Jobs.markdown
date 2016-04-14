@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Jenkins CCJPE Course: Jenkins Jobs"
-date:   2016-4-10 12:00:00 -0500
+date:   2016-4-14 12:00:00 -0500
 categories: jenkins
 permalink: lessons/jenkins-jobs
 excerpt: "What is a job you ask? Essentially it’s just something that we want our Jenkins server to do, which can really be anything.  You could set up a job that pulls application code from git, and compiles it.  Or a job that deploys the code to a bunch of servers, and some to run automated tests after the app has been deployed."  
