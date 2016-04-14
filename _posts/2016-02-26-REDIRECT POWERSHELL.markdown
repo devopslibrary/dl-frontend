@@ -3,7 +3,7 @@ layout: post
 title:  "Writing Quality Reusable PowerShell"
 date:   2015-10-13 12:00:00 -0500
 categories: powershell
-permalink: /courses/powershell
+permalink: /courses/powershell/
 excerpt: "Today we're going to talk about writing high quality, reuseable PowerShell code.  We will start out by looking at a typical PowerShell script that we found"
 
 ---
