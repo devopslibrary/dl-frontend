@@ -15,7 +15,6 @@ url: "https://devopslibrary.com" # the base hostname & protocol for your site
 twitter_username: devopslibrary
 github_username:  kenerwin88
 gems:
-  - jekyll-redirect-from
   - jekyll-sitemap
 
 # Build settings
