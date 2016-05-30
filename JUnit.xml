@@ -1,0 +1,15 @@
+<pre><!-- hostname is an ID/name that identifies the system the test is running on -->
+<testsuite hostname="ComputerName" name="StillImage">
+    <testcase classname="Device.Initialize" name="StillImage_DVID_RGB Initialization" time="3"><!--testcase>
+    <testcase classname="Device.Status" name="StillImage_DVID_RGB status" time="3">
+    </testcase>
+    <testcase classname="Grab.File size check" name="DVID_RGB_720p" time="0">
+         <skipped/>
+    </testcase>
+    <testcase classname="Grab.File count check" name="DVID_RGB_720p" time="9">
+         <error message="Error during grab process. (Occurs 134)">
+             [Still image] Statistics : Succeeded : 5 | Asked : 20 | Missing : 15 | Success Percentage : 25
+             [Still image] Statistics : Succeeded : 5 | Asked : 20 | Missing : 15 | Success Percentage : 25
+         </error>
+     </testcase>
+ </testsuite> </pre>
