@@ -5,6 +5,7 @@ date:   2015-10-13 12:00:00 -0500
 categories: jenkins
 permalink: lessons/jenkins-slaves-powershell
 excerpt: "Today we're going to talk about Jenkins Slave and PowerShell Jobs.  We'll be starting out with two servers, a Jenkins master, and a fresh Server 2012"
+weight: 12
 
 ---
 {% include youtube.html id="AN_uc9YqEC4" %}

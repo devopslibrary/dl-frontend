@@ -5,6 +5,7 @@ date:   2016-4-10 12:00:00 -0500
 categories: jenkins
 permalink: lessons/jenkins-introduction
 excerpt: "This is Samantha, and welcome to our Jenkins Certification course!  If you haven’t heard, Cloudbee’s (the creators of Jenkins) recently released two certifications, the CJE and CCJPE."
+weight: 1
 
 ---
 {% include youtube.html id="lvcIlMK49Cg" %}

@@ -5,7 +5,7 @@ date:   2016-4-10 12:00:00 -0500
 categories: jenkins
 permalink: lessons/jenkins-master
 excerpt: "In this short lesson, we’re going to set up Jenkins from scratch.  If you don’t know what Jenkins is, please feel free to watch our Introduction video, or visit Jenkins.io."  
-
+weight: 2
 ---
 {% include youtube.html id="aon3rohDEos" %}
 

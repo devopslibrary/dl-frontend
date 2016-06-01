@@ -5,6 +5,7 @@ date:   2015-10-13 12:00:00 -0500
 categories: jenkins
 permalink: lessons/jenkins-for-operations
 excerpt: "If you haven't heard of Jenkins, it's something that your developer friends have probably been using for several years, but it can help tremendously"
+weight: 11
 
 ---
 {% include youtube.html id="OfptBK8AB_c" %}

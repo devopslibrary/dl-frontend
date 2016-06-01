@@ -5,6 +5,7 @@ date:   2016-4-27 12:00:00 -0500
 categories: jenkins
 permalink: lessons/jenkins-scm
 excerpt: "We’re going to show you how to integrate source control management with Jenkins."
+weight: 4
 
 ---
 {% include youtube.html id="3-BgaDa5B0g" %}
