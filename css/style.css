@@ -1,4 +1,27 @@
-/*** uncss> filename: http://localhost/css/style.css ***/
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-transform: translate3d(0,0,0);
+  webkit-font-smoothing: antialiased; */
+  background: #f6f8f8;
+  color: #E36E0B;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  -webkit-font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern";
+  font-feature-settings: "kern";
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  font-size: 100%;
+}
+
 .row--b {
     background: #62b562;
 }
@@ -34,17 +57,6 @@
 @media screen and (min-width: 48em)
 .g-b--m--3of4 {
     width: 75%;
-}
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -webkit-transform: translate3d(0,0,0);
-  webkit-font-smoothing: antialiased; */
-}
-
-body {
-  margin: 0;
 }
 
 footer,
@@ -121,24 +133,6 @@ textarea {
   padding: 0;
   position: absolute;
   width: 1px;
-}
-
-html {
-  background: #f6f8f8;
-  color: #E36E0B;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  -webkit-font-feature-settings: "kern";
-  -moz-font-feature-settings: "kern";
-  font-feature-settings: "kern";
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.5;
-  min-height: 100%;
-  position: relative;
-}
-
-body {
-  font-size: 100%;
 }
 
 ul,
@@ -387,41 +381,6 @@ textarea {
   width: 100%;
 }
 
-.form-input:focus {
-  border-color: #21abc7;
-  outline: none;
-}
-
-.form-label {
-  display: block;
-  font-size: 85%;
-  font-weight: 600;
-  margin-bottom: 0.3125em;
-}
-
-.form-select {
-  min-width: 12.5em;
-}
-
-.g {
-  display: block;
-  margin-left: -1.875em;
-}
-
-.g::after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.g-b {
-  box-sizing: border-box;
-  float: left;
-  margin: 0;
-  padding-left: 1.875em;
-  width: 100%;
-}
-
 @media screen and (min-width: 68.75em) {
   .g--s {
     margin-left: -0.9375em;
@@ -478,19 +437,6 @@ textarea {
   font-style: normal;
   font-weight: 400;
   speak: none;
-}
-
-.userMenu-icn::before {
-  content: "\f123";
-}
-
-.icn--arrowDown--alt--02::before {
-  content: "\f153";
-}
-
-.close::before,
-.modal-close::before {
-  content: "\f12d";
 }
 
 .icn--facebook::before {
@@ -756,9 +702,7 @@ textarea {
   width: 40px;
   height: 40px;
 }
-.moo {
-  position: relative;
-}
+
 
 .brand-link {
   border: 0;
