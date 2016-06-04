@@ -2,9 +2,10 @@
 layout: post
 title:  "Salted Chocolatey Windows"
 date:   2015-10-13 12:00:00 -0500
-categories: saltstack
+categories: SaltStack
 permalink: lessons/salted-chocolatey-windows
 excerpt: "Today we're going to talk about Salt, Window, and Chocolatey all in one episode!  If you're unfamiliar with Saltstack, you may want to watch our earlier"
+weight: 8
 
 ---
 {% include youtube.html id="WYxXUQCTVWw" %}

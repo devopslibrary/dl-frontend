@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Jenkins CCJPE Course: Plugins Part I"
+title:  "CCJPE: Plugins Part I"
 date:   2016-5-30 12:00:00 -0500
-categories: jenkins
+categories: Jenkins
 permalink: lessons/jenkins-plugins-1
-excerpt: "Part 1 of 3 on the CCJPE Jenkins Plugins"
+excerpt: "In this lesson we’re going to cover the first half of the open source Jenkins plugins on the CCJPE"
 weight: 6
 
 ---

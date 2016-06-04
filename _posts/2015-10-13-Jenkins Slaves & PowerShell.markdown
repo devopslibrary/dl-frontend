@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Jenkins Slaves & PowerShell"
+title:  "CCJPE: Jenkins Windows Slave"
 date:   2015-10-13 12:00:00 -0500
-categories: jenkins
+categories: Jenkins
 permalink: lessons/jenkins-slaves-powershell
-excerpt: "Today we're going to talk about Jenkins Slave and PowerShell Jobs.  We'll be starting out with two servers, a Jenkins master, and a fresh Server 2012"
-weight: 12
+excerpt: "We’ll be starting out with two servers, a Jenkins master, and a fresh Server 2012 R2 VM with the latest Java JDK and .NET 3.5 installed."
+weight: 10
 
 ---
 {% include youtube.html id="AN_uc9YqEC4" %}

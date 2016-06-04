@@ -2,9 +2,10 @@
 layout: post
 title:  "Vagrant Provisioning"
 date:   2015-06-22 12:00:00 -0500
-categories: vagrant
+categories: Vagrant
 permalink: lessons/vagrant-provisioning
-excerpt: "Welcome to the fourth episode in our Vagrant Course!  Today we're going to talk about Vagrant Provisioning, which will allow us to run vagrant up."
+excerpt: "Creating an entire environment all the way down to the application stack fully configured with Vagrant."
+weight: 4
 
 ---
 {% include youtube.html id="5tPykQsuMfE" %}

@@ -2,9 +2,10 @@
 layout: post
 title:  "Salt Targeting"
 date:   2016-03-07 12:00:00 -0500
-categories: saltstack
+categories: SaltStack
 permalink: lessons/salt-targeting
 excerpt: "Today we're going to learn about SaltStack targeting!  We'll cover general, glob, list, regex, and compound matchers, let's go ahead and get started!"
+weight: 5
 
 ---
 {% include youtube.html id="nZjZvtrsLdU" %}

@@ -1,10 +1,11 @@
 ---
 layout: post
-title:  "SaltStack Beginner Tutorial"
+title:  "Introduction to SaltStack"
 date:   2015-08-13 12:00:00 -0500
-categories: saltstack
+categories: SaltStack
 permalink: lessons/saltstack-beginner-tutorial
-excerpt: "Today we're going to cover how to use Salt for Configuration Management.  First make sure you have two blank Ubuntu 14.04 VMs ready to go.  Next"
+excerpt: "By the end of this lesson, we’ll have a Salt master running as well as our first minion."
+weight: 1
 
 ---
 {% include youtube.html id="TQjE2I8CrzQ" %}

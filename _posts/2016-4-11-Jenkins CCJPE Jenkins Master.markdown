@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Jenkins CCJPE Course: Setting up a Jenkins Master"
+title:  "CCJPE: Setting up a Jenkins Master"
 date:   2016-4-10 12:00:00 -0500
-categories: jenkins
+categories: Jenkins
 permalink: lessons/jenkins-master
-excerpt: "In this short lesson, we’re going to set up Jenkins from scratch.  If you don’t know what Jenkins is, please feel free to watch our Introduction video, or visit Jenkins.io."  
+excerpt: "In this short lesson, we’re going to set up a Jenkins master from scratch."  
 weight: 2
 ---
 {% include youtube.html id="aon3rohDEos" %}

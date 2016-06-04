@@ -2,9 +2,10 @@
 layout: post
 title:  "Installing Vagrant"
 date:   2015-06-22 12:00:00 -0500
-categories: vagrant
+categories: Vagrant
 permalink: lessons/installing-vagrant
-excerpt: "Today we're going to cover installation of Vagrant.  Vagrant spins up fresh VMs automatically for you, using what is referred to as a Provider."
+excerpt: "Installing Vagrant is extremely easy, we'll show you how :)."
+weight: 2
 
 ---
 {% include youtube.html id="8-brcyUKHNo" %}

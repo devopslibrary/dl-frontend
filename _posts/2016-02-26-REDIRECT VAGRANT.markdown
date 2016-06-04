@@ -2,7 +2,6 @@
 layout: post
 title:  "Getting Started with Vagrant"
 date:   2015-06-22 12:00:00 -0500
-categories: vagrant
 permalink: /courses/vagrantintroduction/
 excerpt: "Welcome to the third episode in our Vagrant course, today we're going to bring up our first Vagrant Machine, and explain VagrantFiles."
 
