@@ -1,0 +1,21 @@
+---
+layout: page
+description: A description about my blog homepage
+---
+<center>
+<div id="posts">
+  <h2>Docker Course Outline</h2>
+</center>
+  <p>While we don't have much here yet, hopefully this lesson will help you get started!<p>
+<center>
+  <img src="/images/Docker.png" height="25%" width="25%" /></center><br/>
+
+{% assign pages = site.categories['Docker'] | sort:"weight"%}
+<ol>
+  {% for post in pages %}
+    <li><a href="{{ post.url }}">{{ post.title }}  </a><p class="path-next-label"><i>{{ post.excerpt }}</i></p></li>
+  {% endfor %}
+</ol>
+
+
+</div>
