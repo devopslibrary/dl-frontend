@@ -11,7 +11,7 @@ email: admin@devopslibrary.com
 description: > # this means to ignore newlines until "baseurl:"
   Welcome to the DevOps Library!  Free full video courses and tutorials on everything DevOps!  We cover everything from Jenkins, to Salt, Puppet, PowerShell and more!
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://devopslibrary.com" # the base hostname & protocol for your site
+url: "https://www.devopslibrary.com" # the base hostname & protocol for your site
 twitter_username: devopslibrary
 github_username:  kenerwin88
 gems:
