@@ -38,7 +38,9 @@
   {% endif %}
   {% if page.image %}
     <meta content="{{ site.url }}/images/{{ page.image }}" property="og:image">
-    {% endif %}
+  {% else %}
+    <meta content="{{ site.url }}/images/default.png" property="og:image">
+  {% endif %}
   {% if page.categories %}
     {% for category in page.categories limit:1 %}
       <meta content="{{ category }}" property="article:section">
