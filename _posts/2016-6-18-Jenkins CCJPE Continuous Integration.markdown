@@ -3,7 +3,7 @@ layout: post
 title:  "CCJPE: Continuous Integration"
 date:   2016-6-18 12:00:00 -0500
 categories: Jenkins
-permalink: lessons/continuous-integration
+permalink: lessons/ccjpe-continuous-integration
 excerpt: "What is Continuous Integration and why is it important?"
 weight: 8
 image: 'continuousintegration.png'
