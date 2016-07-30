@@ -6,7 +6,7 @@ categories: DevOps
 permalink: lessons/devops-introduction
 excerpt: "Introduction to the course, and our imaginary webapp company: Montonomy.com."
 weight: 1
-image: 'devops.png'
+image: 'DevOps.png'
 
 ---
 {% include youtube.html id="v7ZcZfGBFcU" %}
