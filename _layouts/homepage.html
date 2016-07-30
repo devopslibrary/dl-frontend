@@ -14,14 +14,15 @@
                 </div>
              </div>
              <div class="g collection collection--centered collection--m--1of2 collection--l--1of3 mbm">
-               {% assign categories = "Jenkins|SaltStack|Vagrant|ELK|PowerShell|Linux|Docker" | split: "|" %}
+               {% assign categories = "Jenkins|SaltStack|DevOps|Vagrant|ELK|PowerShell|Linux|Docker" | split: "|" %}
                {% assign categoryDescriptions = "In a nutshell, Jenkins is the leading open source automation server. Built with Java, it provides hundreds of plugins to support building, testing, deploying and automation for virtually any project.|
                                                  Become a Salt master, and rule over your minions. Configuration Management from start to finish.|
+                                                 We're going to use a story to illustrate how to solve real world problems using DevOps tooling and concepts.|
                                                  Vagrant enables users to create and configure lightweight, reproducible, and portable development environments.|
                                                  By combining the massively popular Elasticsearch, Logstash and Kibana, you can create an open source logging Platform that's not only beautiful, but scales as well!|
                                                  PowerShell is the most powerful automation tool that Microsoft has to offer, and its both a shell and a scripting language.|
                                                  Want to brush up on your Linux skills?  Here you go!|
-                                                 Docker is an open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud." | split: "|" %}
+                                                 Docker is an open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud. |" | split: "|" %}
                {% for category in categories %}
                 <div class="g-b g-b--m--1of2 g-b--l--1of3 collection-item plm prm">
                   <div class="card card--a has-card-item path path--min path--min--l path--static has-path-btn mbl">
