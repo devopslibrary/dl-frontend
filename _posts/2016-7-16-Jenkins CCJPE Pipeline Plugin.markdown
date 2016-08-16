@@ -7,6 +7,7 @@ permalink: lessons/ccjpe-pipeline
 excerpt: "Learn how to set up Jenkins Pipeline-as-Code"
 weight: 9
 image: 'jenkinscourse.png'
+difficulty: easy
 
 ---
 {% include youtube.html id="BE3nTW-h4E0" %}

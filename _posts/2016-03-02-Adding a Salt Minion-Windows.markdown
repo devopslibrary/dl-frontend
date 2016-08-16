@@ -6,6 +6,7 @@ categories: SaltStack
 permalink: lessons/adding-a-salt-minion-windows
 excerpt: "We're going to show you how to add a Windows minion to our Salt Master."
 weight: 4
+difficulty: easy
 
 ---
 {% include youtube.html id="VPZe1JDZrGs" %}

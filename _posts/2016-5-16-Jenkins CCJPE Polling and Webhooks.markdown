@@ -6,6 +6,7 @@ categories: Jenkins
 permalink: lessons/jenkins-webhooks
 excerpt: "How to automatically trigger a Jenkins job anytime a change is pushed to a repository"
 weight: 5
+difficulty: medium
 
 ---
 {% include youtube.html id="uVXO95syoEg" %}

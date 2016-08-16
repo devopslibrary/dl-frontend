@@ -6,6 +6,7 @@ categories: Jenkins
 permalink: lessons/jenkins-plugins-II
 excerpt: "In this lesson we’re going to cover the second half of the open source Jenkins plugins on the CCJPE"
 weight: 7
+difficulty: easy
 
 ---
 {% include youtube.html id="jsbhMfHvMMw" %}

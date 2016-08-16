@@ -6,6 +6,7 @@ categories: Jenkins
 permalink: lessons/jenkins-scm
 excerpt: "We’re going to show you how to integrate source control management with Jenkins."
 weight: 4
+difficulty: easy
 
 ---
 {% include youtube.html id="3-BgaDa5B0g" %}

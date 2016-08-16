@@ -6,6 +6,7 @@ categories: SaltStack
 permalink: lessons/adding-a-salt-minion-linux
 excerpt: "Learn how to add a Linux minion to our Salt Master!"
 weight: 3
+difficulty: easy
 
 ---
 {% include youtube.html id="xqCJkF0lzAU" %}

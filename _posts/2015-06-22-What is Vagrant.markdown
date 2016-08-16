@@ -6,6 +6,7 @@ categories: Vagrant
 permalink: lessons/what-is-vagrant
 excerpt: "Learn why we love Vagrant, and how to create reproducible development environments."
 weight: 1
+difficulty: easy
 
 ---
 {% include youtube.html id="aUew6WauUsI" %}

@@ -7,6 +7,7 @@ permalink: lessons/ccjpe-api
 excerpt: "Don't worry, the Jenkins API is extremely easy to use!"
 weight: 10
 image: 'jenkinscourse.png'
+difficulty: easy
 
 ---
 {% include youtube.html id="ID1S2m9wtrk" %}

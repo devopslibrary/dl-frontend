@@ -6,6 +6,7 @@ categories: SaltStack
 permalink: lessons/saltstack-beginner-tutorial
 excerpt: "By the end of this lesson, we’ll have a Salt master running as well as our first minion."
 weight: 1
+difficulty: easy
 
 ---
 {% include youtube.html id="TQjE2I8CrzQ" %}

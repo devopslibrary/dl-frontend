@@ -6,6 +6,8 @@ categories: Jenkins
 permalink: lessons/jenkins-master
 excerpt: "In this short lesson, we’re going to set up a Jenkins master from scratch."  
 weight: 2
+difficulty: easy
+
 ---
 {% include youtube.html id="aon3rohDEos" %}
 

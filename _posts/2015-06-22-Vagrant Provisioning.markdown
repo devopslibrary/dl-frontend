@@ -6,6 +6,7 @@ categories: Vagrant
 permalink: lessons/vagrant-provisioning
 excerpt: "Creating an entire environment all the way down to the application stack fully configured with Vagrant."
 weight: 4
+difficulty: easy
 
 ---
 {% include youtube.html id="5tPykQsuMfE" %}

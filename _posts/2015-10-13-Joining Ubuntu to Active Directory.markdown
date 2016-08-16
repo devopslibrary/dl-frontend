@@ -5,6 +5,7 @@ date:   2015-10-13 12:00:00 -0500
 categories: Linux
 permalink: lessons/joining-ubuntu-to-active-directory
 excerpt: "Today we're going to cover how to join a Linux Server to Active Directory (Ubuntu Specifically).  We're going to start out with two servers, a Windows"
+difficulty: hard
 
 ---
 {% include youtube.html id="ZQD0rLZMNho" %}

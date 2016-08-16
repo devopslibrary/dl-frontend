@@ -6,6 +6,7 @@ categories: Vagrant
 permalink: lessons/installing-vagrant
 excerpt: "Installing Vagrant is extremely easy, we'll show you how :)."
 weight: 2
+difficulty: easy
 
 ---
 {% include youtube.html id="8-brcyUKHNo" %}

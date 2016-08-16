@@ -7,6 +7,7 @@ permalink: lessons/ccjpe-continuous-integration
 excerpt: "What is Continuous Integration and why is it important?"
 weight: 8
 image: 'continuousintegration.png'
+difficulty: easy
 
 ---
 {% include youtube.html id="MXqEvp-Jp-4" %}

@@ -6,6 +6,7 @@ categories: Jenkins
 permalink: lessons/jenkins-introduction
 excerpt: "Welcome to our Jenkins Certification course! If you haven’t heard, Cloudbees (the creators of Jenkins) recently released two certifications, the CJE and CCJPE. We'll help you learn everything you need to know to pass them!"
 weight: 1
+difficulty: easy
 
 ---
 {% include youtube.html id="lvcIlMK49Cg" %}

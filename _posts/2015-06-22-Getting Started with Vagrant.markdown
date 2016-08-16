@@ -6,6 +6,7 @@ categories: Vagrant
 permalink: lessons/getting-started-with-vagrant
 excerpt: "We’re going to bring up our first Vagrant Machine, and explain the basics of editing a VagrantFile."
 weight: 3
+difficulty: easy
 
 ---
 {% include youtube.html id="QfyBWmzCdc0" %}

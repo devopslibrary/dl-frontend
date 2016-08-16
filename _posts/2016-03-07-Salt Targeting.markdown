@@ -6,6 +6,7 @@ categories: SaltStack
 permalink: lessons/salt-targeting
 excerpt: "Today we're going to learn about SaltStack targeting!  We'll cover general, glob, list, regex, and compound matchers, let's go ahead and get started!"
 weight: 5
+difficulty: medium
 
 ---
 {% include youtube.html id="nZjZvtrsLdU" %}

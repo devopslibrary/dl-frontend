@@ -6,6 +6,7 @@ categories: Jenkins
 permalink: lessons/jenkins-jobs
 excerpt: "A jenkins job is just something that we want our Jenkins server to do, which can really be anything."  
 weight: 3
+difficulty: easy
 
 ---
 {% include youtube.html id="mxztjoJX2LU" %}
