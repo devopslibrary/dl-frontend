@@ -29,7 +29,7 @@ Installing Git
 --------------
 The last thing that we need to do before creating our job is ensuring the Git is installed on the master as well as our Windows Slave. On the master, just run apt-get install git.
 
-For the WinSlave, just head to [git-scm.com](git-scm.com), then download and run the installer. Note. During the install, ensure that you select “Use Git from the Windows Command Prompt”, as we want Git to be added to our path. If you want to verify that git was installed successfully, just open up a command prompt and run git. Lastly, the Jenkins Slave service must be restarted so that it can pick up git. We’ll do that now. You could also just reboot the Windows Slave.
+For the WinSlave, just head to [http://www.git-scm.com](git-scm.com), then download and run the installer. Note. During the install, ensure that you select “Use Git from the Windows Command Prompt”, as we want Git to be added to our path. If you want to verify that git was installed successfully, just open up a command prompt and run git. Lastly, the Jenkins Slave service must be restarted so that it can pick up git. We’ll do that now. You could also just reboot the Windows Slave.
 
 Creating a Job
 --------------
