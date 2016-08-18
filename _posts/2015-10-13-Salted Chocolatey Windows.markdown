@@ -19,26 +19,26 @@ Now during the install, make sure that the minion can resolve the hostname for t
 
 Well that was easy, let’s switch to our Salt master.  All we need to do now is accept the cert using
 
-```salt-key –A```
+`salt-key –A`
 
 
 Controlling Windows with Salt
 -----------------------------
 Now we’re set!  You can now begin running commands on your Windows minion using salt, let’s try that now.  Run
 
-```Salt ‘*’ test.ping```
+`Salt ‘*’ test.ping`
 
 You should see winMinion return true.  If it doesn’t, run the command one more time, sometimes it takes a little too long on the very first run.  Now let’s check out some of the grains available, do a
 
-```Salt ‘*’ grains.items```
+`Salt ‘*’ grains.items`
 
 You can use any of these items when targeting a server with Salt.  So let’s say you have a bunch of Windows &amp; Linux salt minions, but you only want to run a command on the 2012 VMs, all you would need to run is:
 
-```Salt –G ‘OSrelease:2012Server’ cmd.run followed by the Name Of The Command```
+`Salt –G ‘OSrelease:2012Server’ cmd.run followed by the Name Of The Command`
 
 Now what if the command you’re wanting to run is Powershell, not batch?  Just run
 
-```Salt ‘*’ cmd.run theNameOfTheCommand followed by shell=powershell```
+`Salt ‘*’ cmd.run theNameOfTheCommand followed by shell=powershell`
 
 You can do that with a ton of languages by the way, pretty much any shell that you’d like.
 
@@ -46,9 +46,9 @@ Chocolatey
 ----------
 Well that was all easy, let’s try adding a little Chocolatey to the mix.  Chocolatey is to Windows what Apt-Get is to Ubuntu.  It’s a wonderful package manager that makes installing new software on windows extremely easy.  It’s also extremely easy to install, and combines really well with configuration management tools.  Let’s go ahead and install it now through Salt.
 
-First, let’s visit [Chocolatey.org](Chocolatey.org) to find the install command.  Next, let’s use salt to run it in Powershell on our Windows minion.
+First, let’s visit [Chocolatey.org](http://www.chocolatey.org) to find the install command.  Next, let’s use salt to run it in Powershell on our Windows minion.
 
-```Salt ‘*’ cmd.run followed by the download string, and shell=powershell```
+`Salt ‘*’ cmd.run followed by the download string, and shell=powershell`
 
 That’s it, Chocolatey is now installed.  If we had a hundred windows minions, it would now be installed on all 100.
 
@@ -58,9 +58,9 @@ There it is, Sublime Text 3.  And if you look, you can see that for installing 
 
 Choco install then the name of the package
 
-We COULD just run ```choco install sublimetext3``` directly on our windows box, but let’s pretend we have a few hundred minions.  Run
+We COULD just run `choco install sublimetext3` directly on our windows box, but let’s pretend we have a few hundred minions.  Run
 
-```Salt ‘*’ cmd.run ‘choco install sublimetext3’ shell=powershell```
+`Salt ‘*’ cmd.run ‘choco install sublimetext3’ shell=powershell`
 
 Conclusion
 ----------

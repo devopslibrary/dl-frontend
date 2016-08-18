@@ -27,7 +27,7 @@ All this command does is create a VagrantFile within the current directory, with
 
 Boxes
 -----
-While it’s downloading, let’s talk about boxes.  You may be wondering where vagrant is pulling Ubuntu from, and how we knew to use **Ubuntu/trusty64**.  The answer is that Vagrant automatically searches Hashicorp's Atlas (which can be found at [atlas.hashicorp.com/boxes/search](atlas.hashicorp.com/boxes/search)).  
+While it’s downloading, let’s talk about boxes.  You may be wondering where vagrant is pulling Ubuntu from, and how we knew to use **Ubuntu/trusty64**.  The answer is that Vagrant automatically searches Hashicorp's Atlas (which can be found at [atlas.hashicorp.com/boxes/search](http://atlas.hashicorp.com/boxes/search)).  
 
 Atlas has a wide variety of boxes to choose from, and you can even create and upload your own.  Each box is essentially just a base image configured specifically for Vagrant.  If you’re interested in creating your own boxes from scratch, we’ll cover that in a later episode, but for now we’ll stick with our **Ubuntu/Trusty64** image.  If you’d prefer to download a Windows image, just search for Server 2012, there are plenty to choose from.
 

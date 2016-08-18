@@ -25,12 +25,13 @@ Manual Provisoning
 ---------------
 Well let’s go ahead and get started.  Today we’re going to pretend that we have a simple website that needs to be hosted with Apache.  Hopefully if you’ve been following along so far, you’ve already set up an Ubuntu vagrant VM, and have a VagrantFile that looks similar to this.  If you don’t, just CD to an empty directory and create a file named "VagrantFile" with the same code.  Because it’s pretty hard to automate something without knowing how to do it manually, we’ll install Apache by hand first.  Before we run "Vagrant Up" however, we do need to add one more line to the VagrantFile:
 
-```config.vm.network "forwarded_port", guest: 80, host: 8080```
+`config.vm.network "forwarded_port", guest: 80, host: 8080`
+
 What this line does is automatically forward all traffic from port 80 on the VM to our host on port 8080. That way once we install Apache, we can access the website at http://localhost:8080 without needing to be within the VM.  Alright, go ahead and run Vagrant Up, followed by Vagrant SSH.  If the VM was already running before you added the line above, make sure you run Vagrant Destroy first so that it’s recreated from scratch.
 
 Alright, you should now be SSH’d into our vanilla Ubuntu VM.  First let’s run
 
-```sudo –i```
+`sudo –i`
 
 to become root.  Now run ```apt-get install apache2``` to install Apache.  After that completes, on our host computer, let’s try to visit localhost:8080 from a web browser.
 
