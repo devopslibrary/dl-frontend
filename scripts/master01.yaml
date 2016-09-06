@@ -1,0 +1,13 @@
+#cloud-config
+hostname: master01
+fqdn: master01
+manage_etc_hosts: true
+runcmd:
+  - add-apt-repository ppa:webupd8team/java -y
+  - echo 'deb http://nectar-downloads.cloudbees.com/nectar/debian binary/' >> /etc/apt/sources.list
+  - echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+  - echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+  - wget -q -O - http://nectar-downloads.cloudbees.com/nectar/debian/cloudbees.com.key | sudo apt-key add -
+  - apt-get update
+  - apt-get install oracle-java8-installer nfs-common -y
+  - apt-get install jenkins -y
