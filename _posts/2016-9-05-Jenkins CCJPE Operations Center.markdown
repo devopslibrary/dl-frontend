@@ -17,15 +17,24 @@ difficulty: hard
 {:title="Table of Contents"}
 {:toc}
 
+Cloud Config File Downloads
+---------------------------
+* [CJOC Cloud Config](https://www.devopslibrary.com/scripts/cjoc.yaml)
+* [Jenkins Master01](https://www.devopslibrary.com/scripts/master01.yaml)
+* [Jenkins Master02](https://www.devopslibrary.com/scripts/master02.yaml)
+* [Jenkins Slave01](https://www.devopslibrary.com/scripts/slave01.yaml)
+
 Introduction
 ------------
 Welcome to the DevOps Library!  This is Samantha, and today we're going to set
-up Cloudbees Jenkins Operations Center, or CJOC for short.  If you've never
+up [Cloudbees Jenkins Operations Center](https://go.cloudbees.com/docs/cloudbees-documentation/cjoc-user-guide/introduction.html), or CJOC for short.  If you've never
 heard of it, the CJOC is used for managing multiple Jenkins Masters.  It makes
 it much easier to scale Jenkins horizontally, as it makes it possible to share
 build nodes between masters.  You can also enforce security compliance, manage
 update centers, setup single sign on, and monitor the everything all from the
 CJOC.  Sounds pretty cool huh?  It is, trust us!
+
+![API](/images/cjoc.png)
 
 Before we begin, we'd like to give a quick shout out to
 [Hired.com](http://www.hired.com/devopslibrary) for being kind enough to sponsor
@@ -41,29 +50,29 @@ Terminology
 -----------
 Alright, let's go ahead and get started!  First, let's talk about some new
 Jenkins terminology related to Operations Center.  You'll typically have at
-least one "Operations Center Server", ideally in HA mode.  This server is a
+least one **Operations Center Server**, ideally in HA mode.  This server is a
 special type of Jenkins instance that acts as a central authority over your
 entire Jenkins environment.  It's also what we'll be setting up in a few
 minutes.
 
-Next, we have "client masters".  A client master is just a normal Jenkins master
+Next, we have **client masters**.  A client master is just a normal Jenkins master
 that we've joined to our Operations center cluster for management purposes.  
 These masters can then use normal slaves, shared slaves, or a shared cloud.  
 
-Shared slaves are exactly what they sound like, slave nodes that are available
+**Shared slaves** are exactly what they sound like, slave nodes that are available
 for any master to use.  
 
-A "shared cloud" is used to spin up temporary slaves
+A **shared cloud** is used to spin up temporary slaves
 when demand exceeds what's available from the shared slaves.
 
-Next, we have "folders", which behave a bit differently than the folder's you
+Next, we have **folders**, which behave a bit differently than the folder's you
 would normally associate with Jenkins.  When it comes to Operations center,
 folders are used for scoping the availability of resources.  For example, you
 could have a folder with credentials, shared slaves, and a shared cloud.  Each
 of those items would then only be available to other items within the same
 folder or same subfolder.
 
-Lastly, we have "Sub-licensing".  Normally you have to worry about keeping each
+Lastly, we have **Sub-licensing**.  Normally you have to worry about keeping each
 master licensed, but with CJOC, it includes the ability to generate sub-licenses
 for all client masters within the CJOC cluster.
 
@@ -71,26 +80,41 @@ Setting up CJOC
 ---------------
 Alright, that's enough terminology for now.  Let's go ahead and create our
 Operations Center Server!  First, we'll start out with a fresh Ubuntu 14.04
-server.  If you'd like to cheat a bit, you can use our cloud config file HERE,
+server.  If you'd like to cheat a bit, you can use our cloud config file [HERE](https://www.devopslibrary.com/scripts/cjoc.yaml),
 which configures everything for you automatically.  
 
 If you'd like to do it by hand, the first thing that we need to do is to add all
 of the keys and repositories for installing Jenkins & Java.  Just copy and paste
-the following lines, then run an apt-get update.  
+the following lines:
+
+``` bash
+add-apt-repository ppa:webupd8team/java -y
+wget -q -O - http://downloads.cloudbees.com/cjoc/latest/debian/cloudbees.com.key | sudo apt-key add -
+echo deb http://downloads.cloudbees.com/cjoc/latest/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins-oc.list
+```
+
+Then run an ```apt-get update```.  
 
 Once that finishes, let's install Java by running:
 
+``` bash
 apt-get install oracle-java8-installer -y
+```
+
 After Java finishes installing, we're now finally ready to install Jenkins
 Operations center.  To do so, run:
 
-apt-get install jenkins-oc
+``` bash
+apt-get install jenkins-oc -y
+```
 
 Configuration
 -------------
 Nice job!!  That's all that we needed to do to setup CJOC. Now let's open up a
 web browser and go to the IP address of the VM, on port 8888.  You will need to
 sign up for a trial license if you don' have an enterprise license yet.
+
+![License](/images/license.png)
 
 After licensing the server, we need to configure the Jenkins URL before doing
 anything else.  Go to "Manage Jenkins", followed by "Configure System".  You
@@ -103,6 +127,9 @@ Client Masters
 Alright, we're finally ready to add some client masters.  If you already have
 some masters available feel free to use them, otherwise you can use our two
 cloud config files below to spin up some new ones.
+
+* [Jenkins Master01](https://www.devopslibrary.com/scripts/master01.yaml)
+* [Jenkins Master02](https://www.devopslibrary.com/scripts/master02.yaml)
 
 After the masters come up, we need to add them to Operations center.  On the
 JCOC web interface, select "New Item".  Then type in a name for the master, and
@@ -159,6 +186,8 @@ Alright, next we have "Shared Slaves".  Don’t worry, they’re super easy to
 setup, and if you’ve already set up a slave before feel free to skip ahead.  
 Basically we just follow the same steps that we'd normally do to set up a slave,
 but do it from the CJOC.  
+
+[Jenkins Slave01 Cloud Config](https://www.devopslibrary.com/scripts/slave01.yaml)
 
 Just like everything else so far, the first step is to go to “New Item”.  Next,
 name the agent, and select “Shared Slave” as the item type.  Alright, now that
