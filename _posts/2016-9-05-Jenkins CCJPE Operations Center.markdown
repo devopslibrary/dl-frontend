@@ -56,11 +56,11 @@ entire Jenkins environment.  It's also what we'll be setting up in a few
 minutes.
 
 Next, we have **client masters**.  A client master is just a normal Jenkins master
-that we've joined to our Operations center cluster for management purposes.  
-These masters can then use normal slaves, shared slaves, or a shared cloud.  
+that we've joined to our Operations center cluster for management purposes.
+These masters can then use normal slaves, shared slaves, or a shared cloud.
 
 **Shared slaves** are exactly what they sound like, slave nodes that are available
-for any master to use.  
+for any master to use.
 
 A **shared cloud** is used to spin up temporary slaves
 when demand exceeds what's available from the shared slaves.
@@ -81,7 +81,7 @@ Setting up CJOC
 Alright, that's enough terminology for now.  Let's go ahead and create our
 Operations Center Server!  First, we'll start out with a fresh Ubuntu 14.04
 server.  If you'd like to cheat a bit, you can use our cloud config file [HERE](https://www.devopslibrary.com/scripts/cjoc.yaml),
-which configures everything for you automatically.  
+which configures everything for you automatically.
 
 If you'd like to do it by hand, the first thing that we need to do is to add all
 of the keys and repositories for installing Jenkins & Java.  Just copy and paste
@@ -89,11 +89,11 @@ the following lines:
 
 ``` bash
 add-apt-repository ppa:webupd8team/java -y
-wget -q -O - http://downloads.cloudbees.com/cjoc/latest/debian/cloudbees.com.key | sudo apt-key add -
-echo deb http://downloads.cloudbees.com/cjoc/latest/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins-oc.list
+wget -q -O - http://nectar-downloads.cloudbees.com/jenkins-operations-center/1.625/debian/cloudbees.com.key | sudo apt-key add -
+echo deb http://nectar-downloads.cloudbees.com/jenkins-operations-center/1.625/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins-oc.list
 ```
 
-Then run an ```apt-get update```.  
+Then run an ```apt-get update```.
 
 Once that finishes, let's install Java by running:
 
@@ -112,7 +112,7 @@ Configuration
 -------------
 Nice job!!  That's all that we needed to do to setup CJOC. Now let's open up a
 web browser and go to the IP address of the VM, on port 8888.  You will need to
-sign up for a trial license if you don' have an enterprise license yet.
+sign up for a trial license if you don't have an enterprise license yet.
 
 ![License](/images/license.png)
 
@@ -137,14 +137,14 @@ select "Client Master" for the item type.  On the configuration page, we'll
 stick with the defaults.  Before we move on though, let's talk about what a few
 of the settings are used for.
 
-The "On-master executors" setting is used to force a set number of executors.  
+The "On-master executors" setting is used to force a set number of executors.
 From a security and performance perspective, we highly recommend checking the
 "Enforce" box and setting this to zero, as every job should be running on
 slaves, not masters.
 
 Another useful setting is the "Master Owner" configuration.  This lets you
 specify an email address or a list of addresses that are notified anytime the
-master goes offline.  
+master goes offline.
 
 The licensing section is helpful is well, as you can have operations center take
 care of the licensing on your masters, as well as telling them to use a specific
@@ -154,7 +154,7 @@ on Windows.  Alright, go ahead and click save.
 On the next page, type in the URL of the Jenkins master, then click "Push
 configuration".  Within a minute or so, you'll be redirected to the master
 you're trying to add. Now click "Join Operations Center" to complete the
-process.  
+process.
 
 Perfect!!  Go ahead and go through the same steps to add the other one.  Once
 you're finished, the CJOC should look something like this.  Great job!  At this
@@ -166,7 +166,7 @@ Shared Configurations
 First, let's talk about "Shared Configurations".  You know how on each master,
 there's a "Configure System" section with a ton of settings?  A "Shared
 Configuration" is used to configure those settings once, and share them across
-your masters.  
+your masters.
 
 Let's try it out.  We'll set up a shared configuration that ensures the latest
 version of Java is installed on all of our masters.  Click "New Item", type in a
@@ -183,24 +183,24 @@ config page.
 Shared Slaves
 -------------
 Alright, next we have "Shared Slaves".  Don’t worry, they’re super easy to
-setup, and if you’ve already set up a slave before feel free to skip ahead.  
+setup, and if you’ve already set up a slave before feel free to skip ahead.
 Basically we just follow the same steps that we'd normally do to set up a slave,
-but do it from the CJOC.  
+but do it from the CJOC.
 
 [Jenkins Slave01 Cloud Config](https://www.devopslibrary.com/scripts/slave01.yaml)
 
 Just like everything else so far, the first step is to go to “New Item”.  Next,
 name the agent, and select “Shared Slave” as the item type.  Alright, now that
 we’re on the configuration page, a lot of these settings are environment
-specific.  We tend to use one executor per core, but it’s really up to you.  
+specific.  We tend to use one executor per core, but it’s really up to you.
 
-For the FS root, make you’ve already created the directory on your slave server.  
+For the FS root, make you’ve already created the directory on your slave server.
 If you use our slave.yaml cloud configuration, be sure to specify /Jenkins as
-that’s the directory we typically use.  
+that’s the directory we typically use.
 
 After you’ve added a host and credentials, click “Save”.  Great job!!!  We now
 have a slave that any of our masters can use.  We do have a bit more to cover,
-but if you’d like to take a break to try it out go ahead!  
+but if you’d like to take a break to try it out go ahead!
 
 Cluster Operations
 ------------------
@@ -211,10 +211,10 @@ A “Cluster Operation” is a new item type that lets you perform maintenance o
 variety of items, including client masters and update centers.  They’re not
 nearly as complicated as they sound, but they are pretty powerful!  Let’s try
 setting one up for restarting all of our masters.  Click “New Item”, name it
-“Restart All Masters” and select “Cluster Operations” as the item type.  
+“Restart All Masters” and select “Cluster Operations” as the item type.
 
 Alright, there are three important parts of an “Operation”.  The first is the
-type of operation, which can be either “Client Master” or “Update Center”.  
+type of operation, which can be either “Client Master” or “Update Center”.
 Because the operation we’re setting up affects masters, select “Client Master”.
 
 Secondly, we need to choose how to target the masters.  We’ll select “From
@@ -223,12 +223,12 @@ specify a filter if you’d like to get a bit more granular than the list of
 target sources.
 
 Third, we need to specify what steps the operation should actually take.  For
-this operation, select “Restart Now”, then save the operation.  
+this operation, select “Restart Now”, then save the operation.
 
 Great job!! You’ve successfully set up a cluster operation.  If you’d like,
-you can run it now and both of our masters will be restarted immediately.  
+you can run it now and both of our masters will be restarted immediately.
 
-Pretty cool huh?  
+Pretty cool huh?
 
 Update Centers
 --------------
@@ -236,27 +236,27 @@ Well, we’re finally almost finished, we have one final topic to cover, Update
 Centers!  An Update center is created the same way everything else was created,
 just go to New Item, name the Update center, and select “Update Center” as the
 job type.  You’ll then need to select a plugin versioning strategy, signature
-provider, upstream source, and any maintenance tasks that you’d like.  
+provider, upstream source, and any maintenance tasks that you’d like.
 
-The plugin versioning strategy can be set to explicit or implicit publishing.  
+The plugin versioning strategy can be set to explicit or implicit publishing.
 Explicit means that the update center won’t publish any versions of a plugin
 until the administrator specifically chooses a version, while implicit defaults
-to publishing the latest version of each plugin.  
+to publishing the latest version of each plugin.
 
 You can usually just leave the signature provider as is.  For the upstream
 source we recommend selecting “Jenkins Enterprise by Cloudbees”, unless there’s
-a specific reason to include experimental plugins.  Go ahead and hit save.  
+a specific reason to include experimental plugins.  Go ahead and hit save.
 
 That’s it for the update center, but do note, you will have to configure the
 masters to point to the update center.  Once that’s complete you’ll never have
-to worry about someone installing a plugin that hasn’t already been approved.  
+to worry about someone installing a plugin that hasn’t already been approved.
 You can do it manually, or by using the update center installer plugin.
 
 Conclusion
 ----------
 Well, that was a pretty long lesson!  We covered a ton of material, great job
 following along!  We set up a Jenkins Operations Center, two masters, a shared
-slave, a cluster operation, and an update center, all in a single lesson!  
+slave, a cluster operation, and an update center, all in a single lesson!
 
 Thank you so much for watching!
 
@@ -282,6 +282,6 @@ for the DevOps community.
 
 Thanks for Watching!
 --------------------
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).  
+[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).
 
 {% include subscribe.html %}
