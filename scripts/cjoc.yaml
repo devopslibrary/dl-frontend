@@ -9,5 +9,5 @@ runcmd:
   - wget -q -O - http://nectar-downloads.cloudbees.com/jenkins-operations-center/1.625/debian/cloudbees.com.key | sudo apt-key add -
   - echo deb http://nectar-downloads.cloudbees.com/jenkins-operations-center/1.625/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins-oc.list
   - apt-get update
-  - apt-get install oracle-java7-installer -y
+  - apt-get install oracle-java8-installer -y
   - apt-get install jenkins-oc -y

@@ -5,7 +5,7 @@ date:   2015-10-13 12:00:00 -0500
 categories: Jenkins
 permalink: lessons/jenkins-for-operations
 excerpt: "If you haven't heard of Jenkins, it's something that your developer friends have probably been using for several years, but it can help tremendously"
-weight: 13
+weight: 14
 difficulty: easy
 
 ---
@@ -17,7 +17,7 @@ If you haven’t heard of Jenkins, it’s something that your developer friends 
 
 An even simpler explanation is that if you have a bunch of scripts that your team runs regularly, Jenkins will give you the perfect interface for running those scripts on any and as many servers as you’d like, while also tracking who ran what and when.
 
-Let me go ahead and show you a little bit about what we’re talking about.  Once you’ve installed Jenkins, this is exactly what the interface is going to look like.  
+Let me go ahead and show you a little bit about what we’re talking about.  Once you’ve installed Jenkins, this is exactly what the interface is going to look like.
 *Note–If you need help installing Jenkins, just visit wiki.jenkins-ci.org or use our Vagrant file to get started immediately.*
 
 Creating a Job
