@@ -6,7 +6,7 @@ categories: Jenkins
 permalink: lessons/jenkins-security
 excerpt: "Authentication, Authorization, and RBAC!"
 weight: 14
-image: 'jenkinscourse.png'
+image: 'JenkinSecurity2.png'
 difficulty: easy
 
 ---
