@@ -22,7 +22,7 @@ Introduction
 Welcome to the DevOps Library!  This is Samantha, and today we're going to set
 up the Enterprise edition of Jenkins!  Up until now, we've only been using the
 open-source version, but for the rest of this course, we'll mainly be focusing
-on enterprise functionality.  
+on enterprise functionality.
 
 Additionally, we're going to set up Jenkins the RIGHT way, in full HA mode,
 with two masters sitting behind a load balancer.
@@ -118,27 +118,27 @@ completes, you can access the Jenkins web UI on port 8080.
 
 Since this is the enterprise version of Jenkins, you will need to request a
 trial license before you can do anything else.  After you complete the
-registration, go ahead and do a Jenkins install on the second AWS instance.  
+registration, go ahead and do a Jenkins install on the second AWS instance.
 
 Jenkins High Availability Overview
 ----------------------------------
 While that's installing, let's talk a little more in depth about what Jenkins
 High Availability is, and what it is not.  Essentially, the Enterprise Jenkins
 HA plugin uses Jgroups to configure active/passive high availability when it
-detects that two masters are sharing the same Jenkins home.  
+detects that two masters are sharing the same Jenkins home.
 
 Because we installed Jenkins on the **Jenkins01** instance first, it'll start
-out as our "primary" instance.  
+out as our "primary" instance.
 
 If you try to access **Jenkins02** on port 8080 on the other hand, you'll see a
 message letting you know that the node is standing by in case the primary
 instance fails.  Effectively, a Jenkins fail-over results in the shutting down
-of the current Jenkins master, followed by it starting up on a second server.  
+of the current Jenkins master, followed by it starting up on a second server.
 
 Failover Overview
 -----------------
 Because both masters share the same *$JENKINS_HOME*, a failover has the
-following characteristics.  Tje following will all survive a failover event:
+following characteristics.  The following will all survive a failover event:
 
 * Jenkins Settings
 * Configuration of Jobs & Users
@@ -149,7 +149,7 @@ following characteristics.  Tje following will all survive a failover event:
 
 However, by default, any builds that were in-progress won't survive.  Don't worry--
 Cloudbees has released two plugins to address this issue.  The [Restart Aborted Builds](https://www.cloudbees.com/products/cloudbees-jenkins-platform/enterprise-edition/features/restart-aborted-builds-plugin) plugin makes it easy to kick off any jobs that were
-running during a restart or failover event.  
+running during a restart or failover event.
 
 Or, by using the [Long-Running Build](https://www.cloudbees.com/products/cloudbees-jenkins-platform/enterprise-edition/features/long-running-build-plugin) plugin, you can create jobs that survive master restarts, although
 you'll have to change your jobs project type from FreeStyle to "Long Running
@@ -162,7 +162,7 @@ the Jenkins master URLs in your web browser, followed by **/ha/health-check**.
 
 **Jenkins01** should return *Running as primary*, and **Jenkins02** should
 return *Running as standby*.  Excellent job!!  If we were to shut down or have
-**Jenkins01** crash, **Jenkins02** would automatically take its place as primary.  
+**Jenkins01** crash, **Jenkins02** would automatically take its place as primary.
 The problem though is that our users would still have to change URLs after any
 failover.  That's why we still have one final step; we need to set up a load
 balancer!
@@ -172,41 +172,41 @@ Setting up a Load Balancer
 If you're not using AWS, your best bet is probably going to be something like
 [HAproxy](http://www.haproxy.org/), or even an [F5](https://f5.com/products/big-ip)
 if you have the budget.  Thankfully for us, we can quickly set up an [Amazon ELB](https://aws.amazon.com/elasticloadbalancing/), or "Elastic Load Balancer".
-Let's go ahead and do that now.  
+Let's go ahead and do that now.
 
-On your AWS console, click "Load Balancers", then "Create Load Balancer".  
+On your AWS console, click "Load Balancers", then "Create Load Balancer".
 Select "Classic Load Balancer", as we'll need to route both HTTP for the web
 interface, as well as a TCP port for JNLP.
 
 Feel free to name the balancer whatever you'd like, then use port 80 for the
 listener port, and port 8080 on the instances.  That way any traffic that comes
 in on port 80 to the load balancer will automatically be redirected to port 80
-on the primary instance.  You'll also want to add a TCP port for JNLP.  
+on the primary instance.  You'll also want to add a TCP port for JNLP.
 We like to use 10001, but it doesn't matter what you use as long as it matches
 what you configure under your Global Security settings.
 
 Configure ELB Health Check
 --------------------------
-Next, after you select a security group, we need to set up a health check.  
+Next, after you select a security group, we need to set up a health check.
 This is how Amazon determines to which instance traffic should flow.  Remember
-that **/ha/health-check** URL we went to earlier?  Use that for the ping path.  
+that **/ha/health-check** URL we went to earlier?  Use that for the ping path.
 That way, the only instance that AWS will see as healthy is the one currently
 running as primary.
 
-You'll also want to lower the response timeout, interval, and healthy threshold.  
+You'll also want to lower the response timeout, interval, and healthy threshold.
 If you copy the settings we have here, and the primary master goes down, you
 should only experience a minute or two of downtime in the event of a failover,
 give or take depending on how many plugins and jobs you're using.
 
-Alright, add the two instances, then finish creating the load balancer.  
+Alright, add the two instances, then finish creating the load balancer.
 Within a few minutes, the status of the load balancer should show one of two
 instances as healthy.  Once you see that, go ahead and pull up the load balancer
-DNS name up in your browser.  
+DNS name up in your browser.
 
 There we go!!! Great job!!  You've successfully set up the Cloudbees Enterprise
 Jenkins platform, and not only that, we're running it in full high availability
 mode!!!  Aside from a few performance and security tweaks, these guys are ready
-for production use!!  Right now we should be running off of **Jenkins01**.  
+for production use!!  Right now we should be running off of **Jenkins01**.
 
 Testing Failover
 ----------------
@@ -239,6 +239,6 @@ the DevOps community.
 
 Thanks for Watching!
 --------------------
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).  
+[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).
 
 {% include subscribe.html %}
