@@ -79,17 +79,16 @@ storage.
 
 Setting up Shared Storage
 -------------------------
-For us, since we're on AWS, we'll use Amazon's EFS service to create a new NFS
+Since we're on AWS, we'll use Amazon's EFS service to create a new NFS
 shared file system.  We do need to make sure we have the right availability
 zones and security groups selected, but overall it's very easy to set up.
 
 After the EFS share comes up, click the "DNS Names" link. You should see a DNS
-entry for each availability zone, be sure to note them down, as we'll use them
-to mount the storage to our instances.
+entry for each availability zone, we'll use these to mount the storage to our instances.
 
 Alright, let's go ahead and SSH into both Jenkins VMs.
 
-Next, run:
+Run:
 
 ``` bash
 mkdir /var/lib/jenkins
@@ -99,7 +98,7 @@ That will create a directory for our Jenkins home.  Next, open up your
 `/etc/fstab` file and add the following line:
 
 ``` bash
-us-yourRegion-URL-thing.amazonaws.com:/ /var/lib/jenkins nfs4 rw,hard,intr 0 2
+us-west-2.amazonaws.com:/ /var/lib/jenkins nfs4 rw,hard,intr 0 2
 ```
 
 This is the line where we'll need to make sure we use the right DNS name for
