@@ -102,7 +102,7 @@ us-west-2.amazonaws.com:/ /var/lib/jenkins nfs4 rw,hard,intr 0 2
 ```
 
 This is the line where we'll need to make sure we use the right DNS name for
-each zone, but other than it's pretty easy.  Alright, go ahead and save the
+each zone, but other than that it's pretty easy.  Alright, go ahead and save the
 file, then run "mount -a" to mount the storage, or you can just restart the
 instance.
 
