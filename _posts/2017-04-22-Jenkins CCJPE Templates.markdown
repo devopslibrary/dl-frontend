@@ -69,6 +69,8 @@ our builder works.  If you're comfortable with groovy, you can do just
 about anything you'd like here, but for our example we'll go with a generated
 shell script.
 
+![Attribute](/images/frame.png)
+
 Type: wget, followed by a dollar sign and the name of our attribute, URL.
 Since the script section is actually a groovy template, Jenkins will populate
 the URL in our transformer with the URL provided by the user in the attribute.
