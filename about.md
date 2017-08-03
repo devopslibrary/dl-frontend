@@ -1,15 +1,76 @@
----
-layout: about
-title: About
-permalink: /about/
----
+<!DOCTYPE html>
+<html>
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+  {% include head.html %}
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+  <body>
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+    {% include header.html %}
+    <main class="content" role="main">
+      <div class="row row--b mbm">
+        <div class="cell well well--xl">
+          <h1 class="mbf tci">About Us</h1>
+          <p class="tc-sky white">Who and what is the DevOps Library?.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cell well">
+          <div class="g mbl mbxl--m">
+            <div class="g-b g-b--m--3of4">
+              <div class="card card--a card--l" id="index">
+                <div class="content-section">
+                  <div style="float: left;">
+                    <img src="/images/IMG_3498.JPG" height="90%" width="90%" />
+                  </div>
+                  <h2 class="mbs">What is the DevOps Library?</h2>
+                    <p>
+                      The DevOps Library is a free, online learning resource for
+                      aspiring DevOps Engineers, System Admins, Developers, Site
+                      Reliability Engineers, Automation Engineers, and anyone else
+                      who has an interest in DevOps.  We strive to create not only
+                      the highest quality videos, but to always remain a free resource
+                      for the DevOps community.
+                    </p>
+                    <h2 class="mbs">Who is the DevOps Library?</h2>
+                    <p>
+                      The DevOps Library was founded in early 2015, by <a href="mailto:ken@devopslibrary.com">Ken Erwin</a> &amp;
+                      <a href="mailto:samantha@devopslibrary.com">Samantha Ventura</a>.
+                    </p>
+                    <div style="float: left;">
+                        <img src="/images/IMG_3498.JPG" height="90%" width="90%" />
+                    </div>
+                    <p>
+                      My name is <a href="mailto:samantha@devopslibrary.com">Samantha Ventura</a>, and I am the Director of Learning Initiatives for the DevopsLibrary.
+                      I am a native Californian, and have been in the field of education for the
+                      past 15 years. I received my BA degree in English from San Diego State
+                      University, then later my Masters in Teaching, with a specialization in
+                      Reading. I am currently finishing up my PhD in Organizational Leadership
+                      and plan to continue to work as an executive trainer and learning coach,
+                      specializing in the area of higher education and diversity awareness.
+                      In my spare time I love everything outdoors, including skiing, fishing,
+                      camping and spending time with my family.
+                    </p>
+                    <p>
+                      Behind the scenes, my co-author <a href="mailto:ken@devopslibrary.com">Ken Erwin</a> contributes all the content for
+                      the course.  He has experience leading a variety of DevOps teams and initiatives
+                      at several companies, including Angie’s List and Interactive Intelligence before
+                      finally founding the DevOps Library.  Ken is best known in DevOps circles for
+                      setting up the largest Windows Chef deployment in the world at the time, with
+                      over 4,000 nodes in over 13 locations.
+
+                      He is currently finishing up his MBA from the Kelley School of Business,
+                      with a specialization in entrepreunership.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>
