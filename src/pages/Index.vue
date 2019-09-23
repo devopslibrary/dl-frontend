@@ -9,7 +9,11 @@
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
     </p>
-
+    <p v-for="lesson in $page.lessons.edges" v-bind:key="lesson">
+      <g-link :to="lesson.node.path">
+        {{ lesson.node.title }}
+      </g-link>
+    </p>
     <p class="home-links">
       <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
       <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
@@ -17,6 +21,22 @@
 
   </Layout>
 </template>
+
+<page-query>
+query Lessons {
+  lessons: allLesson {
+    edges {
+      node {
+        title
+        path
+        categories
+        excerpt
+        difficulty
+      }
+    }
+  }
+}
+</page-query>
 
 <script>
 export default {

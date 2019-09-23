@@ -5,6 +5,22 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Gridsome',
-  plugins: []
+  transformers: {
+    remark: {}
+  },
+  siteName: 'DevOps Library',
+  plugins: [
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "lessons/**/*.md",
+        typeName: "Lesson",
+        remark: {
+          plugins: [
+            ['gridsome-plugin-remark-youtube']
+          ]
+        }
+      }
+    }
+  ]
 }

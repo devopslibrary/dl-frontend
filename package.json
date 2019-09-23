@@ -7,6 +7,9 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "gridsome": "^0.7.0"
+    "@gridsome/source-filesystem": "^0.6.0",
+    "@gridsome/transformer-remark": "^0.3.4",
+    "gridsome": "^0.7.0",
+    "gridsome-plugin-remark-youtube": "^1.0.1"
   }
 }
