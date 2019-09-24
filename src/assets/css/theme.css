@@ -21146,7 +21146,7 @@ label.btn {
 ------------------------------------*/
 .svg-preloader {
   z-index: -1;
-  background: transparent url(../svg/preloaders/circle-preloader.svg) center no-repeat !important;
+  background: transparent url(/assets/svg/preloaders/circle-preloader.svg) center no-repeat !important;
   overflow: hidden;
   transition: all 0.4s ease-in;
 }
@@ -23194,7 +23194,7 @@ label.btn {
 }
 
 .u-slick {
-  background: url(../svg/preloaders/circle-preloader.svg) no-repeat 50% 50%;
+  background: url(/assets/svg/preloaders/circle-preloader.svg) no-repeat 50% 50%;
 }
 
 .u-slick .js-next,

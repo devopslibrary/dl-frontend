@@ -2,13 +2,7 @@
   <div class="layout">
     <!-- ========== HEADER ========== -->
     <header id="header" class="u-header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
-      </nav>
+    
       <!-- Search -->
     <div id="searchPushTop" class="u-search-push-top">
       <div class="container position-relative">
@@ -96,8 +90,8 @@
               <div class="rounded u-search-push-top__banner">
                 <div class="d-flex align-items-center">
                   <div class="u-search-push-top__banner-container">
-                    <img class="img-fluid u-search-push-top__banner-img" src="../assets/img/jenkinscourse.png" alt="Image Description">
-                    <img class="img-fluid u-search-push-top__banner-img" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                    <img class="img-fluid u-search-push-top__banner-img" src="/assets/img/jenkinscourse.png" alt="Image Description">
+                    <img class="img-fluid u-search-push-top__banner-img" src="/assets/img/jenkinscourse.png" alt="Image Description">
                   </div>
 
                   <div>
@@ -124,7 +118,7 @@
         <!-- Nav -->
         <nav class="js-mega-menu navbar navbar-expand-md u-header__navbar u-header__navbar--no-space">
           <!-- Logo -->
-          <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="../home/index.html" aria-label="Front">
+          <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="/" aria-label="Front">
             <span class="u-header__navbar-brand-text">DEVOPS<span style="color: #000;">Library</span></span>
           </a>
           <!-- End Logo -->
@@ -265,7 +259,7 @@
                   <div class="u-header__promo-item">
                     <a class="u-header__promo-link" href="../../documentation/index.html">
                       <div class="media align-items-center">
-                        <img class="js-svg-injector u-header__promo-icon" src="../assets/img/adde.png" alt="SVG">
+                        <img class="js-svg-injector u-header__promo-icon" src="/assets/img/adde.png" alt="SVG">
                         <div class="media-body">
                           <span class="u-header__promo-title">
                             Adde
@@ -282,7 +276,7 @@
                   <div class="u-header__promo-item">
                     <a class="u-header__promo-link" href="../../starter/index.html">
                       <div class="media align-items-center">
-                        <img class="js-svg-injector u-header__promo-icon" src="../assets/img/kondo.png" alt="SVG">
+                        <img class="js-svg-injector u-header__promo-icon" src="/assets/img/kondo.png" alt="SVG">
                         <div class="media-body">
                           <span class="u-header__promo-title">Kondo
                             <span class="badge badge-primary badge-pill ml-1">Soon!</span>
@@ -324,7 +318,7 @@
     </div>
   </header>
   <!-- ========== END HEADER ========== -->
-    </header>
+
     
   
     
@@ -356,7 +350,7 @@
         <div class="col-md-7 col-lg-8 mb-7 mb-md-0">
           <!-- End Blog Card -->
           <article class="card shadow mb-5">
-            <img class="card-img-top" src="../assets/img/jenkinscourse.png" alt="Image Description">
+            <img class="card-img-top" src="/assets/img/jenkinscourse.png" alt="Image Description">
 
             <div class="card-body p-5">
               <a class="d-inline-block text-secondary font-weight-medium text-uppercase small mb-2" href="#">Jenkins</a>
@@ -369,10 +363,10 @@
 
               <div class="media align-items-center pt-5">
                 <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle" data-toggle="tooltip" data-placement="top" title="Nataly Gaga">
-                  <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                  <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                 </div>
                 <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip" data-placement="top" title="Emily Milda">
-                  <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                  <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                   July 15
@@ -384,7 +378,7 @@
 
           <!-- End Blog Card -->
           <article class="card shadow mb-5">
-            <img class="card-img-top" src="../assets/img/jenkinscourse.png" alt="Image Description">
+            <img class="card-img-top" src="/assets/img/jenkinscourse.png" alt="Image Description">
 
             <div class="card-body p-5">
               <a class="d-inline-block text-secondary font-weight-medium text-uppercase small mb-2" href="#">Business</a>
@@ -397,10 +391,10 @@
 
               <div class="media align-items-center pt-5">
                 <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe">
-                  <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                  <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                 </div>
                 <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip" data-placement="top" title="John O'nolan">
-                  <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                  <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                   July 15
@@ -420,10 +414,10 @@
                 </div>
                 <div class="media justify-content-center align-items-center">
                   <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle" data-toggle="tooltip" data-placement="top" title="Nataly Gaga">
-                    <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                    <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                   </div>
                   <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip" data-placement="top" title="John O'nolan">
-                    <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                    <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                   </div>
                 </div>
               </div>
@@ -433,7 +427,7 @@
 
           <!-- End Blog Card -->
           <article class="card shadow mb-5">
-            <img class="card-img-top" src="../assets/img/jenkinscourse.png" alt="Image Description">
+            <img class="card-img-top" src="/assets/img/jenkinscourse.png" alt="Image Description">
 
             <div class="card-body p-5">
               <a class="d-inline-block text-secondary font-weight-medium text-uppercase small mb-2" href="#">Community</a>
@@ -446,10 +440,10 @@
 
               <div class="media align-items-center pt-5">
                 <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle" data-toggle="tooltip" data-placement="top" title="Emily Milda">
-                  <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                  <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                 </div>
                 <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip" data-placement="top" title="John O'nolan">
-                  <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                  <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                   July 15
@@ -461,7 +455,7 @@
 
           <!-- End Blog Card -->
           <article class="card shadow mb-5">
-            <img class="card-img-top" src="../assets/img/jenkinscourse.png" alt="Image Description">
+            <img class="card-img-top" src="/assets/img/jenkinscourse.png" alt="Image Description">
 
             <div class="card-body p-5">
               <a class="d-inline-block text-secondary font-weight-medium text-uppercase small mb-2" href="#">Community</a>
@@ -474,7 +468,7 @@
 
               <div class="media align-items-center pt-5">
                 <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle" data-toggle="tooltip" data-placement="top" title="Nataly Gaga">
-                  <img class="img-fluid rounded-circle" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                  <img class="img-fluid rounded-circle" src="/assets/img/jenkinscourse.png" alt="Image Description">
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                   July 15
@@ -582,7 +576,7 @@
                   </div>
 
                   <div class="col-5">
-                    <img class="img-fluid" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                    <img class="img-fluid" src="/assets/img/jenkinscourse.png" alt="Image Description">
                   </div>
                 </div>
               </article>
@@ -599,7 +593,7 @@
                   </div>
 
                   <div class="col-5">
-                    <img class="img-fluid" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                    <img class="img-fluid" src="/assets/img/jenkinscourse.png" alt="Image Description">
                   </div>
                 </div>
               </article>
@@ -616,7 +610,7 @@
                   </div>
 
                   <div class="col-5">
-                    <img class="img-fluid" src="../assets/img/jenkinscourse.png" alt="Image Description">
+                    <img class="img-fluid" src="/assets/img/jenkinscourse.png" alt="Image Description">
                   </div>
                 </div>
               </article>
@@ -998,7 +992,7 @@
 
           <!-- SVG Background Shape -->
           <div class="position-absolute right-0 bottom-0 left-0">
-            <img class="js-svg-injector" src="../assets/svg/components/wave-bottom-with-dots.svg" alt="Image Description"
+            <img class="js-svg-injector" src="/assets/svg/components/wave-bottom-with-dots.svg" alt="Image Description"
                    data-parent="#SVGwaveWithDots">
           </div>
           <!-- End SVG Background Shape -->
