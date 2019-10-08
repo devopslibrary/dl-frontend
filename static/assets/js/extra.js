@@ -7,8 +7,8 @@ $(window).on('load', function () {
     hideTimeOut: 0
   });
 
-  // initialization of svg injector module
-  $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
+  // // initialization of svg injector module
+  // $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
 });
 
 $(document).on('ready', function () {

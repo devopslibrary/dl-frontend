@@ -9,7 +9,7 @@
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
     </p>
-    <p v-for="lesson in $page.lessons.edges" v-bind:key="lesson">
+    <p v-for="lesson in $page.lessons.edges" v-bind:key="lesson.id">
       <g-link :to="lesson.node.path">
         {{ lesson.node.title }}
       </g-link>
