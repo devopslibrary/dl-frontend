@@ -548,38 +548,6 @@ pre code {
   overflow-y: scroll;
 }
 
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
-}
-
 .container-fluid {
   width: 100%;
   padding-right: 15px;
@@ -4246,31 +4214,6 @@ input[type="button"].btn-block {
 
 .tab-content > .active {
   display: block;
-}
-
-.navbar {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  padding: 0.5rem 1rem;
-}
-
-.navbar > .container,
-.navbar > .container-fluid {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
 }
 
 .navbar-brand {
@@ -13010,20 +12953,9 @@ button:focus {
 /*------------------------------------
   Header Default
 ------------------------------------*/
-.u-header {
-  position: relative;
-  right: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1001;
-}
 
-.u-header__section {
-  position: relative;
-  z-index: 1;
-  background-color: #fff;
-  box-shadow: 0 1px 10px rgba(151, 164, 175, 0.1);
-}
+
+
 
 .u-header__section-divider {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -18452,7 +18384,7 @@ label.btn {
   opacity: 1;
 }
 
-.u-sidebar[aria-labelledby].u-unfold--css-animation, .u-sidebar[aria-labelledby].u-unfold--jquery-slide {
+.u-sidebar[aria-labelledby].u-unfold--css-animation, .u-sidebar[aria-labelledby] {
   opacity: 1;
 }
 
@@ -18816,7 +18748,7 @@ label.btn {
   opacity: 1;
 }
 
-.dropdown-unfold[aria-labelledby].u-unfold--css-animation, .dropdown-unfold[aria-labelledby].u-unfold--jquery-slide {
+.dropdown-unfold[aria-labelledby].u-unfold--css-animation, .dropdown-unfold[aria-labelledby] {
   display: block;
   opacity: 1;
 }
