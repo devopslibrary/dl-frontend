@@ -19,6 +19,9 @@
 </script>
 
 <style scoped>
+  .library-green {
+    color: #62b562;
+  }
   .header-content {
     align-items: center;
     display: flex;
