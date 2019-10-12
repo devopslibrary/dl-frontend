@@ -36,54 +36,21 @@
 
                 <!-- Pages - Submenu -->
                 <ul id="pagesSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="pagesMegaMenu"
-                    v-if="videosHover" style="min-width: 230px; position: absolute;">
+                    v-if="videosHover">
                   <!-- Kubernetes -->
-                  <li class="hs-has-sub-menu">
+                  <li class="hs-has-sub-menu" v-for="category in categories" @mouseover="menuHover = category"
+                      @mouseleave="menuHover = category">
                     <a id="navLinkPagesAccount"
                        class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle"
                        href="javascript:;" aria-haspopup="true" aria-expanded="false"
-                       aria-controls="navSubmenuPagesAccount">Kubernetes</a>
+                       aria-controls="navSubmenuPagesAccount">{{ category }}</a>
 
-                    <ul id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu"
-                        aria-labelledby="navLinkPagesAccount" style="min-width: 230px; display: none;">
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="../account/dashboard.html">What is
-                        Kubernetes, and should I use it?</a></li>
+                    <ul v-if="menuHover === category" id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu"
+                        aria-labelledby="navLinkPagesAccount">
+                      <li v-for="lesson in lessonMap[category]"><a class="nav-link u-header__sub-menu-nav-link" v-bind:href="lesson.permalink">{{lesson.title}}</a></li>
                     </ul>
                   </li>
                   <!-- End Kubernetes -->
-
-                  <!-- Jenkins -->
-                  <li class="hs-has-sub-menu">
-                    <a id="navLinkPagesCompany"
-                       class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle"
-                       href="javascript:;" aria-haspopup="true" aria-expanded="false"
-                       aria-controls="navSubmenuPagesCompany">Jenkins</a>
-
-                    <ul id="navSubmenuPagesCompany" class="hs-sub-menu u-header__sub-menu"
-                        aria-labelledby="navLinkPagesCompany" style="min-width: 230px; display: none;">
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="../pages/about-agency.html">About
-                        Agency</a></li>
-                    </ul>
-                  </li>
-                  <!-- Jenkins -->
-
-                  <!-- Portfolio -->
-                  <li class="hs-has-sub-menu">
-                    <a id="navLinkPagesPortfolio"
-                       class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle"
-                       href="javascript:;" aria-haspopup="true" aria-expanded="false"
-                       aria-controls="navSubmenuPagesPortfolio">Azure DevOps</a>
-
-                    <ul id="navSubmenuPagesPortfolio" class="hs-sub-menu u-header__sub-menu"
-                        aria-labelledby="navLinkPagesPortfolio" style="min-width: 230px; display: none;">
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="../portfolio/boxed-classic.html">All
-                        layouts</a></li>
-                      <li class="dropdown-divider"></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="../portfolio/case-studies-simple.html">Case
-                        Studies Simple</a></li>
-                    </ul>
-                  </li>
-                  <!-- End Portfolio -->
                 </ul>
                 <!-- End Pages - Submenu -->
               </li>
@@ -151,9 +118,6 @@
         <!-- End Nav -->
       </div>
     </div>
-    <p v-for="category in categories">
-      {{ category }}
-    </p>
   </header>
 </template>
 
@@ -162,7 +126,12 @@
     lessons: allLesson {
       edges {
         node {
+          title
+          path
           categories
+          excerpt
+          difficulty
+          permalink
         }
       }
     }
@@ -175,6 +144,7 @@
             return {
                 toolsHover: false,
                 videosHover: false,
+                menuHover: '',
             };
         },
         name: "AppFooter",
@@ -183,13 +153,28 @@
                 this.categorySet = new Set();
                 this.$static.lessons.edges.forEach((lesson)=>{this.categorySet.add(lesson.node.categories)});
                 return this.categorySet;
+            },
+            lessonMap () {
+                this.lessMap = new Map();
+                this.categories.forEach((category=>this.lessMap[category] = []));
+                this.$static.lessons.edges.forEach((lesson)=>{this.lessMap[lesson.node.categories].push(lesson.node)});
+                return this.lessMap;
             }
         }
     }
 </script>
 
 <style scoped>
-
+  #pagesSubMenu {
+    min-width: 230px;
+    position: absolute;
+  }
+  #navSubmenuPagesAccount {
+    min-width: 230px;
+    position: absolute;
+    left: 230px;
+    margin-top: -56px;
+  }
   .hs-mega-menu {
     position: absolute;
     width: 80px;
