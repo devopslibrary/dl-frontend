@@ -12,7 +12,6 @@
     "@gridsome/transformer-remark": "^0.3.4",
     "gridsome": "^0.7.0",
     "gridsome-plugin-remark-youtube": "^1.0.1",
-    "lodash": "^4.17.15",
     "minipass": "2.7.0",
     "popper.js": "^1.15.0",
     "sharp": "^0.23.0"

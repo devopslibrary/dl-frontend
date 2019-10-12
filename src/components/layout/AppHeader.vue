@@ -2,73 +2,67 @@
   <header>
     <div>
       <div class="container">
-        <!-- Nav -->
-        <nav class="navbar navbar-expand-md u-header__navbar u-header__navbar--no-space">
+        <nav>
           <!-- Logo -->
-          <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="/" aria-label="Front">
-            <span class="u-header__navbar-brand-text">DEVOPS<span style="color: #000;">Library</span></span>
+          <a href="/" aria-label="logo">
+            <span id="logo">DEVOPS<span class="black">Library</span></span>
           </a>
           <!-- End Logo -->
 
           <!-- Navigation -->
-          <div id="navBar" class="navbar-collapse">
+          <div class="navbar-collapse">
             <ul class="navbar-nav u-header__navbar-nav">
               <!-- Home -->
               <li class="nav-item">
-                <a id="home" class="nav-link u-header__nav-link" href="javascript:;" aria-haspopup="true"
-                   aria-expanded="false">Home</a>
+                <a class="nav-link u-header__nav-link" href="javascript:">Home</a>
               </li>
               <!-- End Home -->
 
               <!-- Blog -->
-              <li class="nav-item hs-has-sub-menu u-header__nav-item">
-                <a id="blogMegaMenu" class="nav-link u-header__nav-link" href="javascript:;" aria-haspopup="true"
-                   aria-expanded="false" aria-labelledby="blogSubMenu">Blog</a>
+              <li class="nav-item">
+                <a class="nav-link u-header__nav-link" href="javascript:">Blog</a>
               </li>
               <!-- End Blog -->
 
               <!-- Videos -->
-              <li class="nav-item hs-has-sub-menu u-header__nav-item"
+              <li class="nav-item"
                   @mouseover="videosHover = true"
                   @mouseleave="videosHover = false">
-                <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;"
+                <a class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;"
                    aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Videos</a>
-
-                <!-- Pages - Submenu -->
                 <ul id="pagesSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="pagesMegaMenu"
                     v-if="videosHover">
-                  <!-- Kubernetes -->
                   <li class="hs-has-sub-menu" v-for="category in categories" @mouseover="menuHover = category"
                       @mouseleave="menuHover = category">
                     <a id="navLinkPagesAccount"
                        class="nav-link u-header__sub-menu-nav-link u-header__sub-menu-nav-link-toggle"
-                       href="javascript:;" aria-haspopup="true" aria-expanded="false"
-                       aria-controls="navSubmenuPagesAccount">{{ category }}</a>
+                       href="javascript:">{{ category }}</a>
 
-                    <ul v-if="menuHover === category" id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu"
-                        aria-labelledby="navLinkPagesAccount">
-                      <li v-for="lesson in lessonMap[category]"><a class="nav-link u-header__sub-menu-nav-link" v-bind:href="lesson.permalink">{{lesson.title}}</a></li>
+                    <ul v-if="menuHover === category" id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu">
+                      <li v-for="lesson in lessonMap[category]">
+                        <a class="nav-link u-header__sub-menu-nav-link" v-bind:href="lesson.permalink">
+                          {{lesson.title}}
+                        </a>
+                      </li>
                     </ul>
                   </li>
-                  <!-- End Kubernetes -->
                 </ul>
-                <!-- End Pages - Submenu -->
               </li>
-              <!-- End Pages -->
+              <!-- End Videos -->
 
               <!-- Tools -->
-              <li class="nav-item hs-has-mega-menu u-header__nav-item"
+              <li class="nav-item u-header__nav-item"
                   @mouseover="toolsHover = true"
                   @mouseleave="toolsHover = false">
-                <a id="docsMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;"
+                <a class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;"
                    aria-haspopup="true" aria-expanded="false">Tools</a>
 
                 <!-- Tools   - Submenu -->
-                <div v-if="toolsHover" class="hs-mega-menu u-header__sub-menu" aria-labelledby="docsMegaMenu"
+                <div v-if="toolsHover" class="hs-mega-menu u-header__sub-menu"
                      style="min-width: 330px;">
                   <!-- Promo Item -->
                   <div class="u-header__promo-item">
-                    <a class="u-header__promo-link" href="../../documentation/index.html">
+                    <a class="u-header__promo-link" href="./adde.html">
                       <div class="media align-items-center">
                         <img class="js-svg-injector u-header__promo-icon" src="/assets/img/adde.png" alt="SVG">
                         <div class="media-body">
@@ -85,7 +79,7 @@
 
                   <!-- Promo Item -->
                   <div class="u-header__promo-item">
-                    <a class="u-header__promo-link" href="../../starter/index.html">
+                    <a class="u-header__promo-link" href="./kondo.html">
                       <div class="media align-items-center">
                         <img class="js-svg-injector u-header__promo-icon" src="/assets/img/kondo.png" alt="SVG">
                         <div class="media-body">
@@ -102,20 +96,19 @@
                 <!-- End Docs - Submenu -->
               </li>
               <!-- End Docs -->
+
               <!-- Contact -->
-              <li class="nav-item hs-has-mega-menu u-header__nav-item">
-                <a id="demosMegaMenu" class="nav-link u-header__nav-link" href="javascript:;" aria-haspopup="true"
-                   aria-expanded="false">About Us</a>
+              <li class="nav-item u-header__nav-item">
+                <a class="nav-link u-header__nav-link" href="javascript:">About Us</a>
               </li>
-              <li class="nav-item hs-has-mega-menu u-header__nav-item">
-                <a class="nav-link u-header__nav-link" href="javascript:;" aria-haspopup="true" aria-expanded="false">Supporters</a>
+              <li class="nav-item u-header__nav-item">
+                <a class="nav-link u-header__nav-link" href="javascript:;">Supporters</a>
               </li>
               <!-- End Contact -->
             </ul>
           </div>
           <!-- End Navigation -->
         </nav>
-        <!-- End Nav -->
       </div>
     </div>
   </header>
@@ -138,7 +131,6 @@
   }
 </static-query>
 <script>
-    import uniqBy from 'lodash/uniq'
     export default {
         data() {
             return {
@@ -149,15 +141,19 @@
         },
         name: "AppFooter",
         computed: {
-            categories () {
+            categories() {
                 this.categorySet = new Set();
-                this.$static.lessons.edges.forEach((lesson)=>{this.categorySet.add(lesson.node.category)});
+                this.$static.lessons.edges.forEach((lesson) => {
+                    this.categorySet.add(lesson.node.category)
+                });
                 return this.categorySet;
             },
-            lessonMap () {
+            lessonMap() {
                 this.lessMap = new Map();
-                this.categories.forEach((category=>this.lessMap[category] = []));
-                this.$static.lessons.edges.forEach((lesson)=>{this.lessMap[lesson.node.category].push(lesson.node)});
+                this.categories.forEach((category => this.lessMap[category] = []));
+                this.$static.lessons.edges.forEach((lesson) => {
+                    this.lessMap[lesson.node.category].push(lesson.node)
+                });
                 return this.lessMap;
             }
         }
@@ -167,27 +163,53 @@
 <style scoped>
   #pagesSubMenu {
     min-width: 230px;
-    position: absolute;
+    position: fixed;
   }
+
   #navSubmenuPagesAccount {
     min-width: 230px;
-    position: absolute;
-    left: 230px;
+    position: fixed;
+    margin-left: 230px;
     margin-top: -56px;
   }
+
+  #logo {
+    display: block;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-left: .5rem;
+    color: #62b562;
+  }
+
+  .navbar-collapse {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .black {
+    color: #000;
+  }
+
   .hs-mega-menu {
     position: absolute;
     width: 80px;
   }
+
   .hs-sub-menu {
     width: 100px;
   }
+
   header {
     position: relative;
     z-index: 1;
     background-color: #fff;
     box-shadow: 0 1px 10px rgba(151, 164, 175, 0.1);
   }
+
   .container {
     width: 100%;
     padding-right: 15px;
@@ -219,7 +241,8 @@
       max-width: 1140px;
     }
   }
-  .navbar {
+
+  Nav {
     position: relative;
     display: -ms-flexbox;
     display: flex;
@@ -229,18 +252,104 @@
     align-items: center;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
-  .navbar > .container,
-  .navbar > .container-fluid {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+  @media (max-width: 767.98px) {
+    Nav > .container,
+    Nav > .container-fluid {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    Nav {
+      -ms-flex-flow: row nowrap;
+      flex-flow: row nowrap;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+    }
+
+    Nav .navbar-nav {
+      -ms-flex-direction: row;
+      flex-direction: row;
+    }
+
+    Nav .navbar-nav .nav-link {
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+
+    Nav > .container {
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+    }
+
+    Nav .navbar-collapse {
+      display: -ms-flexbox !important;
+      display: flex !important;
+      -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+    }
+  }
+
+  @media (min-width: 768px) {
+    Nav {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+
+    Nav .u-header__navbar-nav {
+      -ms-flex-align: center;
+      align-items: center;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    Nav .u-header__navbar-nav .u-header__nav-link {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      padding-right: 0.875rem;
+      padding-left: 0.875rem;
+    }
+
+    Nav .u-header__navbar-nav .u-header__sub-menu {
+      border-top: 0.1875rem solid #62b562;
+      border-bottom-right-radius: 0.3125rem;
+      border-bottom-left-radius: 0.3125rem;
+      box-shadow: 0 8px 20px rgba(55, 125, 255, 0.075);
+    }
+
+    Nav .u-header__navbar-nav .u-header__sub-menu-nav-link {
+      padding-right: 1.75rem;
+      padding-left: 1.75rem;
+    }
+
+    Nav .u-header__navbar-nav .u-header__sub-menu-nav-group .u-header__sub-menu-nav-link {
+      padding-left: 0;
+    }
+
+    Nav .u-header__navbar-nav .u-header__sub-menu.hs-sub-menu {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    Nav .u-header__navbar-nav .u-header__sub-menu .hs-has-sub-menu {
+      padding: 0;
+    }
+
+    Nav .u-header__navbar-nav .u-header__sub-menu .hs-has-sub-menu .u-header__sub-menu {
+      margin-top: -1.1875rem;
+    }
+  }
+  /* Nav Item */
+  .nav-item:first-child .u-header__nav-link {
+    padding-left: 0;
+  }
+
+  .nav-item:hover .nav-link:hover {
+    color: #62b562;
   }
 </style>
