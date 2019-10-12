@@ -2,7 +2,7 @@
 layout: post
 title:  "What is Vagrant?"
 date:   2015-06-22 12:00:00 -0500
-categories: Vagrant
+category: Vagrant
 permalink: lessons/what-is-vagrant
 excerpt: "Learn why we love Vagrant, and how to create reproducible development environments."
 weight: 1

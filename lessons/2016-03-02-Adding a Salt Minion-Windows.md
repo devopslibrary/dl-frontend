@@ -2,7 +2,7 @@
 layout: post
 title:  "Adding a Windows Salt Minion"
 date:   2016-02-25 12:00:00 -0500
-categories: SaltStack
+category: SaltStack
 permalink: lessons/adding-a-salt-minion-windows
 excerpt: "We're going to show you how to add a Windows minion to our Salt Master."
 weight: 4

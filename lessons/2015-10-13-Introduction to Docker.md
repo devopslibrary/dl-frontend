@@ -2,7 +2,7 @@
 layout: post
 title:  "Introduction to Docker"
 date:   2015-10-13 12:00:00 -0500
-categories: Docker
+category: Docker
 permalink: lessons/docker-beginner-tutorial
 excerpt: "Docker is one of those things that people tend to get a pretty strong opinion one way or another very quickly, but we promise you, that if you use Linux at all in your organization, you’ll probably end up eventually loving it. Even if you’re a windows shop you might end up loving it too."
 difficulty: easy

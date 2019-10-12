@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Jenkins Jobs"
 date:   2016-4-14 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-jobs
 excerpt: "A jenkins job is just something that we want our Jenkins server to do, which can really be anything."  
 weight: 3

@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Jenkins Analytics"
 date:   2016-9-17 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-analytics
 excerpt: "Overview of Jenkins Analytics Plugin"
 weight: 13

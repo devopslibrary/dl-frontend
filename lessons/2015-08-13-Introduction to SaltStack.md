@@ -2,7 +2,7 @@
 layout: post
 title:  "Introduction to SaltStack"
 date:   2015-08-13 12:00:00 -0500
-categories: SaltStack
+category: SaltStack
 permalink: lessons/saltstack-beginner-tutorial
 excerpt: "By the end of this lesson, we’ll have a Salt master running as well as our first minion."
 weight: 1

@@ -2,7 +2,7 @@
 layout: post
 title:  "Vagrant Provisioning"
 date:   2015-06-22 12:00:00 -0500
-categories: Vagrant
+category: Vagrant
 permalink: lessons/vagrant-provisioning
 excerpt: "Creating an entire environment all the way down to the application stack fully configured with Vagrant."
 weight: 4

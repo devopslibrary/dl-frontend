@@ -2,7 +2,7 @@
 layout: post
 title:  "DevOps for Beginners Introduction"
 date:   2016-7-28 12:00:00 -0500
-categories: DevOps
+category: DevOps
 permalink: lessons/devops-introduction
 excerpt: "Introduction to the course, and our imaginary webapp company: Montonomy.com."
 weight: 1

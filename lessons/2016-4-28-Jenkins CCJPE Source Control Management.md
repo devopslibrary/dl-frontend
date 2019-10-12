@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Source Control Management"
 date:   2016-4-27 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-scm
 excerpt: "We’re going to show you how to integrate source control management with Jenkins."
 weight: 4

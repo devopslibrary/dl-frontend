@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Jenkins Operations Center"
 date:   2016-9-5 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-cjoc
 excerpt: "Learn how to manage multiple masters from CJOC!"
 weight: 12

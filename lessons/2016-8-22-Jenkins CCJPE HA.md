@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Jenkins High Availability"
 date:   2016-8-22 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-ha
 excerpt: "Learn how to set up Jenkins HA!"
 weight: 11

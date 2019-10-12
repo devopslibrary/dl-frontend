@@ -2,7 +2,7 @@
 layout: post
 title:  "Salt States"
 date:   2015-10-13 12:00:00 -0500
-categories: SaltStack
+category: SaltStack
 permalink: lessons/salt-states
 excerpt: "The core of the Salt State system is the SLS, or Salt State file. The SLS is a representation of the state in which a system should be in, and is set up to contain this data in a simple format."
 weight: 7

@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Jenkins Templates"
 date:   2017-04-22 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-templates
 excerpt: "Use templates to simplify job creation!"
 weight: 15

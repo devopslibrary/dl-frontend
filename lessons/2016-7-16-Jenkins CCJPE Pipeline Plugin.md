@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Pipeline Plugin"
 date:   2016-7-16 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/ccjpe-pipeline
 excerpt: "Learn how to set up Jenkins Pipeline-as-Code"
 weight: 9

@@ -128,7 +128,7 @@
         node {
           title
           path
-          categories
+          category
           excerpt
           difficulty
           permalink
@@ -151,13 +151,13 @@
         computed: {
             categories () {
                 this.categorySet = new Set();
-                this.$static.lessons.edges.forEach((lesson)=>{this.categorySet.add(lesson.node.categories)});
+                this.$static.lessons.edges.forEach((lesson)=>{this.categorySet.add(lesson.node.category)});
                 return this.categorySet;
             },
             lessonMap () {
                 this.lessMap = new Map();
                 this.categories.forEach((category=>this.lessMap[category] = []));
-                this.$static.lessons.edges.forEach((lesson)=>{this.lessMap[lesson.node.categories].push(lesson.node)});
+                this.$static.lessons.edges.forEach((lesson)=>{this.lessMap[lesson.node.category].push(lesson.node)});
                 return this.lessMap;
             }
         }

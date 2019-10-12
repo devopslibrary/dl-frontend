@@ -2,7 +2,7 @@
 layout: post
 title:  "Installing Vagrant"
 date:   2015-06-22 12:00:00 -0500
-categories: Vagrant
+category: Vagrant
 permalink: lessons/installing-vagrant
 excerpt: "Installing Vagrant is extremely easy, we'll show you how :)."
 weight: 2

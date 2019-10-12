@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Jenkins Security"
 date:   2016-10-09 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-security
 excerpt: "Authentication, Authorization, and RBAC!"
 weight: 14

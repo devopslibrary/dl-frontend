@@ -2,7 +2,7 @@
 layout: post
 title:  "Adding a Linux Salt Minion"
 date:   2016-02-25 12:00:00 -0500
-categories: SaltStack
+category: SaltStack
 permalink: lessons/adding-a-salt-minion-linux
 excerpt: "Learn how to add a Linux minion to our Salt Master!"
 weight: 3

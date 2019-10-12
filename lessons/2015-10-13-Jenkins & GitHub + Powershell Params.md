@@ -2,7 +2,7 @@
 layout: post
 title:  "Jenkins & GitHub + Powershell Params"
 date:   2015-10-13 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-github-powershell-params
 excerpt: "In this lesson, we're going to integrate Jenkins and Github for version control.  We'll start off with a Jenkins master running on Ubuntu, with a Server"
 weight: 15

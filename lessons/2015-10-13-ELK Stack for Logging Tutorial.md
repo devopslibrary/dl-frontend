@@ -2,7 +2,7 @@
 layout: post
 title:  "ELK Stack for Logging Tutorial"
 date:   2015-10-13 12:00:00 -0500
-categories: ELK
+category: ELK
 permalink: lessons/elk-stack-for-logging-tutorial
 excerpt: "ELK is an amazing open source logging system, and we'll show you how to set it up!"
 difficulty: medium

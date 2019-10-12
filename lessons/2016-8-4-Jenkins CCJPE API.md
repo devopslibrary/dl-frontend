@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Jenkins API Tutorial"
 date:   2016-8-5 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/ccjpe-api
 excerpt: "Don't worry, the Jenkins API is extremely easy to use!"
 weight: 10

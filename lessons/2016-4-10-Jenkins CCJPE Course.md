@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Introduction"
 date:   2016-4-10 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-introduction
 excerpt: "Welcome to our Jenkins Certification course! If you haven’t heard, Cloudbees (the creators of Jenkins) recently released two certifications, the CJE and CCJPE. We'll help you learn everything you need to know to pass them!"
 weight: 1

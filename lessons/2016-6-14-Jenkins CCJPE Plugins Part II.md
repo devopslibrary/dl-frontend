@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Plugins Part II"
 date:   2016-6-14 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/jenkins-plugins-II
 excerpt: "In this lesson we’re going to cover the second half of the open source Jenkins plugins on the CCJPE"
 weight: 7

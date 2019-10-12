@@ -2,7 +2,7 @@
 layout: post
 title:  "CCJPE: Jenkins Job Builder"
 date:   2016-8-14 12:00:00 -0500
-categories: Jenkins
+category: Jenkins
 permalink: lessons/ccjpe-jjb
 excerpt: "Generating Jenkins Jobs from YAML! :D"
 weight: 11

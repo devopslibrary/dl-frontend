@@ -29,7 +29,7 @@ query Lessons {
       node {
         title
         path
-        categories
+        category
         excerpt
         difficulty
       }
