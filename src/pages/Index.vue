@@ -1,5 +1,6 @@
 <template>
   <Layout>
+    <HeroSection />
 
     <!-- Learn how to use images here: https://gridsome.org/docs/images -->
     <g-image alt="Example image" src="~/favicon.png" width="135" />
@@ -39,9 +40,13 @@ query Lessons {
 </page-query>
 
 <script>
-export default {
-  metaInfo: {
-    title: 'Hello, world!'
+  import HeroSection from "@/components/ui/HeroSection";
+  export default {
+    metaInfo: {
+      title: 'Hello, world!'
+    },
+    components: {
+        HeroSection
+    }
   }
-}
 </script>

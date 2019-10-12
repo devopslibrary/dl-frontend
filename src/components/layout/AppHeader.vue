@@ -164,6 +164,7 @@
   #pagesSubMenu {
     min-width: 230px;
     position: fixed;
+    background-color: #fff;
   }
 
   #navSubmenuPagesAccount {
@@ -171,6 +172,7 @@
     position: fixed;
     margin-left: 230px;
     margin-top: -56px;
+    background-color: #fff;
   }
 
   #logo {
@@ -197,6 +199,7 @@
   .hs-mega-menu {
     position: absolute;
     width: 80px;
+    background-color: #fff;
   }
 
   .hs-sub-menu {

@@ -10,7 +10,6 @@ import '~/assets/vendor/font-awesome/css/fontawesome-all.min.css'
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
-  Vue.component('Layout', App);
   head.link.push({
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700'
