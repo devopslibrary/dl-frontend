@@ -5,6 +5,7 @@ import App from "./App.vue";
 
 // CSS
 import '~/assets/css/theme.css'
+import '~/assets/css/prism-dracula.css'
 import '~/assets/vendor/font-awesome/css/fontawesome-all.min.css'
 import moment from 'moment'
 
@@ -33,7 +34,6 @@ export default function (Vue, { router, head, isClient }) {
     }
     return {x: 0, y: 0}
   };
-
   head.script.push({ src: '/assets/vendor/svg-injector/dist/svg-injector.min.js', body: true });
   head.script.push({ src: 'https://platform.twitter.com/widgets.js', body: true });
 }

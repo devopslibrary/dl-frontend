@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div v-html="$page.lesson.content"/>
+    <div class="container space-2 space-bottom-lg-3" v-html="$page.lesson.content"/>
   </Layout>
 </template>
 

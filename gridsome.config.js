@@ -6,7 +6,7 @@
 
 module.exports = {
   transformers: {
-    remark: {}
+    remark: {},
   },
   siteName: 'DevOps Library',
   plugins: [
@@ -17,10 +17,11 @@ module.exports = {
         typeName: "Lesson",
         remark: {
           plugins: [
-            ['gridsome-plugin-remark-youtube']
+            'gridsome-plugin-remark-youtube',
+            '@gridsome/remark-prismjs'
           ]
         }
       }
     }
   ]
-}
+};

@@ -27,13 +27,17 @@ Today we’re going to start out with just a standard Ubuntu 14.04 server, with 
 
 Now let’s go ahead and install Docker.  To get the latest version, run:
 
-`curl –sSL https://get.docker.com/ubuntu/ | sudo sh`
+```bash
+curl –sSL https://get.docker.com/ubuntu/ | sudo sh
+```
 
 Spinning up a Container
 -----------------------
 Now let’s go ahead and create our first container.  Think of the container as a VM.  Now type.
 
-`docker run -i -t ubuntu /bin/bash`
+```bash
+docker run -i -t ubuntu /bin/bash
+```
 
 Let’s look at the command, `docker run` creates a new container, the dash I runs the shell interactively, so that when you exit from the shell the container stops, the -T creates a pseudo-tty, or in other words makes it so you see a prompt.    We’re also specifying Ubuntu as the image to pull from.  Docker will pull this image from the Docker repository automatically.  Lastly, we specify /bin/bash, so that Docker automatically starts bash on the container.  This could easily be a specific service like apache for instance.
 
@@ -57,17 +61,21 @@ Let’s delete our container too, run `docker rm` then the name of the container
 
 Now run `docker images`.  You should see a list of images.  These are the images that we’ve already downloaded, and they’re basically cached by docker.    Let’s go ahead and create a brand new container, running the same command that we did before.
 
-`docker run -i -t ubuntu /bin/bash`
+```bash
+docker run -i -t ubuntu /bin/bash
+```
 
 The container should start almost immediately.  It’s like having a perfect brand new VM to play around with, but with no waiting time.  That’s just one tiny part of Docker though.  Let’s try one last feature before we wrap up the video.  Install Apache on the container.
 
-Now click CTRL-P, followed by CTRL-Q.  That detaches us from the Docker container without stopping it.  While it doesn’t matter if it’s stopped or not for what we’re about to do next, it’s a nice trick to know.  Now let’s run docker ps to get the name of our container.  Then run
+Now click CTRL-P, followed by CTRL-Q.  That detaches us from the Docker container without stopping it.  While it doesn’t matter if it’s stopped or not for what we’re about to do next, it’s a nice trick to know.  Now let’s run `docker ps` to get the name of our container.  Then run
 
-Docker commit followed by the container name, then a name for a new image.  We’ll name ours apacheimage
+`docker commit` followed by the container name, then a name for a new image.  We’ll name ours apacheimage
 
 Now run docker images to see our list of images again, you should see apacheimage in the list.  Lastly, let’s do one final command.
 
-`docker run –I –t apacheimage /bin/bash`
+```bash
+docker run –I –t apacheimage /bin/bash
+```
 
 Conclusion
 ----------
