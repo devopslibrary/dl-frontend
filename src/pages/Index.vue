@@ -7,15 +7,15 @@
           <div class="col-md-7 col-lg-8 mb-7 mb-md-0">
 
             <!-- Start Blog Card -->
-            <article class="card shadow mb-5" v-for="edge in $page.allLesson.edges" :key="edge.node.id">
-              <a v-bind:href="edge.node.permalink">
+            <article class="card shadow mb-5" v-for="edge in $page.paginatedLessons.edges" :key="edge.node.id">
+              <a v-bind:href="'/' + edge.node.permalink">
                 <img class="card-img-top" v-bind:src="'/assets/img/coverart/' + edge.node.coverart" alt="Image Description">
               </a>
               <div class="card-body p-5">
                 <a class="d-inline-block text-secondary font-weight-medium text-uppercase small mb-2" href="#">{{ edge.node.category }}</a>
 
                 <h2 class="h5 font-weight-medium">
-                  <a v-bind:href="edge.node.permalink">{{ edge.node.title }}</a>
+                  <a v-bind:href="'/' + edge.node.permalink">{{ edge.node.title }}</a>
                 </h2>
 
                 <p>{{ edge.node.excerpt }}</p>
@@ -39,22 +39,17 @@
 
             <!-- Pagination -->
             <nav aria-label="Page navigation">
-              <Pager :info="$page.allLesson.pageInfo"/>
+
               <ul class="pagination mb-0">
                 <li class="page-item mr-auto">
                   <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="d-none d-sm-inline-block ml-1">Prev</span>
+                    <span class="d-none d-sm-inline-block ml-1"></span>
                   </a>
                 </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="pager page-item active"><Pager :info="$page.paginatedLessons.pageInfo"/></li>
                 <li class="page-item ml-auto">
                   <a class="page-link" href="#" aria-label="Next">
-                    <span class="d-none d-sm-inline-block mr-1">Next</span>
-                    <span aria-hidden="true">&raquo;</span>
+                    <span class="d-none d-sm-inline-block mr-1"></span>
                   </a>
                 </li>
               </ul>
@@ -65,47 +60,14 @@
           <div id="stickyBlockStartPoint" class="col-md-5 col-lg-4" style="position: -webkit-sticky;
   position: sticky; top: 30px; height: 100vh;">
             <div class="js-sticky-block pl-lg-4">
-              <h3 class="h6 font-weight-semi-bold mb-4">Useful links</h3>
+              <h3 class="h6 font-weight-semi-bold mb-4">Video Courses</h3>
 
               <!-- List Group -->
               <ul class="list-group list-group-flush list-group-borderless mb-5">
-                <li>
+                <li v-for="category in categories">
                   <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                    All
-                    <span class="badge bg-soft-secondary badge-pill ml-2">30+</span>
-                    <small class="fas fa-angle-right ml-auto"></small>
-                  </a>
-                </li>
-                <li>
-                  <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                    Top rated
-                    <small class="fas fa-angle-right ml-auto"></small>
-                  </a>
-                </li>
-                <li>
-                  <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                    Kubernetes
-                    <span class="badge bg-soft-secondary badge-pill ml-2">5</span>
-                    <small class="fas fa-angle-right ml-auto"></small>
-                  </a>
-                </li>
-                <li>
-                  <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                    Jenkins
-                    <span class="badge bg-soft-secondary badge-pill ml-2">18</span>
-                    <small class="fas fa-angle-right ml-auto"></small>
-                  </a>
-                </li>
-                <li>
-                  <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                    Vagrant
-                    <span class="badge bg-soft-secondary badge-pill ml-2">5</span>
-                    <small class="fas fa-angle-right ml-auto"></small>
-                  </a>
-                </li>
-                <li>
-                  <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
-                    New
+                    {{ category }}
+                    <span class="badge bg-soft-secondary badge-pill ml-2">{{ lessonMap[category].length }}</span>
                     <small class="fas fa-angle-right ml-auto"></small>
                   </a>
                 </li>
@@ -126,7 +88,7 @@
                     </div>
 
                     <div class="col-5">
-                      <img class="img-fluid" src="/assets/img/jenkinscourse.png" alt="Image Description">
+                      <img class="img-fluid" src="/assets/img/coverart/jenkinscourse.png" alt="Image Description">
                     </div>
                   </div>
                 </article>
@@ -143,7 +105,7 @@
                     </div>
 
                     <div class="col-5">
-                      <img class="img-fluid" src="/assets/img/jenkinscourse.png" alt="Image Description">
+                      <img class="img-fluid" src="/assets/img/coverart/jenkinscourse.png" alt="Image Description">
                     </div>
                   </div>
                 </article>
@@ -160,7 +122,7 @@
                     </div>
 
                     <div class="col-5">
-                      <img class="img-fluid" src="/assets/img/jenkinscourse.png" alt="Image Description">
+                      <img class="img-fluid" src="/assets/img/coverart/jenkinscourse.png" alt="Image Description">
                     </div>
                   </div>
                 </article>
@@ -177,7 +139,7 @@
 
 <page-query>
    query LessonQuery ($page: Int) {
-    allLesson(perPage: 10, page: $page) @paginate {
+    paginatedLessons: allLesson(perPage: 10, page: $page) @paginate {
       pageInfo {
         totalPages
         currentPage
@@ -199,6 +161,23 @@
   }
 </page-query>
 
+<static-query>
+  query Lessons {
+    lessons: allLesson {
+      edges {
+        node {
+          title
+          path
+          category
+          excerpt
+          difficulty
+          permalink
+        }
+      }
+    }
+  }
+</static-query>
+
 <script>
   import HeroSection from "@/components/ui/HeroSection";
   import SubscribeSection from "../components/ui/SubscribeSection";
@@ -212,6 +191,27 @@
       HeroSection,
       SubscribeSection,
       Pager
-    }
+    },
+      computed: {
+          categories() {
+              this.categorySet = new Set();
+              this.$static.lessons.edges.forEach((lesson) => {
+                  this.categorySet.add(lesson.node.category)
+              });
+              return this.categorySet;
+          },
+          lessonMap() {
+              this.lessMap = new Map();
+              this.categories.forEach((category => this.lessMap[category] = []));
+              this.$static.lessons.edges.forEach((lesson) => {
+                  this.lessMap[lesson.node.category].push(lesson.node)
+              });
+              return this.lessMap;
+          }
+      }
   }
 </script>
+
+<style scoped>
+
+</style>

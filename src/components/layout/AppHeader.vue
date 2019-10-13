@@ -40,7 +40,7 @@
 
                     <ul v-if="menuHover === category" id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu">
                       <li v-for="lesson in lessonMap[category]">
-                        <a class="nav-link u-header__sub-menu-nav-link" v-bind:href="lesson.permalink">
+                        <a class="nav-link u-header__sub-menu-nav-link" v-bind:href="'/' + lesson.permalink">
                           {{lesson.title}}
                         </a>
                       </li>
@@ -173,6 +173,10 @@
     margin-left: 230px;
     margin-top: -56px;
     background-color: #fff;
+    overflow: visible;
+    max-height: 80%;
+    overflow-y: auto;
+
   }
 
   #logo {
