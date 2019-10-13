@@ -8,7 +8,7 @@ excerpt: "Introduction to the course, and our imaginary webapp company: Montonom
 weight: 1
 image: 'DevOps.png'
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: devops.png
 
 ---
 {% include youtube.html id="v7ZcZfGBFcU" %}

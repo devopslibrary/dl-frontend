@@ -75,58 +75,7 @@
               <!-- End List Group -->
 
               <div class="border-top pt-5 mt-5">
-                <h3 class="h6 font-weight-semi-bold mb-4">Related stories</h3>
-
-                <!-- Blog Card -->
-                <article>
-                  <div class="row justify-content-between">
-                    <div class="col-6">
-                      <a class="d-inline-block text-muted font-weight-medium text-uppercase small" href="#">Product</a>
-                      <h4 class="h6 font-weight-medium mb-0">
-                        <a href="single-article.html">Simplifying Kubernetes Secrets with Kamus</a>
-                      </h4>
-                    </div>
-
-                    <div class="col-5">
-                      <img class="img-fluid" src="/assets/img/coverart/jenkinscourse.png" alt="Image Description">
-                    </div>
-                  </div>
-                </article>
-                <!-- End Blog Card -->
-
-                <!-- Blog Card -->
-                <article class="border-top pt-5 mt-5">
-                  <div class="row justify-content-between">
-                    <div class="col-6">
-                      <a class="d-inline-block text-muted font-weight-medium text-uppercase small" href="#">Jenkins</a>
-                      <h4 class="h6 font-weight-medium mb-0">
-                        <a href="single-article.html">Setting up a Jenkins master</a>
-                      </h4>
-                    </div>
-
-                    <div class="col-5">
-                      <img class="img-fluid" src="/assets/img/coverart/jenkinscourse.png" alt="Image Description">
-                    </div>
-                  </div>
-                </article>
-                <!-- End Blog Card -->
-
-                <!-- Blog Card -->
-                <article class="border-top pt-5 mt-5">
-                  <div class="row justify-content-between">
-                    <div class="col-6">
-                      <a class="d-inline-block text-muted font-weight-medium text-uppercase small" href="#">Business</a>
-                      <h4 class="h6 font-weight-medium mb-0">
-                        <a href="single-article.html">Enjoy $1,000 worth of perks with Front for Business</a>
-                      </h4>
-                    </div>
-
-                    <div class="col-5">
-                      <img class="img-fluid" src="/assets/img/coverart/jenkinscourse.png" alt="Image Description">
-                    </div>
-                  </div>
-                </article>
-                <!-- End Blog Card -->
+                <a class="twitter-timeline" data-tweet-limit="2" href="https://twitter.com/devopslibrary"></a>
               </div>
             </div>
           </div>
@@ -139,7 +88,7 @@
 
 <page-query>
    query LessonQuery ($page: Int) {
-    paginatedLessons: allLesson(perPage: 10, page: $page) @paginate {
+    paginatedLessons: allLesson(perPage: 5, page: $page) @paginate {
       pageInfo {
         totalPages
         currentPage

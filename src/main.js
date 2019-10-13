@@ -35,4 +35,5 @@ export default function (Vue, { router, head, isClient }) {
   };
 
   head.script.push({ src: '/assets/vendor/svg-injector/dist/svg-injector.min.js', body: true });
+  head.script.push({ src: 'https://platform.twitter.com/widgets.js', body: true });
 }
