@@ -11,8 +11,7 @@ difficulty: hard
 coverart: jenkinscourse.png
 
 ---
-{% include youtube.html id="SoP05dLe5kA" %}
-{% include hired2.html %}
+`youtube:https://youtu.be/SoP05dLe5kA`
 
 Introduction
 ------------

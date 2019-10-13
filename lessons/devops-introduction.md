@@ -11,7 +11,7 @@ difficulty: easy
 coverart: devops.png
 
 ---
-{% include youtube.html id="v7ZcZfGBFcU" %}
+`youtube:https://youtu.be/v7ZcZfGBFcU`
 
 Introduction
 ------------

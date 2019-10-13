@@ -10,7 +10,7 @@ difficulty: easy
 coverart: jenkinscourse.png
 
 ---
-{% include youtube.html id="AN_uc9YqEC4" %}
+`youtube:https://youtu.be/AN_uc9YqEC4`
 
 [Download VagrantFile: http://devopslibrary.com/episode5-jenkins.zip ](http://devopslibrary.com/episode5-jenkins.zip)
 

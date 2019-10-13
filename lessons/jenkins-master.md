@@ -10,7 +10,7 @@ difficulty: easy
 coverart: jenkinscourse.png
 
 ---
-{% include youtube.html id="aon3rohDEos" %}
+`youtube:https://youtu.be/aon3rohDEos`
 
 Introduction
 ------------

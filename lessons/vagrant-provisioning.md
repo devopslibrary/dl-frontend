@@ -10,7 +10,7 @@ difficulty: easy
 coverart: jenkinscourse.png
 
 ---
-{% include youtube.html id="5tPykQsuMfE" %}
+`youtube:https://youtu.be/5tPykQsuMfE`
 
 [Download Example Code: https://github.com/devopslibrary/IntroductionToVagrant/tree/master/Vagrant%20Provisioning](https://github.com/devopslibrary/IntroductionToVagrant/tree/master/Vagrant%20Provisioning)
 

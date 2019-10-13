@@ -9,7 +9,7 @@ difficulty: hard
 coverart: jenkinscourse.png
 
 ---
-{% include youtube.html id="ZQD0rLZMNho" %}
+`youtube:https://youtu.be/ZQD0rLZMNho`
 
 Welcome to the DevOpsLibrary, this is Samantha with Episode 11 and today we’re going to cover how to join a Linux server to Active Directory (Ubuntu specifically).  Why are we devoting an entire video to what sounds like such a simple task?  For two reasons.  One is that we’ve seen countless companies use Active Directory for all of their windows servers, only to resort to using local accounts on their Linux servers.  And secondly, once you look into joining a Linux server to AD, you’ll realize there are dozens of ways of doing so, but none of them are intuitive.
 
