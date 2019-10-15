@@ -14,13 +14,13 @@
             <ul class="navbar-nav u-header__navbar-nav">
               <!-- Home -->
               <li class="nav-item">
-                <a class="nav-link u-header__nav-link" href="javascript:">Home</a>
+                <g-link class="nav-link u-header__nav-link" to="/">Home</g-link>
               </li>
               <!-- End Home -->
 
               <!-- Blog -->
               <li class="nav-item">
-                <a class="nav-link u-header__nav-link" href="javascript:">Blog</a>
+                <g-link class="nav-link u-header__nav-link" to="/blog/">Blog</g-link>
               </li>
               <!-- End Blog -->
 
@@ -99,7 +99,7 @@
 
               <!-- Contact -->
               <li class="nav-item u-header__nav-item">
-                <a class="nav-link u-header__nav-link" href="javascript:">About Us</a>
+                <g-link class="nav-link u-header__nav-link" to="/about/">About us</g-link>
               </li>
               <li class="nav-item u-header__nav-item">
                 <a class="nav-link u-header__nav-link" href="javascript:;">Supporters</a>

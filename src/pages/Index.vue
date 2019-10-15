@@ -134,7 +134,7 @@
 
   export default {
     metaInfo: {
-      title: 'Hello, world!'
+      title: "DevOpsLibrary - We're glad you found yourself here!"
     },
     components: {
       HeroSection,
