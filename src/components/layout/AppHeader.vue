@@ -18,12 +18,6 @@
               </li>
               <!-- End Home -->
 
-              <!-- Blog -->
-              <li class="nav-item">
-                <g-link class="nav-link u-header__nav-link" to="/blog/">Blog</g-link>
-              </li>
-              <!-- End Blog -->
-
               <!-- Videos -->
               <li class="nav-item"
                   @mouseover="videosHover = true"
@@ -99,7 +93,7 @@
 
               <!-- Contact -->
               <li class="nav-item u-header__nav-item">
-                <g-link class="nav-link u-header__nav-link" to="/about/">About us</g-link>
+                <g-link class="nav-link u-header__nav-link" to="/about/">About Us</g-link>
               </li>
               <li class="nav-item u-header__nav-item">
                 <g-link class="nav-link u-header__nav-link" to="/supporters/">Supporters</g-link>
