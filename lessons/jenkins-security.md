@@ -6,20 +6,17 @@ category: Jenkins
 permalink: lessons/jenkins-security
 excerpt: "Authentication, Authorization, and RBAC!"
 weight: 14
-image: 'JenkinSecurity2.png'
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: jenkins-security.png
 
 ---
 `youtube:https://youtu.be/1EUcbsychVc`
 
-1. Table of Contents
-{:title="Table of Contents"}
-{:toc}
+## Table of Contents
 
 Cloud Config File Downloads
 ---------------------------
-* [Jenkins Master01](https://www.devopslibrary.com/scripts/master01.yaml)
+* [Jenkins Master01](/scripts/master01.yaml)
 
 Introduction
 ------------
@@ -30,20 +27,9 @@ how to set up different types of  [security realms](https://wiki.jenkins-ci.org/
 using AD for authentication, and even how to use the Jenkins Role-based access
 plugin!
 
-Before we begin though, we'd like to give a quick shout out to
-[Hired.com](hired.com/devopslibrary) for being kind enough to sponsor our
-Jenkins course. If you aren’t familiar with Hired, it’s a great company that
-completely reverses the traditional job search, by having companies apply to
-you, instead of you always doing the tedious work of applying.
-
-Thousands of companies look to Hired to connect with the best of the best in our
-field, like you! OH.  And if you do end up signing up through our personal link,
-and landing a new job, Hired will give you a 2k bonus for being a loyal
-supporter of the DevOps library!
-
 3 A's of Security
 -----------------
-![3As](/images/JenkinSecurity2.png)
+![3As](/assets/img/lessons/JenkinSecurity2.png)
 
 Alright, let's begin by talking about the three "A's" of security:
 **authentication**, **authorization**, and **auditing**.
@@ -64,7 +50,7 @@ a Jenkins master, then head to "Manage Jenkins", followed by "Configure Global
 Security".  Alright, first, we'll want to enable security, so go ahead and check
 the box if it isn't already.
 
-![Security Realm](/images/realm.png)
+![Security Realm](/assets/img/lessons/realm.png)
 
 Next, we need to choose a security realm, which
 is used for the authentication step, so verifying the user, their password, and
@@ -154,7 +140,7 @@ Once there, open up Active Directory and add a QA user, we'll name ours
 QAUser01.  Next, we need to create a security group, let's go with Jenkins-QA.
 Now add QAUser01 to the Jenkins-QA group, then switch back to Jenkins.
 
-![Groups](/images/groups.png)
+![Groups](/assets/img/lessons/groups.png)
 
 Alright, let's log out and try logging back in with our QAUser01 account.
 Oops!  While we were able to authenticate ok, our QA User isn't authorized to
@@ -210,8 +196,3 @@ them and want to help support us, visit patreon.com/devopslibrary, we’ll even
 list you on our high scores at the end of each video. Thanks again, we'll see
 you again soon!
 
-Thanks for Watching!
---------------------
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).
-
-{% include subscribe.html %}

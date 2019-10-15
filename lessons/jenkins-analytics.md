@@ -13,9 +13,7 @@ coverart: jenkinscourse.png
 ---
 `youtube:https://youtu.be/NP8FNlmWgDg`
 
-1. Table of Contents
-{:title="Table of Contents"}
-{:toc}
+## Table of Contents
 
 Cloud Config File Downloads
 ---------------------------
@@ -33,16 +31,6 @@ be necessary for smaller environments, Jenkins analytics is awesome once you
 start trying to scale.  It'll help you answer questions such as "Why is my
 Jenkins master running slowly?" or "How fast are our jobs running?".  It's
 also pretty easy to configure.
-
-Before we get started, though, we want to give a quick shout out to
-[Hired.com](http://www.hired.com/devopslibrary) for being kind enough to sponsor
-our Jenkins course. If you aren’t familiar with [Hired.com](http://www.hired.com/devopslibrary), it’s a great company that
-completely reverses the traditional job search, by having companies apply to
-you, instead of you always doing the tedious work of applying.  Thousands of
-companies look to [Hired.com](http://www.hired.com/devopslibrary) to connect
-with the best of the best in our field, like you!  OH.  And if you do end up
-signing up through our personal link, and landing a new job, [Hired.com](http://www.hired.com/devopslibrary) will give you a 2k bonus for
-being a loyal supporter of the DevOps Library!
 
 Getting Started
 ---------------
@@ -106,7 +94,7 @@ finally finished setting up Jenkins analytics.  Now go ahead and kick off some
 jobs to generate some data.  Once the jobs finish running, switch to the CJOC
 and click the "Build Analytics" tab.
 
-![slowjob](/images/slowjob.png)
+![slowjob](/assets/img/lessons/slowjob.png)
 
 At this point, feel free to wander around and see what information might be
 useful for your team.  Let's go through a few examples to get you started.  What
@@ -120,32 +108,10 @@ easily see how much CPU, memory, and executors are in use on each master.
 Pretty cool huh?  Well, that's it for our lesson on Jenkins Analytics, great
 job following along.  If you'd like to make more advanced dashboards, you can
 use the Analytics Dashboard creator to make pretty much anything you'd like; it
-just takes some experience with Kibana.  We'd like to give another shout out to
-Hired for sponsoring this course.  If you're into DevOps, there's a pretty good
-chance you've had to deal with pushy recruiters and countless emails, as well as
-spent many hours searching for DevOps opportunities.
-
-The reason we love using Hired is that it completely reverses this situation
-and puts the power back in your hands, by having companies send you interview
-requests that you can choose to pursue. (They even come with upfront salary and
-equity!)
-
-By having you fill out information that is specific to what you’re looking for
-and your individual strengths and talents, it ensures that the only companies
-you'll hear from will be a great fit for you.  Plus, Hired is entirely free,
-and they’ll even give you a $2,000 bonus after you land a job, using our DevOps
-library link!
-
-We highly recommend giving them a shot, they do a fantastic job, especially for
-the DevOps community.
+just takes some experience with Kibana.
 
 Thanks again for watching today!  If you like our videos, please subscribe to
 our Youtube channel!  If you love them and want to help support us, visit
 patreon.com/devopslibrary, we’ll even list you on our high scores at the
 end of each video.  Thanks again, see you again soon!
 
-Thanks for Watching!
---------------------
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).
-
-{% include subscribe.html %}

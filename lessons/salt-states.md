@@ -7,7 +7,7 @@ permalink: lessons/salt-states
 excerpt: "The core of the Salt State system is the SLS, or Salt State file. The SLS is a representation of the state in which a system should be in, and is set up to contain this data in a simple format."
 weight: 7
 difficulty: medium
-coverart: jenkinscourse.png
+coverart: saltstack.jpg
 
 ---
 `youtube:https://youtu.be/AsvVp-ldT2Q`
@@ -26,11 +26,11 @@ First, we're going to talk about Salt States.  If you remember from before, we w
 
 But what if we want to write a script that does multiple things, or ensure that a bunch of packages are installed?  We just need to create a Salt State file.  To do so, log into the master and go to /srv/salt.  If that directory doesn't exist, create it, then create a file named apache.sls.  All Salt State files have the extension SLS, and are typically in YAML format.  Now in the file, type:
 
-{% highlight yaml %}
+```yaml
 apache2:
   pkg:
     - installed
-{% endhighlight %}
+```
 
 What this file is saying, is that anytime it is called by Salt, ensure that Apache2 is installed.  Go ahead and save the file, now run the following command:
 `salt '*' state.sls apache`
@@ -59,14 +59,14 @@ Create a second folder under /srv/salt named bashrc.  Now copy the .bashrc file 
 
 Notice we left the period off intentionally, that way it doesn't hide the file by default.  Now create a new file under /srv/salt/bashrc named init.sls.  We're just going to add a few lines to ensure that the .bashrc file is managed on our minions.
 
-{% highlight yaml %}
+```yaml
 /root/.bashrc
   file.managed:
     - user: root
     - group: root
     - mode: 0644
     - source: salt://bashrc/bashrc
-{% endhighlight %}
+```
 
 Now open up /srv/salt/bashrc/bashrc.
 
@@ -77,13 +77,13 @@ High States
 Salt by default looks for a file named top.sls under /srv/salt.  Let's create that file now.
 
 
-~~~
+```yaml
 base:
   '*':
     - bashrc
   'prodminion':
     - apache
-~~~
+```
 
 Now run `salt '*' state.highstate`
 
@@ -95,10 +95,10 @@ Scheduling Highstate
 --------------------
 For one final trick, hop on one of our minions, then run `crontab -e`.  We're going to add two lines to the crontab file:
 
-~~~
+```yaml
 @reboot salt-call state.highstate
 00 00 * * * salt-call state.highstate
-~~~
+```
 
 Conclusion
 ----------

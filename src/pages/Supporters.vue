@@ -151,7 +151,10 @@
 
 <script>
   export default {
-    name: "Supporters.vue"
+    name: "Supporters.vue",
+    metaInfo: {
+      title: 'Supporters'
+    }
   }
 </script>
 

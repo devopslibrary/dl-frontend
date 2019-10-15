@@ -18,9 +18,9 @@ Welcome back!  This is Samantha with the DevOps Library, we’re glad you found 
 
 Thank you to our supporters!
 ----------------------------
-Before we get started though, we’d like to give a quick shout out to everyone supporting us on Patreon, thank you so much, we really couldn’t do it without your help!  We’ve decided to add a high scores list to the end of each episode, and for anyone else who’d like to donate, just visit [patreon.com/devopslibrary](http://patreon.com/devopslibrary/).  
-
-Secondly, thank you to [Datadog](http://dtdg.co/devops-library) as well for sponsoring this video!  If you haven’t tried them out before, please take a few minutes and visit [dtdg.co/devops-library](http://dtdg.co/devops-library), they have some really fantastic monitoring tools.  
+Before we get started though, we’d like to give a quick shout out to everyone supporting us on Patreon, thank you so 
+much, we really couldn’t do it without your help!  We’ve decided to add a high scores list to the end of each episode, 
+and for anyone else who’d like to donate, just visit [patreon.com/devopslibrary](http://patreon.com/devopslibrary/).  
 
 Lesson Overview
 -----------------
@@ -42,31 +42,31 @@ Well we’re almost ready to create our deployment job, but first we have a few 
 
 SSH into the Jenkins master, then run:
 
-{% highlight bash %}
+```bash
 sudo -i
-{% endhighlight %}
+```
 
 to become root, followed by:
 
-{% highlight bash %}
+```bash
 apt-get install git -y
-{% endhighlight %}
+```
 
 Optional Steps
 --------------
 If you want to follow along exactly with our tutorial, you can run:
 
-{% highlight bash %}
+```bash
 apt-get install apache2 -y
 chown Jenkins /var/www/html –Rf
-{% endhighlight %}
+```
 
 Then, use visudo to add the following:
 
-{% highlight bash %}
+```bash
 Defaults:jenkins !requiretty,!lecture
 jenkins ALL=NOPASSWD:/etc/init.d/apache2
-{% endhighlight %}
+```
 
 Then go ahead and save and exit.
 
@@ -76,11 +76,11 @@ Adding Github to Known Hosts
 ------------------------
 Alright.  Once that finishes, go to your Github repository and copy the clone URL.  Switch back to the terminal and run the following:
 
-{% highlight bash %}
+```bash
 su jenkins
 cd ~
 git clone FOLLOWED by the clone URL
-{% endhighlight %}
+```
 
 You should see a message come up that says the authenticity of the host can’t be established, which is exactly why we’re doing this.  Type Yes, and Github will be added to the list of known hosts.  
 
@@ -92,17 +92,17 @@ We do have one last thing that we need to do on the console before we switch bac
 
 To do so, run:
 
-{% highlight bash %}
+```bash
 ssh-keygen -t rsa -b 4096 -C "followed by your email address"
-{% endhighlight %}
+```
 
 It will prompt you a few times, but just hit enter and accept the defaults.  Now let’s cat our public key so we can copy it to Github.  
 
 Type:
 
-{% highlight bash %}
+```bash
 cat ~/.ssh/id_rsa.pub
-{% endhighlight %}
+```
 
 Perfect, now copy the ENTIRE thing to your clipboard.  Now switch back to Github.  
 
@@ -120,10 +120,10 @@ Now scroll down to **“Build”**, hit **“Add Build Step”**, and select **�
 
 For the command, type the following:
 
-{% highlight bash %}
+```bash
 cp * /var/www/html/ -rf
 sudo /etc/init.d/apache2 restart
-{% endhighlight %}
+```
 
 That’s it!  Go ahead and save the job, then on the next page hit **“Build Now”**!  Once the job starts, click it, then click **"Console Output"**.  
 

@@ -1,0 +1,13 @@
+#cloud-config
+hostname: cjoc
+fqdn: cjoc.devopslibrary.com
+manage_etc_hosts: true
+runcmd:
+  - add-apt-repository ppa:webupd8team/java -y
+  - echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+  - echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+  - wget -q -O - http://nectar-downloads.cloudbees.com/jenkins-operations-center/1.625/debian/cloudbees.com.key | sudo apt-key add -
+  - echo deb http://nectar-downloads.cloudbees.com/jenkins-operations-center/1.625/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins-oc.list
+  - apt-get update
+  - apt-get install oracle-java8-installer -y
+  - apt-get install jenkins-oc -y

@@ -83,7 +83,8 @@ We need to edit the PAM mount configuration.  To do so, you could just edit it w
 
 /etc/security/pam_mount.conf.xml, but we’ll make it easier on you.  Run the following block of code to fill out the configuration, replacing dc01.devopslibrary.com with the name of your fileserver, and the mountpoint will need to be “home local your domainname”.  We’ve pasted the block into this video’s summary, that way you can copy and paste it instead of typing it out.  It’s extremely important that you make the configuration identical to this, unless you really know what you’re doing.  The first part of it is just saying what volume to mount, and we tell it to use our domain user credentials to mount it.  The sec=krb5i part is essential for mounting Windows shares correctly, and the MK mountpoint line automatically un mounts the share when you logoff.
 
-```cat >/etc/security/pam_mount.conf.xml <<EOL
+```bash
+cat >/etc/security/pam_mount.conf.xml <<EOL
 <pam_mount>
 <volume fstype=”cifs” server=”dc01.devopslibrary.com”
 path=”UserProfiles” mountpoint=”/home/local/DEVOPSLIBRARY”
@@ -94,6 +95,7 @@ options=”sec=krb5i,user=%(DOMAIN_USER)@%(DOMAIN_NAME),uid=%(USERUID),gid=%(USE
 </pam_mount>
 EOL
 ```
+
 Alright, we’re almost finished.  If you were to login right now, as long as a folder matching your username is present under the UserProfiles share, your home directory will mount successfully.  However, we don’t want to have to set up each user’s folder, so we’ll use a tool that’s part of PAM to do it.  Let’s edit:
 
 /etc/pam.d/common-session.  At the very end of this file, add the following line:
@@ -104,10 +106,11 @@ What this line does it make it so that the pam_mkhomedir script will automatical
 
 If you’re interested in seeing the skeleton folder in action, run the following two lines:
 
+```bash
 sed -i ‘/#force_color_prompt=yes/c\force_color_prompt=yes’ /root/.bashrc
 
 cp /root/.bashrc /etc/skel/.profile # Skeleton
-
+```
 This will copy the root bashRC file as the default profile file for new users, and as an added bonus we’ve enabled colored prompts, because everything looks better in color.
 
 Well, it’s finally time to see if our hard work paid off.  Go ahead and log off and back on, using a domain account that’s never logged into our Linux VM before.  You should see it automatically create a new folder in our file share for the user, and look, our prompt has color!  Any file we add now to our home directory will be immediately available to any other Linux VMs that we tie in to AD.  If we try to access the files of another user you’ll see that we can’t, unless we’re a domain admin.

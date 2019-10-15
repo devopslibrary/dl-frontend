@@ -7,7 +7,7 @@ permalink: lessons/salted-chocolatey-windows
 excerpt: "Today we're going to talk about Salt, Window, and Chocolatey all in one episode!  If you're unfamiliar with Saltstack, you may want to watch our earlier"
 weight: 8
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: saltstack.jpg
 
 ---
 `youtube:https://youtu.be/WYxXUQCTVWw`
@@ -45,7 +45,8 @@ You can do that with a ton of languages by the way, pretty much any shell that y
 
 Chocolatey
 ----------
-Well that was all easy, let’s try adding a little Chocolatey to the mix.  Chocolatey is to Windows what Apt-Get is to Ubuntu.  It’s a wonderful package manager that makes installing new software on windows extremely easy.  It’s also extremely easy to install, and combines really well with configuration management tools.  Let’s go ahead and install it now through Salt.
+Well that was all easy, let’s try adding a little Chocolatey to the mix.  Chocolatey is to Windows what Apt-Get is to 
+Ubuntu.  It’s a wonderful package manager that makes installing new software on windows extremely easy.  It’s also extremely easy to install, and combines really well with configuration management tools.  Let’s go ahead and install it now through Salt.
 
 First, let’s visit [Chocolatey.org](http://www.chocolatey.org) to find the install command.  Next, let’s use salt to run it in Powershell on our Windows minion.
 

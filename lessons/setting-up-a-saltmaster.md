@@ -7,7 +7,7 @@ permalink: lessons/setting-up-a-saltmaster
 excerpt: "In this episode, we're going to go over how to set up a Salt Master."
 weight: 2
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: saltstack.jpg
 
 ---
 `youtube:https://youtu.be/Fl6hXk-jpUM`

@@ -1,0 +1,37 @@
+#cloud-config
+hostname: jenkins
+fqdn: jenkins.devopslibrary.com
+manage_etc_hosts: true
+runcmd:
+  - add-apt-repository ppa:webupd8team/java -y
+  - apt-get update
+  - echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+  - echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+  - apt-get install oracle-java8-installer -y
+  - wget http://pkg.jenkins-ci.org/debian-stable/binary/jenkins_1.625.2_all.deb
+  - apt-get install daemon git -y
+  - dpkg -i jenkins_1.625.2_all.deb
+  - service jenkins start
+  - until [ $(curl -o /dev/null --silent --head --write-out '%{http_code}\n' http://127.0.0.1:8080) -eq 200 ]; do echo waiting; sleep 2; done
+  - iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+  - echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
+  - echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
+  - apt-get install iptables-persistent -y
+  - wget http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar
+  - java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin ec2 build-pipeline-plugin docker-build-publish cloudbees-folder copyartifact credentials disk-usage docker-plugin email-ext create-fingerprint git ircbot junit jabber matrix-project nodelabelparameter parameterized-trigger workflow-aggregator promoted-builds radiatorviewplugin sms script-security skype-notifier
+  - java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin $(java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ list-plugins | grep ')$' | cut -f 1 -d ' ' | sed ':a;N;$!ba;s/\n/ /g')
+  - java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ safe-restart
+  - until [ $(curl -o /dev/null --silent --head --write-out '%{http_code}\n' http://127.0.0.1:8080) -eq 200 ]; do echo waiting; sleep 2; done
+  - echo 'import jenkins.model.*' > /tmp/usercreation.groovy
+  - echo 'import hudson.security.*' >> /tmp/usercreation.groovy
+  - echo 'import hudson.tasks.Mailer' >> /tmp/usercreation.groovy
+  - echo 'def instance = Jenkins.getInstance()' >> /tmp/usercreation.groovy
+  - echo 'def hudsonRealm = new HudsonPrivateSecurityRealm(false)' >> /tmp/usercreation.groovy
+  - echo 'instance.setSecurityRealm(hudsonRealm)' >> /tmp/usercreation.groovy
+  - echo 'hudsonRealm.createAccount("admin", "password")' >> /tmp/usercreation.groovy
+  - echo '' >> /tmp/usercreation.groovy
+  - echo 'def strategy = new GlobalMatrixAuthorizationStrategy()' >> /tmp/usercreation.groovy
+  - echo 'strategy.add(Jenkins.ADMINISTER, "admin")' >> /tmp/usercreation.groovy
+  - echo 'instance.setAuthorizationStrategy(strategy)' >> /tmp/usercreation.groovy
+  - echo 'instance.save()' >> /tmp/usercreation.groovy
+  - java -jar jenkins-cli.jar -s http://localhost:8080/ groovy /tmp/usercreation.groovy

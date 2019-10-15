@@ -29,20 +29,6 @@ or JSON files to generate Jenkins jobs.  This has several advantages; Jenkins
 configuration stored as code, auditable version controlled jobs, and reusable
 job templates and macros.  It's also very easy to use!
 
-Thank you Hired.com
--------------------
-Before we begin, we'd like to give a quick shout out to
-[Hired.com](http://www.hired.com/devopslibrary) for being kind enough to sponsor
-our Jenkins course. If you aren’t familiar with
-[Hired](http://www.hired.com/devopslibrary), it’s a really cool company that
-completely reverses the traditional job search, by having companies apply to
-you, instead of you always doing the tedious work of applying.
-
-Thousands of companies look to Hired to connect with the best of the best in our
-field, like you!  OH and if you do end up signing up through our own personal
-link, and landing a new job, Hired will give you a 2k bonus for being a loyal
-supporter of the DevOps library!  
-
 Getting Started
 ---------------
 Alright, let’s go ahead and get started with **Jenkins Job builder**!
@@ -256,7 +242,3 @@ Thanks again for watching today!  If you like our videos, please subscribe to
 our YouTube channel!  If you love them and want to help support us, visit
 patreon.com/devopslibrary, we’ll even list you on our high scores at the end of
 each video.  Thanks again, see you again soon!
-
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).  
-
-{% include subscribe.html %}

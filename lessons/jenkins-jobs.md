@@ -79,4 +79,5 @@ Wow, that took a while, but we finally have our first job!  Go ahead and click �
 
 Conclusion
 ----------
-Behold!  There’s the output from our free space command!!!  You’ve done a great job so far!!  While our job is pretty simple, you should have a pretty good understanding of Jenkins jobs now!  Thank you so much for watching, we’ll see you again soon!
+Behold!  
+There’s the output from our free space command!!!  You’ve done a great job so far!!  While our job is pretty simple, you should have a pretty good understanding of Jenkins jobs now!  Thank you so much for watching, we’ll see you again soon!

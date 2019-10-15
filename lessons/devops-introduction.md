@@ -25,20 +25,6 @@ trying to scale.  We'll start out with the basics, but by the end of this
 course, you'll be ready to deploy, monitor, and scale applications in the real
 world.
 
-Thank you Datadog
------------------
-Before we begin, we'd like to give a quick shout out to
-[Datadog](http://dtdg.co/devops-library) for sponsoring this video.  With their
-help, we're able to keep our videos free, and we even use them personally for
-our servers.  By using [Datadog's](http://dtdg.co/devops-library) cloud-scale
-monitoring, you can easily track your dynamic infrastructure.  
-
-If you haven't tried them out, visit
-[dtdg.co/devops-library](http://dtdg.co/devops-library), you'll even get a 14
-day free trial!
-
-Alright, back to our lesson
-
 Day 1
 -----
 You’ve spent most of the day so far just getting to know the team.  Kevin, one
@@ -52,7 +38,7 @@ Suddenly everything changes.  Your boss Steve, begins shouting across the room
 
 > "OMG CHECK the homepage, CHECK the homepage!".
 
-![Error](/images/408.jpg)
+![Error](/assets/img/lessons/408.jpg)
 
 Before you've even opened up your browser, 3 people have already screamed
 "408!!!".  Seconds later the roar has died down as everyone scrambles to figure
@@ -124,13 +110,15 @@ Unsure of what to say, you ask what to do next.
 After SSHing into both servers, Kevin has you pull up an [Evernote](http://www.evernote.com/l/AnvdBaIF3MpERJT4bOdzuQA6ZIC_ZHn2AJA/) with each
 of the steps listed.  
 
-> Alright, so when you're doing these steps, make sure
-> you're running as root.  I also like to do an apt-get update before doing
-> anything else.  Now install MySQL.  Type:
+Alright, so when you're doing these steps, make sure
+you're running as root.  I also like to do an apt-get update before doing
+anything else.  Now install MySQL.  Type:
 
-```
+
+```bash
 apt-get install mysql-server
 ```
+
 
 Before you can continue, MySQL pops up asking for a password.
 
@@ -145,7 +133,7 @@ you to type in "**devpass**".
 
 You nod, then Kevin types:
 
-```
+```bash
 mysql -uroot -pdevpass -e "create database devopsdb"
 ```
 
@@ -154,7 +142,7 @@ mysql -uroot -pdevpass -e "create database devopsdb"
 
 *Kevin SCPs the SQL script to the server*, then runs:
 
-```
+```bash
 mysql -uroot -pdevpass devopsdb < devops-demo-1.0.sql
 ```
 
@@ -208,7 +196,7 @@ Thankfully, Max doesn't look too busy so you ask him for help.
 > "Ah, make sure you use DEV, that way the app doesn't point to any of our
 > production stuff.  That should be it, refresh the page to make sure"
 
-![Overview](/images/overview.png)
+![Overview](/assets/img/lessons/overview.png)
 
 Success!  Thanks to Max and Kevin's help, you've just learned how to set up the
 app!  While we know setting the app up by hand was painful, don't worry, in the
@@ -217,11 +205,6 @@ different from what we normally do, please let us know in the comments if you
 like it or would prefer us to focus on our normal videos.
 
 If you have a real world problem you'd like us to address in the story, let us
-know and we'll do our best to add it!  If you like our videos, please subscribe
-to our [YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1)!  
-
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).  
-
-{% include subscribe.html %}
+know and we'll do our best to add it!
 
 Thank again and see you soon.

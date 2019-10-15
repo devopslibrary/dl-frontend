@@ -7,7 +7,7 @@ permalink: lessons/saltstack-beginner-tutorial
 excerpt: "By the end of this lesson, we’ll have a Salt master running as well as our first minion."
 weight: 1
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: saltstack.jpg
 
 ---
 `youtube:https://youtu.be/TQjE2I8CrzQ`
@@ -50,9 +50,9 @@ If you look at the command, the asterisk means run this on all servers reporting
 Next run `salt '*nion’ cmd.run 'ifconfig'`.  This is going to run ifconfig on the minion, because it’s the only server that matches the target string ```*nion```.
 
 You can use any type of wildcard that you want, now let’s run one last command
-{% highlight bash %}
+```bash
 salt * cmd.run 'df -h'
-{% endhighlight %}
+```
 
 Notice we now can see the free space on both servers, as salt ran df –h on both servers.  
 

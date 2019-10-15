@@ -7,7 +7,7 @@ permalink: lessons/getting-started-with-vagrant
 excerpt: "We’re going to bring up our first Vagrant Machine, and explain the basics of editing a VagrantFile."
 weight: 3
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: vagrant.png
 
 ---
 `youtube:https://www.youtube.com/watch?v=QfyBWmzCdc0`
@@ -21,9 +21,9 @@ Alright let’s get started.  First we need a place to store our vagrant machine
 
 Now run:
 
-~~~
+```bash
 vagrant init Ubuntu/trusty64
-~~~
+```
 
 All this command does is create a VagrantFile within the current directory, with the Vagrant Box configured to use Ubuntu 14.04.  You’re now ready to run ```vagrant up```. Go ahead and do that now.  Vagrant will now automatically download the Ubuntu "box", configure a VM, and bring it up for you.  
 

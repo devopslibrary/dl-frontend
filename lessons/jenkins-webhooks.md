@@ -21,7 +21,7 @@ Quickstart
 Also, if you don’t have a Jenkins server set up yet and would like to get up and going quickly, we do have a cloud-config file you can download below.  
 Just use that on an Ubuntu 14.04 instance on Amazon, and you’ll have a Jenkins server ready within minutes.  Please note, we do have authentication enabled as part of the script, to login just use "admin" followed by "password" for the password.
 
-[Jenkins Cloud Config Download](http://www.devopslibrary.com/jenkinscloud.txt)
+[Jenkins Cloud Config Download](/scripts/jenkinscloud.txt)
 
 Create Test Job
 ---------------
@@ -35,7 +35,7 @@ Sample Test Script
 ------------------
 Now at this point, in real life you’d probably be using a tool like *Selenium*, *CasperJS*, or any of the millions of other testing tools.  For this lesson though, we’re going to make an extremely simple test.  
 
-{% highlight bash %}
+```bash
 if grep -q error test.html; then
     echo Error Found
     exit 1
@@ -43,7 +43,7 @@ else
     echo No errors!
     exit 0
 fi
-{% endhighlight %}
+```
 
 We went ahead and made one, which you can copy and paste if you’d like to follow along, but feel free to make a test that makes sense for your environment.
 
@@ -51,9 +51,9 @@ Ours simply checks a file named test.html within our repository, and reports suc
 
 This is the latest version of the file in our repository, and as you can tell it’s currently perfect, with no errors!
 
-{% highlight html %}
+```bash
 <sample>I don't contain any issues...yet.</sample>
-{% endhighlight %}
+```
 
 Notifications
 -------------

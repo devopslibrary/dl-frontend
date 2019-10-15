@@ -7,7 +7,7 @@ permalink: lessons/adding-a-salt-minion-linux
 excerpt: "Learn how to add a Linux minion to our Salt Master!"
 weight: 3
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: saltstack.jpg
 
 ---
 `youtube:https://youtu.be/xqCJkF0lzAU`

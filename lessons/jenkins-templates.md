@@ -13,9 +13,7 @@ coverart: jenkinscourse.png
 ---
 `youtube:https://youtu.be/26th8achUYw`
 
-1. Table of Contents
-{:title="Table of Contents"}
-{:toc}
+## Table of Contents
 
 Cloud Config File Downloads
 ---------------------------
@@ -39,9 +37,7 @@ excels if your goal is to make it easier to create jobs.  You can also
 look at it as a way to implement new functionality that would typically require
 writing a plugin, but without the need to do any actual coding.
 
-Don't worry, by the end of this lesson you'll know how to do that and more, but
-first we'd like to give a quick shout out to [Hired.com](hired.com/devopslibrary)
-for being kind enough to sponsor our Jenkins course.
+Don't worry, by the end of this lesson you'll know how to do that and more.
 
 Creating a Template
 ----------------------
@@ -69,7 +65,7 @@ our builder works.  If you're comfortable with groovy, you can do just
 about anything you'd like here, but for our example we'll go with a generated
 shell script.
 
-![Attribute](/images/frame.png)
+![Attribute](/assets/img/lessons/frame.png)
 
 Type: wget, followed by a dollar sign and the name of our attribute, URL.
 Since the script section is actually a groovy template, Jenkins will populate
@@ -98,8 +94,3 @@ best practices between jobs.
 
 Hopefully this lesson has helped you understand when and why the template plugin
 can be helpful, thank you so much for watching!
-
---------------------
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).
-
-{% include subscribe.html %}

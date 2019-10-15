@@ -6,7 +6,7 @@ category: Docker
 permalink: lessons/docker-beginner-tutorial
 excerpt: "Docker is one of those things that people tend to get a pretty strong opinion one way or another very quickly, but we promise you, that if you use Linux at all in your organization, you’ll probably end up eventually loving it. Even if you’re a windows shop you might end up loving it too."
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: docker.png
 
 ---
 `youtube:https://youtu.be/cxveLKw6BVw`
@@ -79,4 +79,7 @@ docker run –I –t apacheimage /bin/bash
 
 Conclusion
 ----------
-This is exactly like the command we’ve been running to create our Ubuntu containers, but this time, our container already has apache installed.  While we’ve only shown you a couple of Docker’s features, I hope that’s enough to get you started.  There is so much more that you can do with it, and we’ll be covering those features soon.  Thanks again for watching, please like our video if you enjoyed it!
+This is exactly like the command we’ve been running to create our Ubuntu containers, but this time, our container 
+already has apache installed.  While we’ve only shown you a couple of Docker’s features, I hope that’s enough to get 
+you started.  There is so much more that you can do with it, and we’ll be covering those features soon.  Thanks again 
+for watching, please like our video if you enjoyed it!

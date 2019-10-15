@@ -6,7 +6,7 @@ category: ELK
 permalink: lessons/elk-stack-for-logging-tutorial
 excerpt: "ELK is an amazing open source logging system, and we'll show you how to set it up!"
 difficulty: medium
-coverart: jenkinscourse.png
+coverart: elk.png
 
 ---
 `youtube:https://youtu.be/2-Bzm25dLRQ`
@@ -27,11 +27,15 @@ Installation
 ------------
 Alright, let’s begin!  First, let’s begin by adding the apt key and repository for ElasticSearch.  Run:
 
-`wget -qO – https://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add –`
+```bash
+wget -qO – https://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add –`
+```
 
 Followed by:
 
-`sudo add-apt-repository “deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main”`
+```bash
+sudo add-apt-repository “deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main”`
+```
 
 Now we just need to call apt-get update.
 
@@ -39,33 +43,33 @@ ElasticSearch
 -------------
 Alright let’s install some packages, do:
 
-{% highlight bash %}
+```bash
 sudo apt-get update && sudo apt-get install default-jdk elasticsearch -y
-{% endhighlight %}
+```
 
 We’ll need to start ElasticSearch after it installs, to do that let’s just run:
 
-`service elasticsearch start`
+```service elasticsearch start```
 
 Logstash
 --------
 Now we need to install Logstash.  The best way to install it is actually to grab the latest debian packages, so let’s do:
 
-{% highlight bash %}
+```bash
 wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb
-{% endhighlight %}
+```
 
 Go ahead and install that using:
 
-`dpkg -i logstash_1.4.2-1-2c0f5a1_all.deb`
+```dpkg -i logstash_1.4.2-1-2c0f5a1_all.deb```
 
 We also want the contributed community plugins for Logstash as well, so one more long wget.  This time:
 
-`wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash-contrib_1.4.2-1-efd53ef_all.deb`
+```wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash-contrib_1.4.2-1-efd53ef_all.deb```
 
 Alright, let’s install that as well.
 
-`dpkg -i logstash-contrib_1.4.2-1-efd53ef_all.deb`
+```dpkg -i logstash-contrib_1.4.2-1-efd53ef_all.deb```
 
 We don’t need to start Logstash quite yet as we still need to make a configuration file for it.  Let’s go ahead and do that now.  Head to /etc/logstash/conf.d
 
@@ -77,7 +81,7 @@ Now just follow along.  Logstash configurations generally consists of some input
 
 Alright let’s add one final input, type:
 
-~~~
+```ruby
 input {
   stdin {}
   file {
@@ -86,7 +90,7 @@ input {
     start_position => beginning
   }
 }
-~~~
+```
 
 This input will automatically pipe anything that goes to our system logs, like our syslog for example, straight to our output.  Also notice that we specified that we’d like our start position to be at the beginning.  Normally, Logstash starts out by tailing any files that we specify, but because we want some extra data to play around with, we’re starting at the beginning, so that Logstash parses everything that’s already in our var logs folder.
 
@@ -96,7 +100,7 @@ Setting up Outputs
 ------------------
 Type:
 
-{% highlight ruby %}
+```ruby
 output {
   stdout {
     codec => rubydebug
@@ -104,7 +108,7 @@ output {
   elasticsearch {
   }
 }
-{% endhighlight %}
+```
 
 This one just outputs everything Logstash receives to standard out when Logstash is ran in the Foreground.  For our second output, type elasticsearch, host goes to localhost then close your braces.  This second output dumps everything into elasticsearch, so that our logs have a place to stay.  Double check your file and make sure it looks like ours, then save it.
 

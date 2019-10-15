@@ -18,8 +18,7 @@ Welcome to the DevOps Library!  This is Samantha, and in this episode we’re
 going to the second half of the open source Jenkins plugins on the CCJPE.  
 Let’s go ahead and get started!
 
-* TOC
-{:toc}
+## Table of Contents
 
 IRC, Jabber, Skype, and Slack Plugins
 -------------------------------------
@@ -39,14 +38,14 @@ Next, we just need to provide our team domain, an integration token generated
 from the Slack website, the channel we’d like Jenkins to post to, and the URL of
 our build server.  
 
-![Slack Configuration](/images/slack1.png)
+![Slack Configuration](/assets/img/lessons/slack1.png)
 
 Now let’s take a look at how to configure a job to send build notifications to
 Slack.  It’s very easy, the only thing we have to add is a post build action
 for *“Slack Notifications”*.  Let’s add that now, then specify what event’s we’d
 like to be notified about.
 
-![Slack Configuration 2](/images/slack2.png)
+![Slack Configuration 2](/assets/img/lessons/slack2.png)
 
 Done!  Let’s go ahead and run the job, we should see an alert in Slack almost
 immediately.  There we go!  While you won’t want to use this plugin for every
@@ -69,7 +68,7 @@ Let’s take a look at our JUnit demo job.  On the right, we can see how our tes
 have been trending, and we can even view individual test results by clicking on
 one of the builds.  
 
-![JUnit](/images/junit.png)
+![JUnit](/assets/img/lessons/junit.png)
 
 Another feature that the JUnit plugin adds is the ability for Jenkins to display
 yellow status balls, which are used to represent unstable builds.  An unstable
@@ -98,7 +97,7 @@ success or failure, but for this job we have 25 status balls, one for each build
 that Jenkins generated!  Let’s go ahead and click one of them, then view the
 console output… I’ll go with QA testing on Chrome.  
 
-![Matrix Plugin](/images/matrixplugin.png)
+![Matrix Plugin](/assets/img/lessons/matrixplugin.png)
 
 See?  We were able to try every possible combination of environment and browser
 all from a single job!!  Pretty neat huh?  
@@ -133,7 +132,7 @@ defaults and save the job.
 
 Now click **“Build with Parameters”**.  
 
-![NodeLabel Plugin](/images/nodelabel.png)
+![NodeLabel Plugin](/assets/img/lessons/nodelabel.png)
 
 There we go!  See?  Anyone that runs the job can now select which node to use
 for the build.  If you’re wondering when you might want to use this, imagine
@@ -159,7 +158,7 @@ job that requires the name an application in order to know which tests to run.
 By using the parameterized trigger plugin, we can automatically trigger the QA
 job at the end of the deployment job, with all of the parameters passed in.
 
-![Parameterized Trigger Plugin](/images/paramtrigger.png)
+![Parameterized Trigger Plugin](/assets/img/lessons/paramtrigger.png)
 
 Please NOTE!  On the Jenkins CCJPE exam, DON’T confuse the “Parameterized
 Trigger Plugin” with the “[Parameterized Remote Trigger Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Remote+Trigger+Plugin)”.  
@@ -185,7 +184,7 @@ even manual promotion.  You can even have multiple levels of promotion,
 such as requiring a build to be promoted by a Dev, QA, and DBA before it can be
 deployed to production.
 
-![Promoted Builds Plugin](/images/promotedbuild.png)
+![Promoted Builds Plugin](/assets/img/lessons/promotedbuild.png)
 
 For the exam don’t worry about knowing every detail about promoting builds,
 just remember that it’s useful for setting builds apart that have met additional
@@ -203,7 +202,7 @@ In our example environment, we do have two radiator views configured, let’s ta
 a look at them.  The first displays what you’ll see if no builds are failing,
 while we’ve added a failing job to the second view.  
 
-![Radiator Plugin](/images/radiator.png)
+![Radiator Plugin](/assets/img/lessons/radiator.png)
 
 As you can see, it’s VERY clear when something is having a problem, and that’s
 the benefit of using this plugin.
@@ -258,9 +257,6 @@ Conclusion
 Well we’ve finally finished covering all of the open source Jenkins plugins with
 the exception of the Pipeline plugin.  Don’t worry we’ll cover that soon, and
 great job so far following along, we know learning about plugins can get pretty
-boring.  Thanks as always for watching, if you like our videos please consider
-[subscribing to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or following [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).  
-
-{% include subscribe.html %}
+boring.
 
 Thanks again, we’ll see you again soon.

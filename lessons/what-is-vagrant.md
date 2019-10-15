@@ -7,7 +7,7 @@ permalink: lessons/what-is-vagrant
 excerpt: "Learn why we love Vagrant, and how to create reproducible development environments."
 weight: 1
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: vagrant.png
 
 ---
 `youtube:https://youtu.be/aUew6WauUsI`

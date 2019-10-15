@@ -38,4 +38,5 @@ Well that’s probably enough compliments for *Cloudbees*, let’s talk about th
 
 Conclusion
 ----------
-Sound like a lot?  Don’t worry, we’re going to cover everything you need to know!  If you love our videos, please please please consider supporting us on [Patreon](http://www.patreon.com/devopslibrary), even one dollar a month would help us tremendously if everyone does it!  Also, if you’d like to be notified about the latest news in the DevOps world and when our new videos are released, feel free to sign up for our [Newsletter](http://www.devopslibrary.com/newsletter), or subscribe to us on YouTube!  Thanks for watching, see you again soon!
+Sound like a lot?  Don’t worry, we’re going to cover everything you need to know!  If you love our videos, please 
+please please consider supporting us on [Patreon](http://www.patreon.com/devopslibrary), even one dollar a month would help us tremendously if everyone does it!  Also, if you’d like to be notified about the latest news in the DevOps world and when our new videos are released, feel free to sign up for our [Newsletter](http://www.devopslibrary.com/newsletter), or subscribe to us on YouTube!  Thanks for watching, see you again soon!

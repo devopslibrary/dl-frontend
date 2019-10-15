@@ -7,14 +7,14 @@ permalink: lessons/installing-vagrant
 excerpt: "Installing Vagrant is extremely easy, we'll show you how :)."
 weight: 2
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: vagrant.png
 
 ---
 `youtube:https://youtu.be/8-brcyUKHNo`
 
 Introduction
 ------------
-Welcome to the second episode in our Vagrant course.  Today we’re going to cover installation of Vagrant.
+Welcome to the second episode in our Vagrant course!  Today we’re going to cover installation of Vagrant.
 As we mentioned in our last video, Vagrant spins up fresh VMs for you, but those VMs must run on what Vagrant refers to as a “Provider”.  
 
 The provider could be anything from *VMware*, *HyperV*, *Docker*, *AWS* and more, but for most of our tutorials we’ll stick with the default of *Virtualbox*.  There are many advantages and disadvantages to each, but Virtualbox is freely available and runs on nearly every major operating system.  If you are interested in using a different provider, we’ll be covering them in a later episode.

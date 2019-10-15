@@ -21,7 +21,7 @@ going to take a look at the [Jenkins Pipeline plugin](https://wiki.jenkins-ci.or
 you to define an entire application life cycle as code.  In most cases, you'll
 want to use this plugin for implementing continuous delivery.
 
-![Pipeline](/images/pipeline.png)
+![Pipeline](/assets/img/lessons/pipeline.png)
 
 Benefits
 --------
@@ -70,7 +70,7 @@ While the pipeline is going to look the same either way, if you select
 advantage of storing the script in a "Jenkinsfile" is that you'll be able to
 version control your "Pipeline as Code".
 
-![Sample Jenkinsfile](/images/jenkinsfile.png)
+![Sample Jenkinsfile](/assets/img/lessons/jenkinsfile.png)
 
 For now, let's choose "Pipeline as Script", that way we don't have to worry
 about setting up a repository.
@@ -116,9 +116,5 @@ look is on the CloudBees blog, we highly recommend reading the articles by
 
 Thank you as always for watching!  If you like our videos, please subscribe
 to our YouTube channel!
-
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).  
-
-{% include subscribe.html %}
 
 Thank again and see you soon.

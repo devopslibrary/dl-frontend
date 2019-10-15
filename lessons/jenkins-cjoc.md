@@ -13,16 +13,14 @@ coverart: jenkinscourse.png
 ---
 `youtube:https://youtu.be/mxo_EDkyzlg`
 
-1. Table of Contents
-{:title="Table of Contents"}
-{:toc}
+## Table of Contents
 
 Cloud Config File Downloads
 ---------------------------
-* [CJOC Cloud Config](https://www.devopslibrary.com/scripts/cjoc.yaml)
-* [Jenkins Master01](https://www.devopslibrary.com/scripts/master01.yaml)
-* [Jenkins Master02](https://www.devopslibrary.com/scripts/master02.yaml)
-* [Jenkins Slave01](https://www.devopslibrary.com/scripts/slave01.yaml)
+* [CJOC Cloud Config](/scripts/cjoc.yaml)
+* [Jenkins Master01](/scripts/master01.yaml)
+* [Jenkins Master02](/scripts/master02.yaml)
+* [Jenkins Slave01](/scripts/slave01.yaml)
 
 Introduction
 ------------
@@ -34,17 +32,7 @@ build nodes between masters.  You can also enforce security compliance, manage
 update centers, setup single sign on, and monitor the everything all from the
 CJOC.  Sounds pretty cool huh?  It is, trust us!
 
-![API](/images/cjoc.png)
-
-Before we begin, we'd like to give a quick shout out to
-[Hired.com](http://www.hired.com/devopslibrary) for being kind enough to sponsor
-our Jenkins course. If you aren’t familiar with Hired, it’s a great company that
-completely reverses the traditional job search, by having companies apply to
-you, instead of you always doing the tedious work of applying.
-
-Thousands of companies look to Hired to connect with the best of the best in our
-field, like you!  OH.  And if you do end up signing up through our [personal  link](http://www.hired.com/devopslibrary), and landing a new job, Hired will give you a 2k bonus for being a loyal
-supporter of the DevOps Library!
+![API](/assets/img/lessons/cjoc.png)
 
 Terminology
 -----------
@@ -114,7 +102,7 @@ Nice job!!  That's all that we needed to do to setup CJOC. Now let's open up a
 web browser and go to the IP address of the VM, on port 8888.  You will need to
 sign up for a trial license if you don't have an enterprise license yet.
 
-![License](/images/license.png)
+![License](/assets/img/lessons/license.png)
 
 After licensing the server, we need to configure the Jenkins URL before doing
 anything else.  Go to "Manage Jenkins", followed by "Configure System".  You
@@ -128,8 +116,8 @@ Alright, we're finally ready to add some client masters.  If you already have
 some masters available feel free to use them, otherwise you can use our two
 cloud config files below to spin up some new ones.
 
-* [Jenkins Master01](https://www.devopslibrary.com/scripts/master01.yaml)
-* [Jenkins Master02](https://www.devopslibrary.com/scripts/master02.yaml)
+* [Jenkins Master01](/scripts/master01.yaml)
+* [Jenkins Master02](/scripts/master02.yaml)
 
 After the masters come up, we need to add them to Operations center.  On the
 JCOC web interface, select "New Item".  Then type in a name for the master, and
@@ -187,7 +175,7 @@ setup, and if you’ve already set up a slave before feel free to skip ahead.
 Basically we just follow the same steps that we'd normally do to set up a slave,
 but do it from the CJOC.
 
-[Jenkins Slave01 Cloud Config](https://www.devopslibrary.com/scripts/slave01.yaml)
+[Jenkins Slave01 Cloud Config](/scripts/slave01.yaml)
 
 Just like everything else so far, the first step is to go to “New Item”.  Next,
 name the agent, and select “Shared Slave” as the item type.  Alright, now that
@@ -279,9 +267,3 @@ Library link!
 
 We highly recommend giving them a shot, they do a fantastic job, especially
 for the DevOps community.
-
-Thanks for Watching!
---------------------
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).
-
-{% include subscribe.html %}

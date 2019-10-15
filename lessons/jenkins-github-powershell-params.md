@@ -14,7 +14,7 @@ coverart: jenkinscourse.png
 
 Introduction
 ------------
-Hello! This is Samantha with the DevOpsLibrary Episode 8, today we’ll talk about how to integrate Jenkins & Github for version control. Today we’re going to start off with a Jenkins master running on Ubuntu, with a Server 2012 R2 slave. If you’ve seen our earlier videos on Jenkins you should already have a pretty good grasp on how to create jobs, but today we’ll expand on how to tie them in with version control. Let’s go ahead and get started.
+Hello!  This is Samantha with the DevOpsLibrary Episode 8, today we’ll talk about how to integrate Jenkins & Github for version control. Today we’re going to start off with a Jenkins master running on Ubuntu, with a Server 2012 R2 slave. If you’ve seen our earlier videos on Jenkins you should already have a pretty good grasp on how to create jobs, but today we’ll expand on how to tie them in with version control. Let’s go ahead and get started.
 
 Installing Plugins
 ------------------

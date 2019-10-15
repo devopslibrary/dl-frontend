@@ -18,7 +18,7 @@ Welcome to the DevOps Library!  This is Samantha, and in this lesson we’re goi
 
 If you’d like to follow along with a preconfigured Jenkins master, we have an AWS cloud config file below with all of the plugins preinstalled.
 
-[Jenkins Cloud Config Download](http://www.devopslibrary.com/jenkinscloud.txt)
+[Jenkins Cloud Config Download](/scripts/jenkinscloud.txt)
 
 Alright, let’s go ahead and get started!
 

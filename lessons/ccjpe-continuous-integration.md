@@ -65,8 +65,4 @@ Conclusion
 ---------
 Thanks as always for watching, if you'd like to stay up to date on our videos feel free to subscribe to our channel below, or you can always follow our Twitter account "devopslibrary".
 
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).  
-
-{% include subscribe.html %}
-
 Thank again and see you soon.

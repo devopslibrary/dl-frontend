@@ -7,12 +7,10 @@ permalink: lessons/vagrant-provisioning
 excerpt: "Creating an entire environment all the way down to the application stack fully configured with Vagrant."
 weight: 4
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: vagrant.png
 
 ---
 `youtube:https://youtu.be/5tPykQsuMfE`
-
-[Download Example Code: https://github.com/devopslibrary/IntroductionToVagrant/tree/master/Vagrant%20Provisioning](https://github.com/devopslibrary/IntroductionToVagrant/tree/master/Vagrant%20Provisioning)
 
 Introduction
 ------------

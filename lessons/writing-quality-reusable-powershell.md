@@ -6,7 +6,7 @@ category: PowerShell
 permalink: lessons/writing-quality-reusable-powershell
 excerpt: "Today we're going to talk about writing high quality, reuseable PowerShell code.  We will start out by looking at a typical PowerShell script that we found"
 difficulty: easy
-coverart: jenkinscourse.png
+coverart: powershell.png
 
 ---
 `youtube:https://youtu.be/7jU15_7pPkY`
@@ -17,7 +17,7 @@ Today we're going to talk about writing high quality, reusable PowerShell code. 
 
 Let's get started.  Here we have a short typical PowerShell script we found on Technet named CheckFreeDiskSpace.ps1.  Before we examine it, let's just try to run it first.
 
-{% highlight powershell %}
+```powershell
 clear
 $cre = get-Credential # This user account should be Adminstrator
 $file = get-Content D:\PowerShell\computers.txt  # Replace it with your TXT file which contain Name of Computers
@@ -26,7 +26,7 @@ foreach ( $args in $file) {
 get-WmiObject win32_logicaldisk -Credential $cre -ComputerName $args -Filter "Drivetype=3"  |
 ft SystemName,DeviceID,VolumeName,@{Label="Total SIze";Expression={$_.Size / 1gb -as [int] }},@{Label="Free Size";Expression={$_.freespace / 1gb -as [int] }} -autosize
 }
-{% endhighlight %}
+```
 
 (***sigh***) It's asking for credentials, and can't find a file named computers.txt on our D drive.
 
@@ -102,7 +102,7 @@ See, it was worth it, look at how nice that looks!  Now when someone tries to us
 
 We still have quite a bit left to do however before we're finished though.  Let's try some of our new advanced parameter tricks.  First, let's make it so that our function can be used in the pipeline.  Why is it important to be able to pipe to our function?  Because right now, to use our command someone would have to type:
 
-`Get-DiskSpace –ServerName ‘Hostname'``
+```Get-DiskSpace –ServerName 'Hostname'```
 
 But they should also be able to use our command by typing:
 

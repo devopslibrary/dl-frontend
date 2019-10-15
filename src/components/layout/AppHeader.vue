@@ -56,7 +56,7 @@
                      style="min-width: 330px;">
                   <!-- Promo Item -->
                   <div class="u-header__promo-item">
-                    <a class="u-header__promo-link" href="./adde.html">
+                    <a class="u-header__promo-link" href="javascript:void(0)">
                       <div class="media align-items-center">
                         <img class="js-svg-injector u-header__promo-icon" src="/assets/img/adde.png" alt="SVG">
                         <div class="media-body">
@@ -73,7 +73,7 @@
 
                   <!-- Promo Item -->
                   <div class="u-header__promo-item">
-                    <a class="u-header__promo-link" href="./kondo.html">
+                    <a class="u-header__promo-link" href="javascript:void(0)">
                       <div class="media align-items-center">
                         <img class="js-svg-injector u-header__promo-icon" src="/assets/img/kondo.png" alt="SVG">
                         <div class="media-body">

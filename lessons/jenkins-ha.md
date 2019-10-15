@@ -13,9 +13,7 @@ coverart: jenkinscourse.png
 ---
 `youtube:https://youtu.be/zHavme2iaFA`
 
-1. Table of Contents
-{:title="Table of Contents"}
-{:toc}
+## Table of Contents
 
 Introduction
 ------------
@@ -27,16 +25,6 @@ on enterprise functionality.
 Additionally, we're going to set up Jenkins the RIGHT way, in full HA mode,
 with two masters sitting behind a load balancer.
 
-Before we begin, we'd like to give a quick shout out to
-[Hired.com](http://www.hired.com/devopslibrary) for being kind enough to sponsor
-our Jenkins course. If you aren’t familiar with Hired, it’s a great company that
-completely reverses the traditional job search, by having companies apply to
-you, instead of you always doing the tedious work of applying.
-
-Thousands of companies look to Hired to connect with the best of the best in our
-field, like you!  OH.  And if you do end up signing up through our [personal  link](http://www.hired.com/devopslibrary), and landing a new job, Hired will give you a 2k bonus for being a loyal
-supporter of the DevOps Library!
-
 Getting Started
 ---------------
 Alright, let’s go ahead and get started.  First, we're going to spin up two
@@ -47,8 +35,8 @@ unavailable.
 To speed up the process, we have two cloud config files that you can use below,
 the only difference between them is the hostname.
 
-[https://www.devopslibrary.com/scripts/jenkins01.yaml](https://www.devopslibrary.com/scripts/jenkins01.yaml)
-[https://www.devopslibrary.com/scripts/jenkins02.yaml](https://www.devopslibrary.com/scripts/jenkins02.yaml)
+- [jenkins01.yaml](/scripts/jenkins01.yaml)
+- [jenkins02.yaml](/scripts/jenkins02.yaml)
 
 ``` yaml
 #cloud-config
@@ -214,30 +202,3 @@ then refresh the URL to our load balancer.  Within a few minutes, the secondary
 master should automatically take over as the primary, and our ELB will now point
 us to the new master.  There we go!!  Cool huh?  You've done a fantastic job in
 this episode, thank you for watching!
-
-Conclusion & Shoutout
----------------------------------
-We'd like to give another special shout out to [Hired.com](http://www.hired.com/devopslibrary) for
-sponsoring this course.  If you're into DevOps, there's a pretty good chance
-you've had to deal with pushy recruiters and countless emails, as well as spent
-many hours searching for DevOps opportunities.
-
-The reason we love using [Hired.com](http://www.hired.com/devopslibrary) is that
-it completely reverses this situation and puts the power back in your hands, by
-having companies send you interview requests that you can choose to pursue.
-(They even come with upfront salary and equity!)
-
-By having you fill out information that is specific to what you’re looking for
-and your individual strengths and talents, it ensures that the only companies
-you'll hear from will be a great fit for you.  Plus, Hired is entirely free, and
-they’ll even give you a $2,000 bonus after you land a job, using our DevOps
-Library link!
-
-We highly recommend giving them a shot, they do a fantastic job, especially for
-the DevOps community.
-
-Thanks for Watching!
---------------------
-[Subscribe to our YouTube channel](https://www.youtube.com/channel/UCOnioSzUZS-ZqsRnf38V2nA?sub_confirmation=1) or follow [DevOpsLibrary on Twitter](https://twitter.com/intent/user?screen_name=devopslibrary).
-
-{% include subscribe.html %}

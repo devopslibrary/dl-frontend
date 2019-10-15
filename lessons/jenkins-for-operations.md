@@ -33,7 +33,7 @@ Parameterized Job
 -----------------
 Now let’s try making a slightly more complicated job.  Let’s say you want to run a script that creates a folder, but you want to specify the name of the folder.  Go back to the Jenkins home page, create a new job, but this time, check the box that says “This build is parameterized” on the job configuration page.  The click add parameter, and choose string parameter.  Go ahead and give the string a name, a default value if you’d like, and a description.
 
-Now add a build step, this time type <pre>mkdir ${NameOfString}</pre> on the first line, hit enter, then type <pre>ls</pre>.
+Now add a build step, this time type ```mkdir ${NameOfString}``` on the first line, hit enter, then type ```ls```.
 
 Go ahead and look at the Post-Build actions while you’re here, you’ll see that you can automatically send out an email when a job fails, trigger other jobs, and a handful of other options.  Don’t worry about adding any right now, but later on they’ll come in handy.
 
