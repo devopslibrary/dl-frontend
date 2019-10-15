@@ -102,7 +102,7 @@
                 <g-link class="nav-link u-header__nav-link" to="/about/">About us</g-link>
               </li>
               <li class="nav-item u-header__nav-item">
-                <a class="nav-link u-header__nav-link" href="javascript:;">Supporters</a>
+                <g-link class="nav-link u-header__nav-link" to="/supporters/">Supporters</g-link>
               </li>
               <!-- End Contact -->
             </ul>

@@ -3,7 +3,7 @@
     <footer>
       <!-- Lists -->
       <div class="border-bottom">
-        <div class="container space-2">
+        <div>
 <!--          <div class="row justify-content-md-between">-->
 <!--            <div class="col-sm-4 col-lg-2 mb-4 mb-lg-0">-->
 <!--              <h4 class="h6 font-weight-semi-bold">About</h4>-->
