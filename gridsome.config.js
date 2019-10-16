@@ -9,6 +9,7 @@ module.exports = {
     remark: {},
   },
   siteName: 'DevOps Library',
+  siteUrl: 'https://devopslibrary.github.io',
   plugins: [
     {
       use: "@gridsome/source-filesystem",
