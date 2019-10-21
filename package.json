@@ -10,10 +10,12 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "@gridsome/cli": "^0.3.1",
     "@gridsome/source-filesystem": "^0.6.0",
     "@gridsome/transformer-remark": "^0.3.4",
     "@gridsome/vue-remark": "^0.1.6",
     "gh-pages": "^2.1.1",
+    "global": "^4.4.0",
     "gridsome": "^0.7.0",
     "gridsome-plugin-remark-shiki": "^0.3.0",
     "gridsome-plugin-remark-youtube": "^1.0.1",
