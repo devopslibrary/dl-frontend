@@ -9,7 +9,27 @@ import '~/assets/css/prism-dracula.css'
 import '~/assets/vendor/font-awesome/css/fontawesome-all.min.css'
 import moment from 'moment'
 
+// Import the Auth0 configuration
+import { domain, clientId, audience } from "../auth_config.json";
+
+// Import the plugin here
+import { Auth0Plugin } from "./auth";
+
 export default function (Vue, { router, head, isClient }) {
+  // Install the authentication plugin here
+  Vue.use(Auth0Plugin, {
+    domain,
+    clientId,
+    audience,
+    onRedirectCallback: appState => {
+      router.push(
+        appState && appState.targetUrl
+          ? appState.targetUrl
+          : window.location.pathname
+      );
+    }
+  });
+
   // Set default layout as a global component
   head.link.push({
     rel: 'stylesheet',
@@ -34,6 +54,5 @@ export default function (Vue, { router, head, isClient }) {
     }
     return {x: 0, y: 0}
   };
-  head.script.push({ src: '/assets/vendor/svg-injector/dist/svg-injector.min.js', body: true });
   head.script.push({ src: 'https://platform.twitter.com/widgets.js', body: true });
 }

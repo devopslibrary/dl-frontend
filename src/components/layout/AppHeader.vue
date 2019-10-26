@@ -73,9 +73,9 @@
 
                   <!-- Promo Item -->
                   <div class="u-header__promo-item">
-                    <a class="u-header__promo-link" href="javascript:void(0)">
+                    <a class="u-header__promo-link" href="/kondo/">
                       <div class="media align-items-center">
-                        <img class="js-svg-injector u-header__promo-icon" src="/assets/img/kondo.png" alt="SVG">
+                        <img class="u-header__promo-icon" src="/assets/img/kondo.png" alt="SVG">
                         <div class="media-body">
                           <span class="u-header__promo-title">Kondo
                             <span class="badge badge-primary badge-pill ml-1">Soon!</span>
