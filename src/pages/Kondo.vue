@@ -38,22 +38,17 @@
                  width="34" height="34" alt="@Pixel-Map">
             <span class="text-bold">{{ org.login }}</span>
 
-            <a class="tooltipped float-right tooltipped-multiline tooltipped-n btn btn-primary"
+            <a v-if="!org.installed" class="tooltipped float-right tooltipped-multiline tooltipped-n btn btn-primary"
                aria-label="Install kondo.io on this account."
                :href="'https://github.com/apps/kondo-io/installations/new/permissions?target_id=' + org.id">
               Install
-            </a></div>
-          <div id="installation-status-for-kondo-io" class="Box-row">
-            <img class="avatar mr-1 v-align-middle" src="https://avatars0.githubusercontent.com/u/49795176?s=68&amp;v=4"
-                 width="34" height="34" alt="@kondo-io">
-            <span class="text-bold">Sample Installed</span>
-
-            <div class="float-right BtnGroup">
+            </a>
+            <div v-if="org.installed" class="float-right BtnGroup">
             <span class="tooltipped tooltipped-multiline tooltipped-n btn btn-outline BtnGroup-item disabled"
                   aria-label="kondo.io is installed on this account.">
               Installed
             </span>
-              <a class="btn btn-default BtnGroup-item" href="/apps/kondo-io/installations/898100">
+              <a  class="btn btn-default BtnGroup-item" :href="'https://github.com/apps/kondo-io/installations/' + org.install_id">
                 <svg aria-label="Installation settings" class="octicon octicon-gear" viewBox="0 0 14 16" version="1.1"
                      width="14" height="16" role="img">
                   <path fill-rule="evenodd"
