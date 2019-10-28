@@ -33,7 +33,7 @@
         <p>First, please select an organization to configure with Kondo. Note, if you don't see your organization, you
           will need to login to Github and grant access to see it.</p>
         <div class="Box">
-          <div v-for="org in apiMessage.orgs" class="Box-row">
+          <div v-for="org in apiMessage" class="Box-row">
             <img class="avatar mr-1 v-align-middle" :src="org.avatar_url"
                  width="34" height="34" alt="@Pixel-Map">
             <span class="text-bold">{{ org.login }}</span>
