@@ -1,18 +1,18 @@
 <template>
   <div>
-    <AppHeader />
+    <AppHeaderKondo />
     <slot /> <!-- Page content will be inserted here  -->
     <AppFooter />
   </div>
 </template>
 
 <script>
-  import AppHeader from "../components/layout/AppHeader";
+  import AppHeaderKondo from "../components/layout/AppHeaderKondo";
   import AppFooter from "../components/layout/AppFooter";
 
   export default {
     components: {
-      AppHeader,
+      AppHeaderKondo,
       AppFooter
     },
   }

@@ -2,32 +2,41 @@
   <KondoLayout>
     <div class="border-bottom w-md-75 w-lg-60 space-2 mx-md-auto">
       <div v-if="!$auth.loading">
-        <!-- For logged out users -->
-        <div v-if="!$auth.isAuthenticated">
-          <h1>What is Kondo?</h1>
-          <p>Think of Kondo.io as Github organization-level cleaner</p>
-          <h3>Features</h3>
-          <ul>
-            <li>Stanos: Stale Branch Thanos, one snap and all stale branches are removed, and all future stale branches
-              prevented across your entire organization.
-            </li>
-            <li>Best Bots: Enable a set of the best curated ProBot Apps across all repositories</li>
-            <li>Secret Scanner: Scans your repositories (including history) for any signs of secrets, with alerting and
-              remediation help.
-            </li>
-            <li>GPM: Github Permission Manager - Set up branch protection, CODEOWNERS, and rules across your entire
-              organization easily.
-            </li>
-            <li>RaC: Repositories as Code - For enforcing a standardized structure across all of your applications.</li>
-          </ul>
-          <br/>
-          <div v-if="!$auth.loading">
-            <button v-if="!$auth.isAuthenticated" type="submit" @click="login"
-                    class="btn btn-primary btn-wide transition-3d-hover ml-3" value="login" name="login" id="login">
-              Login/Register
-            </button>
+        <!-- For logged IN users -->
+        <div v-if="$auth.isAuthenticated">
+          <h1>Welcome back {{ $auth.user.name }}!</h1>
+          <p>First, please select an organization to configure with Kondo. Note, if you don't see your organization, you
+            will need to login to Github and grant access to see it.</p>
+          <div class="Box">
+            <div v-for="org in apiMessage" class="Box-row">
+              <img class="avatar mr-1 v-align-middle" :src="org.avatar_url"
+                   width="34" height="34" alt="@Pixel-Map">
+              <span class="text-bold">{{ org.login }}</span>
+
+              <a v-if="!org.installed" class="tooltipped float-right tooltipped-multiline tooltipped-n btn btn-primary"
+                 aria-label="Install kondo.io on this account."
+                 :href="'https://github.com/apps/kondo-io/installations/new/permissions?target_id=' + org.id">
+                Install
+              </a>
+              <div v-if="org.installed" class="float-right BtnGroup">
+            <span class="tooltipped tooltipped-multiline tooltipped-n btn btn-outline BtnGroup-item disabled"
+                  aria-label="kondo.io is installed on this account.">
+              Installed
+            </span>
+                <a class="btn btn-default BtnGroup-item"
+                   :href="'https://github.com/apps/kondo-io/installations/' + org.install_id">
+                  <svg aria-label="Installation settings" class="octicon octicon-gear" viewBox="0 0 14 16" version="1.1"
+                       width="14" height="16" role="img">
+                    <path fill-rule="evenodd"
+                          d="M14 8.77v-1.6l-1.94-.64-.45-1.09.88-1.84-1.13-1.13-1.81.91-1.09-.45-.69-1.92h-1.6l-.63 1.94-1.11.45-1.84-.88-1.13 1.13.91 1.81-.45 1.09L0 7.23v1.59l1.94.64.45 1.09-.88 1.84 1.13 1.13 1.81-.91 1.09.45.69 1.92h1.59l.63-1.94 1.11-.45 1.84.88 1.13-1.13-.92-1.81.47-1.09L14 8.75v.02zM7 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
+          <br/>
         </div>
+
       </div>
     </div>
   </KondoLayout>
@@ -72,9 +81,6 @@
     watch: {
       '$auth.isAuthenticated': function () {
         this.callApi();
-        if (this.$auth.isAuthenticated) {
-          this.$router.push({path: '/kondo/overview'})
-        }
       }
     },
     mounted() {
