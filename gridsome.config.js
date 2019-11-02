@@ -5,6 +5,8 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
+  host: process.env.HOSTNAME,
+  port: 8080,
   transformers: {
     remark: {},
   },
