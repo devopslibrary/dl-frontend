@@ -8,7 +8,7 @@
           <p>First, please select an organization to configure with Kondo. Note, if you don't see your organization, you
             will need to login to Github and grant access to see it.</p>
           <div class="Box">
-            <div v-for="org in apiMessage" class="Box-row">
+            <div v-for="org in orgs" class="Box-row">
               <img class="avatar mr-1 v-align-middle" :src="org.avatar_url"
                    width="34" height="34" alt="@Pixel-Map">
               <span class="text-bold">{{ org.login }}</span>
@@ -49,7 +49,7 @@
     name: "Kondo",
     data() {
       return {
-        apiMessage: "",
+        orgs: "",
         token: false
       };
     },
@@ -69,13 +69,13 @@
         const token = await this.$auth.getTokenSilently();
 
         // Use Axios to make a call to the API
-        const {data} = await axios.get("/api/external", {
+        const {data} = await axios.get("/api/get-orgs", {
           headers: {
             Authorization: `Bearer ${token}`    // send the access token through the 'Authorization' header
           }
         });
 
-        this.apiMessage = data;
+        this.orgs = data;
       }
     },
     watch: {

@@ -40,7 +40,7 @@
     name: "Kondo",
     data() {
       return {
-        apiMessage: "",
+        orgs: "",
         token: false
       };
     },
@@ -60,13 +60,13 @@
         const token = await this.$auth.getTokenSilently();
 
         // Use Axios to make a call to the API
-        const {data} = await axios.get("/api/external", {
+        const {data} = await axios.get("/api/get-orgs", {
           headers: {
             Authorization: `Bearer ${token}`    // send the access token through the 'Authorization' header
           }
         });
 
-        this.apiMessage = data;
+        this.orgs = data;
       }
     },
     watch: {
