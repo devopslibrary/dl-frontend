@@ -1,0 +1,29 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    yarn install
+  displayName: 'yarn install'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud DevOpsLibrary'
+    organization: 'devopslibrary'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'dl-frontend'
+    cliProjectName: 'dl-frontend'
+    cliSources: '.'
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+- task: SonarCloudAnalyze@1
