@@ -7,7 +7,7 @@
 
 var proxy = require("http-proxy-middleware");
 
-module.exports = function (api) {
+module.exports = function(api) {
   api.loadSource(({ addCollection }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
   });
@@ -19,9 +19,9 @@ module.exports = function (api) {
   // Need to proxy to API for local dev, otherwise CORS prevents it!
   api.configureServer(app => {
     app.use(
-      "/api",
+      "/orgs",
       proxy({
-        target: "http://localhost:3001",
+        target: "http://localhost:3000"
       })
     );
   });

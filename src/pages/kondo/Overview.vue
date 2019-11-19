@@ -692,7 +692,7 @@ export default {
       const token = await this.$auth.getTokenSilently();
 
       // Get Org Data
-      const { data } = await axios.get("/api/get-orgs", {
+      const { data } = await axios.get("/orgs", {
         headers: {
           Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
         }
@@ -705,7 +705,7 @@ export default {
         return obj.login === this.$route.query.org;
       })[0];
 
-      const rdata = await axios.get("/api/get-repos", {
+      const rdata = await axios.get("/orgs/repos", {
         params: {
           org: this.$route.query.org
         },

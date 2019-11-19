@@ -157,7 +157,7 @@ export default {
       const token = await this.$auth.getTokenSilently();
 
       // Use Axios to make a call to the API
-      const { data } = await axios.get("/api/get-orgs", {
+      const { data } = await axios.get("/orgs", {
         headers: {
           Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
         }
