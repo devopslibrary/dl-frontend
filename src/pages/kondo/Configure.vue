@@ -13,12 +13,12 @@
             <div v-for="org in orgs" class="Box-row">
               <img
                 class="avatar mr-1 v-align-middle"
-                :src="org.avatar_url"
+                :src="org.avatar"
                 width="34"
                 height="34"
                 alt="@Pixel-Map"
               />
-              <span class="text-bold">{{ org.login }}</span>
+              <span class="text-bold">{{ org.name }}</span>
 
               <a
                 v-if="!org.installed"
@@ -33,7 +33,7 @@
                 >Installed</span>
                 <a
                   class="btn btn-default BtnGroup-item"
-                  :href="'https://github.com/apps/kondo-io/installations/' + org.install_id"
+                  :href="'https://github.com/apps/kondo-io/installations/' + org.installId"
                 >
                   <svg
                     aria-label="Installation settings"

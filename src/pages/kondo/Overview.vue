@@ -13,12 +13,12 @@
                   <img
                     class="img-fluid rounded-circle"
                     style="min-width: 80px;"
-                    :src="this.selectedOrg.avatar_url"
+                    :src="this.selectedOrg.avatar"
                     alt="Image Description"
                   />
                 </div>
                 <div class="media-body">
-                  <h1 class="h3 text-white font-weight-medium mb-1">{{ this.selectedOrg.login }}</h1>
+                  <h1 class="h3 text-white font-weight-medium mb-1">{{ this.selectedOrg.name }}</h1>
                   <span class="d-block text-white">Organization Overview</span>
                 </div>
               </div>
@@ -58,7 +58,7 @@
                     <span class="fas fa-coins btn-icon__inner"></span>
                   </span>
                   <div class="media-body">
-                    <span class="d-block font-size-3">248 / 1302</span>
+                    <span class="d-block font-size-3">248 / {{ this.branches.length }}</span>
                     <h3 class="h6 text-secondary font-weight-normal mb-0">Stale / Total Branches</h3>
                   </div>
                 </div>
@@ -640,15 +640,15 @@
         <h1>Please select an organization to manage with Kondo</h1>
         <div class="Box">
           <div v-for="(org, idx) in orgs" :key="idx" class="Box-row">
-            <a :href="'/kondo/overview?org=' + org.login" v-on:click="callApi();">
+            <a :href="'/kondo/overview?org=' + org.name" v-on:click="callApi();">
               <img
                 class="avatar mr-1 v-align-middle"
-                :src="org.avatar_url"
+                :src="org.avatar"
                 width="34"
                 height="34"
                 alt="@Pixel-Map"
               />
-              <span class="text-bold">{{ org.login }}</span>
+              <span class="text-bold">{{ org.name }}</span>
             </a>
           </div>
         </div>
@@ -673,6 +673,7 @@ export default {
       videosHover: false,
       menuHover: "",
       repos: "",
+      branches: "",
       selectedOrg: ""
     };
   },
@@ -702,15 +703,26 @@ export default {
       });
 
       this.selectedOrg = await data.filter(obj => {
-        return obj.login === this.$route.query.org;
+        return obj.name === this.$route.query.org;
       })[0];
 
-      const rdata = await axios.get("/orgs/" + this.$route.query.org + "/repos", {
-        headers: {
-          Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+      this.repos = (await axios.get(
+        "/orgs/" + this.$route.query.org + "/repos",
+        {
+          headers: {
+            Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+          }
         }
-      });
-      this.repos = rdata.data;
+      )).data;
+
+      this.branches = (await axios.get(
+        "/orgs/" + this.$route.query.org + "/branches",
+        {
+          headers: {
+            Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+          }
+        }
+      )).data;
     }
   },
   watch: {

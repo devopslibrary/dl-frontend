@@ -46,16 +46,16 @@
                   style="min-width: 330px;"
                 >
                   <div class="u-header__promo-item" v-for="(org, idx) in installedOrgs" :key="idx">
-                    <a class="u-header__promo-link" :href="'/kondo/overview?org=' + org.login">
+                    <a class="u-header__promo-link" :href="'/kondo/overview?org=' + org.name">
                       <div class="media align-items-center">
                         <img
                           class="js-svg-injector u-header__promo-icon"
-                          :src="org.avatar_url"
+                          :src="org.avatar"
                           alt="SVG"
                         />
                         <div class="media-body">
                           <span class="u-header__promo-title">
-                            {{ org.login }}
+                            {{ org.name }}
                             <span class="badge badge-primary badge-pill ml-1">ACTIVE</span>
                           </span>
                           <small class="u-header__promo-text">Click to switch orgs</small>
