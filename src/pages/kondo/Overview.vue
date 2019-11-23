@@ -705,10 +705,7 @@ export default {
         return obj.login === this.$route.query.org;
       })[0];
 
-      const rdata = await axios.get("/orgs/repos", {
-        params: {
-          org: this.$route.query.org
-        },
+      const rdata = await axios.get("/orgs/" + this.$route.query.org + "/repos", {
         headers: {
           Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
         }
