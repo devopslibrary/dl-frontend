@@ -58,7 +58,9 @@
                     <span class="fas fa-coins btn-icon__inner"></span>
                   </span>
                   <div class="media-body">
-                    <span class="d-block font-size-3">248 / {{ this.branches.length }}</span>
+                    <span
+                      class="d-block font-size-3"
+                    >{{ this.staleBranches.length }} / {{ this.branches.length }}</span>
                     <h3 class="h6 text-secondary font-weight-normal mb-0">Stale / Total Branches</h3>
                   </div>
                 </div>
@@ -674,6 +676,7 @@ export default {
       menuHover: "",
       repos: "",
       branches: "",
+      staleBranches: "",
       selectedOrg: ""
     };
   },
@@ -723,6 +726,13 @@ export default {
           }
         }
       )).data;
+
+      this.staleBranches = await this.branches.filter(function(branch) {
+        console.log(branch);
+        if (branch.stale && !branch.isProtected) {
+          return branch;
+        }
+      });
     }
   },
   watch: {
