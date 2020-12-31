@@ -39,6 +39,10 @@ export default function (Vue, {router, head, isClient}) {
 
   // Google analytics
   head.script.push({
+    src: 'https://www.googletagmanager.com/gtag/js?id=UA-60115428-1',
+    body: false
+  })
+  head.script.push({
     src: 'analytics.js',
     body: false
   })
