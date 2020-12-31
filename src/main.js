@@ -37,6 +37,12 @@ export default function (Vue, {router, head, isClient}) {
     Vue.component('KondoLayout', KondoLayout)
   );
 
+  // Google analytics
+  head.script.push({
+    src: 'analytics.js',
+    body: false
+  })
+
   // Set default layout as a global component
   head.link.push({
     rel: 'stylesheet',
