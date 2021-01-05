@@ -5,8 +5,8 @@ date:   2020-12-31 12:00:00 -0500
 category: Adde
 permalink: lessons/saas-introduction
 excerpt: "Building an entire SaaS from scratch, live."
-weight: 3
-difficulty: hard
+weight: 1
+difficulty: easy
 coverart: saas.png
 
 ---
