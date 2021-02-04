@@ -16,7 +16,7 @@
 
         <div class="media-body">
           <div class="d-flex justify-content-between align-items-center">
-            <h1 class="h3 font-weight-medium">Dr. Samantha Ventura</h1>
+            <h1 class="h3 font-weight-medium">Samantha Ventura</h1>
             <div class="d-block">
               <g-link to="https://www.linkedin.com/in/samanthaventura/">
                 <button type="button" class="btn btn-xs btn-soft-primary font-weight-medium text-nowrap transition-3d-hover ml-1">Connect</button>
@@ -29,12 +29,19 @@
             </div>
           </div>
           <p class="mb-0">
-            My name is Samantha Ventura, and I am the Director of Learning Initiatives for the DevOpsLibrary.  I am a
-            native Californian, and have been in the field of education for the past 15 years. I received my BA degree
-            in English from San Diego State University, then later my Masters in Teaching, with a specialization in
-            Reading.  My PhD is in Organizational Leadership and I work as an executive trainer and learning coach,
-            specializing in the area of higher education and diversity awareness. In my spare time I love everything
-            outdoors, including skiing, fishing, camping and spending time with my family.</a></p>
+            My name is Samantha Ventura, and I oversee all of the learning development for the DevOpsLibrary. While I 
+            used to have more time to be involved, I now support the library as a visiting contributor and advocate. I 
+            am a native Californian, and have been in the field of education for the past 20 years. I received my BA 
+            degree in English from San Diego State University, then later my Masters in Teaching (MA.T), with a 
+            specialization in Reading. The focus of my PhD work is Organizational Leadership and I have worked as an 
+            executive trainer and learning coach, specializing in the areas of higher education and diversity awareness. 
+            I am currently the Senior Vice President of Education and Training at CEDIA. 
+            <g-link to="https://www.linkedin.com/in/samanthaventura/">l inkedin.com/in/samanthaventura/</g-link>
+          <br/><br/>
+          In my spare time I love everything outdoors, including skiing, fishing, camping and spending time with my family.
+
+
+          </p>
         </div>
       </div>
       <br/><br/>
