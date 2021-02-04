@@ -36,7 +36,7 @@
             specialization in Reading. The focus of my PhD work is Organizational Leadership and I have worked as an 
             executive trainer and learning coach, specializing in the areas of higher education and diversity awareness. 
             I am currently the Senior Vice President of Education and Training at CEDIA. 
-            <g-link to="https://www.linkedin.com/in/samanthaventura/">l inkedin.com/in/samanthaventura/</g-link>
+            <g-link to="https://www.linkedin.com/in/samanthaventura/">linkedin.com/in/samanthaventura/</g-link>
           <br/><br/>
           In my spare time I love everything outdoors, including skiing, fishing, camping and spending time with my family.
 
